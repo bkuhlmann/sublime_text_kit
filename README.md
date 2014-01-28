@@ -53,6 +53,7 @@ For settion options, type: stk help --session
 
 # Troubleshooting
 
+* When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
 * When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
   both *.sublime-project and *.sublime-workspace files.
 
