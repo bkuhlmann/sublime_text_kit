@@ -1,0 +1,5 @@
+#!/usr/bin/ruby
+
+require "sublime_text_kit"
+require "sublime_text_kit/cli"
+SublimeTextKit::CLI.start
