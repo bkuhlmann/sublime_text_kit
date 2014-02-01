@@ -4,8 +4,8 @@
 [![Code Climate GPA](https://codeclimate.com/github/bkuhlmann/sublime_text_kit.png)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.png)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
 
-Provides a collection of utilities that aids in Sublime Text managment. The utilities are fairly sparse at the
-moment but the idea is that this will grow over time.
+Provides a collection of utilities that aid in Sublime Text managment. These utilities are fairly sparse at the
+moment but will grow over time as new needs arise.
 
 # Features
 
@@ -47,7 +47,7 @@ From the command line, type: stk
     stk -s, [--session]    # Manage session data.
     stk -v, [--version]    # Show version.
 
-For settion options, type: stk help --session
+For session options, type: stk help --session
 
     -r, [--rebuild-recent-workspaces]  # Rebuild recent workspaces.
 
