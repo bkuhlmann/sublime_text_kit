@@ -31,7 +31,7 @@ describe SublimeTextKit::Session do
       }
 
       subject.rebuild_recent_workspaces
-      updated_session = Oj.load File.read(SublimeTextKit::Session.session_path)
+      updated_session = JSON.load File.read(SublimeTextKit::Session.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq(session)
@@ -46,7 +46,7 @@ describe SublimeTextKit::Session do
       }
 
       subject.rebuild_recent_workspaces
-      updated_session = Oj.load File.read(SublimeTextKit::Session.session_path)
+      updated_session = JSON.load File.read(SublimeTextKit::Session.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq(session)
@@ -66,7 +66,7 @@ describe SublimeTextKit::Session do
       SublimeTextKit::Session.stub session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
-      updated_session = Oj.load File.read(SublimeTextKit::Session.session_path)
+      updated_session = JSON.load File.read(SublimeTextKit::Session.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq({})

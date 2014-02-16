@@ -1,4 +1,4 @@
-require "oj"
+require "json"
 
 module SublimeTextKit
   class Session
@@ -12,8 +12,8 @@ module SublimeTextKit
       "#{home_path}/Library/Application Support/Sublime Text 2/Settings/Session.sublime_session"
     end
 
-    def initialize workspaces_path: ''
-      @workspaces_path = workspaces_path
+    def initialize options = {}
+      @workspaces_path = options.fetch :workspaces_path, ''
     end
 
     def workspaces
@@ -32,11 +32,11 @@ module SublimeTextKit
     private
 
     def load_session
-      File.exists?(self.class.session_path) ? Oj.load(File.read(self.class.session_path)) : {}
+      File.exists?(self.class.session_path) ? JSON.load(File.read(self.class.session_path)) : {}
     end
 
     def save_session json
-      File.open(self.class.session_path, 'w') { |file| file.write Oj.dump(json) }
+      File.open(self.class.session_path, 'w') { |file| file.write JSON.dump(json) }
     end
   end
 end

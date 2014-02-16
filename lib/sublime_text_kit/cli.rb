@@ -32,7 +32,7 @@ module SublimeTextKit
     desc "-e, [--edit]", "Edit settings in default editor (assumes $EDITOR environment variable)."
     map %w(-e --edit) => :edit
     def edit
-      `$EDITOR #{@settings_file}`
+      `#{editor} #{@settings_file}`
     end
 
     desc "-v, [--version]", "Show version."

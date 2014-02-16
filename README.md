@@ -15,7 +15,10 @@ moment but will grow over time as new needs arise.
 
 # Requirements
 
-0. [Ruby 2.x.x](http://www.ruby-lang.org).
+0. Any of the following Ruby VMs:
+    * [MRI 2.x.x](http://www.ruby-lang.org)
+    * [JRuby 1.x.x](http://jruby.org)
+    * [Rubinius 2.x.x](http://rubini.us)
 0. [Sublime Text 2](http://www.sublimetext.com).
 
 # Setup
