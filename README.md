@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/sublime_text_kit.png)](http://badge.fury.io/rb/sublime_text_kit)
 [![Code Climate GPA](https://codeclimate.com/github/bkuhlmann/sublime_text_kit.png)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
+[![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.png)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
 [![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.png)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
 
 Provides a collection of utilities that aid in Sublime Text managment. These utilities are fairly sparse at the
