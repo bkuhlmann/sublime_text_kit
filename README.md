@@ -28,7 +28,7 @@ moment but will grow over time as new needs arise.
 For a secure install, type the following from the command line (recommended):
 
     gem cert --add <(curl -Ls http://www.redalchemist.com/gem-public.pem)
-    gem install sublime_text_kit -P HighSecurity
+    gem install sublime_text_kit --trust-policy HighSecurity
 
 ...or, for an insecure install, type the following (not recommended):
 
