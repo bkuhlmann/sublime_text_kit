@@ -1,4 +1,4 @@
-require "json"
+require "multi_json"
 
 module SublimeTextKit
   class Session
@@ -32,11 +32,11 @@ module SublimeTextKit
     private
 
     def load_session
-      File.exists?(self.class.session_path) ? JSON.load(File.read(self.class.session_path)) : {}
+      File.exists?(self.class.session_path) ? MultiJson.load(File.read(self.class.session_path)) : {}
     end
 
     def save_session json
-      File.open(self.class.session_path, 'w') { |file| file.write JSON.dump(json) }
+      File.open(self.class.session_path, 'w') { |file| file.write MultiJson.dump(json) }
     end
   end
 end

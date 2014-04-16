@@ -37,9 +37,9 @@ Gem::Specification.new do |s|
       raise RuntimeError.new("Unsupported Ruby Engine!")
   end
 
-  s.add_dependency "thor", "~> 0.18"
-  s.add_dependency "thor_plus", "~> 1.4"
-  s.add_dependency "json", "~> 1.8"
+  s.add_dependency "thor", "~> 0.19"
+  s.add_dependency "thor_plus", "~> 1.5"
+  s.add_dependency "multi_json", "~> 1.9"
   s.add_development_dependency "rake", "~> 10.0"
   s.add_development_dependency "pry"
   s.add_development_dependency "pry-remote"
