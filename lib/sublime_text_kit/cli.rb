@@ -52,7 +52,7 @@ module SublimeTextKit
     def rebuild_recent_workspaces
       info "Rebuilding recent workspaces..."
       session = SublimeTextKit::Session.new workspaces_path: @settings[:workspaces_path]
-      info "Workspaces Path: #{session.workspaces_path}"
+      info "Workspaces Path: #{session.workspaces_absolute_path}"
       info "Sublime Text Session: #{SublimeTextKit::Session.session_path}"
       session.rebuild_recent_workspaces
       info "Recent workspaces rebuilt."
