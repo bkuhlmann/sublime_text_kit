@@ -1,3 +1,16 @@
+# v0.3.0
+
+* Fixed bug where workspace would not be expanded to absolute path properly.
+* Updated to MRI 2.1.1.
+* Updated to Rubinius 2.x.x.
+* Updated README with --trust-policy for secure install of gem.
+* Updated RSpec helper to disable GC for all specs in order to improve performance.
+* Updated output of workspaces path to be the absolute path.
+* Added Gemnasium support.
+* Added Coveralls support.
+* Added Rails 4.1.x support.
+* Added multi_json support.
+
 # v0.2.0
 
 * Added JRuby and Rubinius VM support.
