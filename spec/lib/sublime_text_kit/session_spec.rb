@@ -6,6 +6,15 @@ describe SublimeTextKit::Session do
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
   before { SublimeTextKit::Session.stub session_path: session_file }
 
+  describe "#workspaces_absolute_path" do
+    it "expands to absolute path" do
+      subject.workspaces_path = "~/some/random/path"
+      segments = subject.workspaces_absolute_path.to_s.split File::SEPARATOR
+
+      segments.each { |segment| expect(segment).not_to eq('~') }
+    end
+  end
+
   describe "#workspaces" do
     it "answers an alpha-sorted list of sublime project files" do
       project_files = %W(

@@ -16,8 +16,12 @@ module SublimeTextKit
       @workspaces_path = options.fetch :workspaces_path, ''
     end
 
+    def workspaces_absolute_path
+      File.expand_path workspaces_path
+    end
+
     def workspaces
-      Dir["#{workspaces_path}/*.sublime-project"].sort
+      Dir["#{workspaces_absolute_path}/*.sublime-project"].sort
     end
 
     def rebuild_recent_workspaces
