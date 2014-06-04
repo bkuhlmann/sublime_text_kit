@@ -4,7 +4,7 @@ describe SublimeTextKit::Session do
   subject { SublimeTextKit::Session.new workspaces_path: File.expand_path("../../../support/workspaces", __FILE__) }
   let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
-  before { SublimeTextKit::Session.stub session_path: session_file }
+  before { allow(SublimeTextKit::Session).to receive_messages session_path: session_file }
 
   describe "#workspaces_absolute_path" do
     it "expands to absolute path" do
@@ -63,16 +63,16 @@ describe SublimeTextKit::Session do
 
     it "skips updating the session when session file is not found" do
       bogus_session_file = File.expand_path "../../../support/bogus.sublime_session", __FILE__
-      SublimeTextKit::Session.stub session_path: bogus_session_file
+      allow(SublimeTextKit::Session).to receive_messages session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
 
-      expect(File.exists?(bogus_session_file)).to be_false
+      expect(File.exists?(bogus_session_file)).to be_falsey
     end
 
     it "skips updating the session when keys are missing" do
       bogus_session_file = File.expand_path "../../../support/Session.missing_keys", __FILE__
-      SublimeTextKit::Session.stub session_path: bogus_session_file
+      allow(SublimeTextKit::Session).to receive_messages session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
       updated_session = JSON.load File.read(SublimeTextKit::Session.session_path)
