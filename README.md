@@ -28,7 +28,7 @@ moment but will grow over time as new needs arise.
 
 For a secure install, type the following from the command line (recommended):
 
-    gem cert --add <(curl -Ls http://www.redalchemist.com/gem-public.pem)
+    gem cert --add <(curl -Ls http://www.alchemists.io/gem-public.pem)
     gem install sublime_text_kit --trust-policy MediumSecurity
 
 NOTE: A HighSecurity trust policy would be best but MediumSecurity enables signed gem verification while
@@ -88,11 +88,11 @@ Read CONTRIBUTING for details.
 
 # Credits
 
-Developed by [Brooke Kuhlmann](http://www.redalchemist.com) at [Red Alchemist](http://www.redalchemist.com).
+Developed by [Brooke Kuhlmann](http://www.alchemists.io) at [Alchemists](http://www.alchemists.io).
 
 # License
 
-Copyright (c) 2014 [Red Alchemist](http://www.redalchemist.com).
+Copyright (c) 2014 [Alchemists](http://www.alchemists.io).
 Read the LICENSE for details.
 
 # History
