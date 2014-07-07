@@ -1,3 +1,9 @@
+# v0.4.0
+
+* Added Code Climate test coverage support.
+* Updated to Ruby 2.1.2.
+* Updated gem-public.pem for gem install certificate chain.
+
 # v0.3.0
 
 * Fixed bug where workspace would not be expanded to absolute path properly.
