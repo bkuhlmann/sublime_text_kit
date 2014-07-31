@@ -11,15 +11,15 @@ def add_security_key specification, method, files
 end
 
 Gem::Specification.new do |s|
-  s.name									= "sublime_text_kit"
-  s.version								= SublimeTextKit::VERSION
-  s.platform							= Gem::Platform::RUBY
-  s.author								= "Brooke Kuhlmann"
-  s.email									= "brooke@redalchemist.com"
-  s.homepage							= "https://github.com/bkuhlmann/sublime_text_kit"
-  s.summary								= "Command line utilities for Sublime Text."
-  s.description						= "Command line utilities for Sublime Text packaged as a Ruby Gem."
-	s.license								= "MIT"
+  s.name                  = "sublime_text_kit"
+  s.version               = SublimeTextKit::VERSION
+  s.platform              = Gem::Platform::RUBY
+  s.authors               = ["Brooke Kuhlmann"]
+  s.email                 = ["brooke@redalchemist.com"]
+  s.homepage              = "https://github.com/bkuhlmann/sublime_text_kit"
+  s.summary               = "Command line utilities for Sublime Text."
+  s.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
+  s.license               = "MIT"
 
   add_security_key s, "signing_key", File.expand_path("~/.ssh/gem-private.pem")
   add_security_key s, "cert_chain", [File.expand_path("~/.ssh/gem-public.pem")]
@@ -51,6 +51,6 @@ Gem::Specification.new do |s|
 
   s.files            = Dir["lib/**/*", "vendor/**/*"]
   s.extra_rdoc_files = Dir["README*", "LICENSE*"]
-	s.executables      << "stk"
+  s.executables      << "stk"
   s.require_paths    = ["lib"]
 end
