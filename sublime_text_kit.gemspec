@@ -1,15 +1,6 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "sublime_text_kit/version"
 
-def add_security_key specification, method, files
-  file = files.is_a?(Array) ? files.first : files
-  if File.exists? file
-    specification.send "#{method}=", files
-  else
-    puts "WARNING: Security key not found for #{specification.name} gem specification: #{file}"
-  end
-end
-
 Gem::Specification.new do |s|
   s.name                  = "sublime_text_kit"
   s.version               = SublimeTextKit::VERSION
@@ -21,8 +12,10 @@ Gem::Specification.new do |s|
   s.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
   s.license               = "MIT"
 
-  add_security_key s, "signing_key", File.expand_path("~/.ssh/gem-private.pem")
-  add_security_key s, "cert_chain", [File.expand_path("~/.ssh/gem-public.pem")]
+  unless ENV["CI"] == "true"
+    spec.signing_key = File.expand_path("~/.ssh/gem-private.pem")
+    spec.cert_chain = [File.expand_path("~/.ssh/gem-public.pem")]
+  end
 
   case Gem.ruby_engine
     when "ruby"
