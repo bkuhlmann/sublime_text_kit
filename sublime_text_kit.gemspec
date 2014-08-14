@@ -1,16 +1,16 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "sublime_text_kit/version"
 
-Gem::Specification.new do |s|
-  s.name                  = "sublime_text_kit"
-  s.version               = SublimeTextKit::VERSION
-  s.platform              = Gem::Platform::RUBY
-  s.authors               = ["Brooke Kuhlmann"]
-  s.email                 = ["brooke@redalchemist.com"]
-  s.homepage              = "https://github.com/bkuhlmann/sublime_text_kit"
-  s.summary               = "Command line utilities for Sublime Text."
-  s.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
-  s.license               = "MIT"
+Gem::Specification.new do |spec|
+  spec.name                  = "sublime_text_kit"
+  spec.version               = SublimeTextKit::VERSION
+  spec.platform              = Gem::Platform::RUBY
+  spec.authors               = ["Brooke Kuhlmann"]
+  spec.email                 = ["brooke@redalchemist.com"]
+  spec.homepage              = "https://github.com/bkuhlmann/sublime_text_kit"
+  spec.summary               = "Command line utilities for Sublime Text."
+  spec.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
+  spec.license               = "MIT"
 
   unless ENV["CI"] == "true"
     spec.signing_key = File.expand_path("~/.ssh/gem-private.pem")
@@ -19,31 +19,32 @@ Gem::Specification.new do |s|
 
   case Gem.ruby_engine
     when "ruby"
-      s.add_development_dependency "pry-byebug"
-      s.add_development_dependency "pry-stack_explorer"
+      spec.add_development_dependency "pry-byebug"
+      spec.add_development_dependency "pry-stack_explorer"
     when "jruby"
-      s.add_development_dependency "pry-nav"
+      spec.add_development_dependency "pry-nav"
     when "rbx"
-      s.add_development_dependency "pry-nav"
-      s.add_development_dependency "pry-stack_explorer"
+      spec.add_development_dependency "pry-nav"
+      spec.add_development_dependency "pry-stack_explorer"
     else
       raise RuntimeError.new("Unsupported Ruby Engine!")
   end
 
-  s.add_dependency "thor", "~> 0.19"
-  s.add_dependency "thor_plus", "~> 1.6"
-  s.add_dependency "multi_json", "~> 1.9"
-  s.add_development_dependency "rake", "~> 10.0"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "pry-remote"
-  s.add_development_dependency "pry-rescue"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rb-fsevent" # Guard file events for OSX.
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "codeclimate-test-reporter"
+  spec.add_dependency "thor", "~> 0.19"
+  spec.add_dependency "thor_plus", "~> 1.6"
+  spec.add_dependency "multi_json", "~> 1.9"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-remote"
+  spec.add_development_dependency "pry-rescue"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rb-fsevent" # Guard file events for OSX.
+  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "terminal-notifier-guard"
+  spec.add_development_dependency "codeclimate-test-reporter"
 
-  s.files            = Dir["lib/**/*", "vendor/**/*"]
-  s.extra_rdoc_files = Dir["README*", "LICENSE*"]
-  s.executables      << "stk"
-  s.require_paths    = ["lib"]
+  spec.files            = Dir["lib/**/*", "vendor/**/*"]
+  spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
+  spec.executables      << "stk"
+  spec.require_paths    = ["lib"]
 end
