@@ -1,10 +1,10 @@
-# v0.4.0
+# v0.4.0 (2014-07-06)
 
 * Added Code Climate test coverage support.
 * Updated to Ruby 2.1.2.
 * Updated gem-public.pem for gem install certificate chain.
 
-# v0.3.0
+# v0.3.0 (2014-04-16)
 
 * Fixed bug where workspace would not be expanded to absolute path properly.
 * Updated to MRI 2.1.1.
@@ -17,10 +17,10 @@
 * Added Rails 4.1.x support.
 * Added multi_json support.
 
-# v0.2.0
+# v0.2.0 (2014-02-16)
 
 * Added JRuby and Rubinius VM support.
 
-# v0.1.0
+# v0.1.0 (2014-01-27)
 
 * Initial version.
