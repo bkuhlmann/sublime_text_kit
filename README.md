@@ -12,16 +12,16 @@ moment but will grow over time as new needs arise.
 
 # Features
 
-* Rebuilds recent workspace history (via Project -> Recent Projects) from existing project files (assumes
+- Rebuilds recent workspace history (via Project -> Recent Projects) from existing project files (assumes
   workspaces are in a single directory) so one can easily toggle between up-to-date project information via
   the COMMAND+CONTROL+P shortcut.
 
 # Requirements
 
 0. Any of the following Ruby VMs:
-    * [MRI 2.x.x](http://www.ruby-lang.org)
-    * [JRuby 1.x.x](http://jruby.org)
-    * [Rubinius 2.x.x](http://rubini.us)
+    - [MRI 2.x.x](http://www.ruby-lang.org)
+    - [JRuby 1.x.x](http://jruby.org)
+    - [Rubinius 2.x.x](http://rubini.us)
 0. [Sublime Text 2](http://www.sublimetext.com).
 
 # Setup
@@ -62,8 +62,8 @@ For session options, type: stk help --session
 
 # Troubleshooting
 
-* When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
-* When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
+- When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
+- When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
   both *.sublime-project and *.sublime-workspace files.
 
 # Tests
@@ -76,9 +76,9 @@ To test, run:
 
 Read [Semantic Versioning](http://semver.org) for details. Briefly, it means:
 
-* Patch (x.y.Z) - Incremented for small, backwards compatible bug fixes.
-* Minor (x.Y.z) - Incremented for new, backwards compatible public API enhancements and/or bug fixes.
-* Major (X.y.z) - Incremented for any backwards incompatible public API changes.
+- Patch (x.y.Z) - Incremented for small, backwards compatible bug fixes.
+- Minor (x.Y.z) - Incremented for new, backwards compatible public API enhancements and/or bug fixes.
+- Major (X.y.z) - Incremented for any backwards incompatible public API changes.
 
 # Contributions
 
