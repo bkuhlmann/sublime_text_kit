@@ -1,3 +1,15 @@
+# v1.0.0 (2014-09-21)
+
+- Updated to Ruby 2.1.3.
+- Updated gemspec to add security keys unless in a CI environment.
+- Updated Code Climate to run only if environment variable is present.
+- Added author and email arrays to gemspec.
+- Added the Guard Terminal Notifier gem.
+- Added project metadata creation support.
+- Added project metadata destruction support.
+- Refactored RSpec setup and support files.
+- Refactored workspaces_path to workspace_dir (make sure to update your settings.yml).
+
 # v0.4.0 (2014-07-06)
 
 - Added Code Climate test coverage support.

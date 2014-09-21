@@ -7,14 +7,16 @@
 [![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.png)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
 [![Gittip](http://img.shields.io/gittip/bkuhlmann.svg)](https://www.gittip.com/bkuhlmann)
 
-Provides a collection of utilities that aid in Sublime Text managment. These utilities are fairly sparse at the
-moment but will grow over time as new needs arise.
+Provides a collection of utilities that aid in Sublime Text management.
 
 # Features
 
-- Rebuilds recent workspace history (via Project -> Recent Projects) from existing project files (assumes
-  workspaces are in a single directory) so one can easily toggle between up-to-date project information via
-  the COMMAND+CONTROL+P shortcut.
+- Creates project metadata (i.e. *.sublime-project files) for easy project switching via the `COMMAND+CONTROL+P`
+  shortcut.
+- Destroys project metadata (i.e. *.sublime-project and *.sublime-workspace files).
+- Rebuilds recent workspace history (via Project -> Recent Projects) from existing project files (assumes workspaces are
+  in a single directory) so one can easily toggle between up-to-date project information via the `COMMAND+CONTROL+P`
+  shortcut.
 
 # Requirements
 
@@ -45,7 +47,24 @@ You can define settings by creating the following file:
 Example:
 
     ---
-    :workspaces_path: ~/Dropbox/Cache/Sublime
+    :project_roots:
+      - "~/Dropbox/Development/Misc"
+      - "~/Dropbox/Development/OSS"
+      - "~/Dropbox/Development/Work"
+    :workspace_dir: "~/Dropbox/Cache/Sublime"
+
+The project roots are the root level directories to where project folders are located. When project metadata (i.e.
+*.sublime-project) is generated, the name of the metadata file will be the same name as that of the project folder. All
+project metadata, regardless of root location, is written to the same workspace directory. If using the example settings
+shown above and assuming the following directory structure exists...
+
+    ~/Dropbox/Development/Misc/test
+    ~/Dropbox/Development/OSS/sublime_text_kit
+
+...the project metadata will be created in the workspace directory as follows:
+
+    ~/Dropbox/Cache/Sublime/test.sublime-project
+    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
 
 # Usage
 
@@ -53,24 +72,47 @@ From the command line, type: stk
 
     stk -e, [--edit]       # Edit settings in default editor (assumes $EDITOR environment variable).
     stk -h, [--help=HELP]  # Show this message or get help for a command.
+    stk -p, [--project]    # Manage project metadata.
     stk -s, [--session]    # Manage session data.
     stk -v, [--version]    # Show version.
 
-For session options, type: stk help --session
+For project options, type: stk --project
+
+    -c, [--create], [--no-create]    # Create project metadata.
+    -D, [--destroy], [--no-destroy]  # Destroy all project metadata.
+
+For session options, type: stk --session
 
     -r, [--rebuild-recent-workspaces]  # Rebuild recent workspaces.
-
-# Troubleshooting
-
-- When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
-- When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
-  both *.sublime-project and *.sublime-workspace files.
 
 # Tests
 
 To test, run:
 
     bundle exec rspec spec
+
+# Workflow
+
+Sublime Text does not make it easy to rebuild project metadata. This is especially true when renaming project
+directories, rebuilding a new machine, etc. The following demonstrates a common workflow that makes you more productive
+with Sublime Text:
+
+0. Run: `stk -e` (define Sublime Text Kit settings for project roots and workspace directory).
+0. Shutdown Sublime Text (i.e. `CONTROL+Q`).
+0. Run: `stk -p -D` (optional -- start with a clean slate. WARNING: This deletes all project metadata in the workspace
+   dir).
+0. Run: `stk -p -c` (creates project metadata so Sublime Text knows where to source the project from).
+0. Run: `stk -s -r` (rebuilds Sublime Text recent workspace metadata based on the project metadata created in Step #4).
+0. Launch Sublime Text
+0. Type: `COMMAND+CONTROL+P` to toggle between projects. Notice that you can easily (fuzzy type) project names to jump
+   between them.
+0. Breeze through your project workload with ease. :)
+
+# Troubleshooting
+
+- When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
+- When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
+  *.sublime-project files.
 
 # Versioning
 
