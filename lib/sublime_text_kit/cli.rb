@@ -15,6 +15,20 @@ module SublimeTextKit
       @settings = load_yaml @settings_file
     end
 
+    desc "-p, [--project]", "Manage project metadata."
+    map %w(-p --project) => :project
+    method_option :create, aliases: "-c", desc: "Create project metadata.", type: :boolean, default: false
+    def project
+      say
+
+      case
+        when options[:create] then create_project_metadata
+        else help("--project")
+      end
+
+      say
+    end
+
     desc "-s, [--session]", "Manage session data."
     map %w(-s --session) => :session
     method_option :rebuild_recent_workspaces, aliases: "-r", desc: "Rebuild recent workspaces.", type: :boolean, default: false
@@ -22,8 +36,8 @@ module SublimeTextKit
       say
 
       case
-      when options[:rebuild_recent_workspaces] then rebuild_recent_workspaces
-      else help("--session")
+        when options[:rebuild_recent_workspaces] then rebuild_recent_workspaces
+        else help("--session")
       end
 
       say
@@ -48,6 +62,19 @@ module SublimeTextKit
     end
 
     private
+
+    def create_project_metadata
+      project_roots = @settings.fetch :project_roots, []
+      workspaces_path = @settings.fetch :workspaces_path
+
+      info "Creating project metadata..."
+      info "Workspaces Path: #{session.workspaces_absolute_path}"
+      project_roots.each do |project_root|
+        info "Processing project root: #{project_root}..."
+        SublimeTextKit::ProjectMetadata.create project_root, workspaces_path
+      end
+      info "Project metadata created."
+    end
 
     def rebuild_recent_workspaces
       info "Rebuilding recent workspaces..."

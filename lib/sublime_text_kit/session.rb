@@ -40,7 +40,7 @@ module SublimeTextKit
     end
 
     def save_session json
-      File.open(self.class.session_path, 'w') { |file| file.write MultiJson.dump(json) }
+      File.open(self.class.session_path, 'w') { |file| file.write MultiJson.dump(json, pretty: true) }
     end
   end
 end
