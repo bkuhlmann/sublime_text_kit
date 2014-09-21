@@ -58,12 +58,12 @@ The project roots are the root level directories to where project folders are lo
 project metadata, regardless of root location, is written to the same workspace directory. If using the example settings
 shown above and assuming the following directory structure exists...
 
-    ~/Dropbox/Development/Misc/test
+    ~/Dropbox/Development/Misc/example
     ~/Dropbox/Development/OSS/sublime_text_kit
 
 ...the project metadata will be created in the workspace directory as follows:
 
-    ~/Dropbox/Cache/Sublime/test.sublime-project
+    ~/Dropbox/Cache/Sublime/example.sublime-project
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
 
 # Usage
@@ -93,9 +93,7 @@ To test, run:
 
 # Workflow
 
-Sublime Text does not make it easy to rebuild project metadata. This is especially true when renaming project
-directories, rebuilding a new machine, etc. The following demonstrates a common workflow that makes you more productive
-with Sublime Text:
+The following demonstrates a common workflow that makes you more productive with Sublime Text:
 
 0. Run: `stk -e` (define Sublime Text Kit settings for project roots and workspace directory).
 0. Shutdown Sublime Text (i.e. `CONTROL+Q`).
@@ -111,7 +109,7 @@ with Sublime Text:
 # Troubleshooting
 
 - When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
-- When rebuilding workspaces, ensure workspaces_path (as defined via settings.yml) points to a directory containing
+- When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a directory containing
   *.sublime-project files.
 
 # Versioning
