@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe SublimeTextKit::ProjectMetadata do
+describe SublimeTextKit::ProjectMetadata, :temp_dir do
   let(:projects_dir) { File.expand_path("../../../support/projects", __FILE__) }
   let(:project_dir) { File.join projects_dir, "test_1" }
   subject { described_class.new project_dir, temp_dir }
@@ -12,6 +12,39 @@ describe SublimeTextKit::ProjectMetadata do
       created = files.all? { |path| File.exist? path }
 
       expect(created).to eq(true)
+    end
+  end
+
+  describe ".delete" do
+    it "deletes *.sublime-project files" do
+      FileUtils.touch subject.project_file
+      described_class.delete temp_dir
+
+      expect(File.exists?(subject.project_file)).to eq(false)
+    end
+
+    it "deletes *.sublime-workspace files" do
+      workspace_file = File.join subject.workspaces_path, "test_1.sublime-workspace"
+      FileUtils.touch workspace_file
+      described_class.delete temp_dir
+
+      expect(File.exists?(workspace_file)).to eq(false)
+    end
+
+    it "does not delete non-matching files" do
+      test_file = File.join temp_dir, "test.txt"
+      FileUtils.touch test_file
+      described_class.delete temp_dir
+
+      expect(File.exists?(test_file)).to eq(true)
+    end
+
+    it "does not delete directories" do
+      test_dir = File.join temp_dir, "test"
+      FileUtils.mkdir test_dir
+      described_class.delete temp_dir
+
+      expect(File.exists?(test_dir)).to eq(true)
     end
   end
 
@@ -59,7 +92,7 @@ describe SublimeTextKit::ProjectMetadata do
     end
   end
 
-  describe "#save", :temp_dir do
+  describe "#save" do
     it "saves metadata to file" do
       subject.save
       expect(File.exist?(subject.project_file)).to eq(true)

@@ -18,11 +18,13 @@ module SublimeTextKit
     desc "-p, [--project]", "Manage project metadata."
     map %w(-p --project) => :project
     method_option :create, aliases: "-c", desc: "Create project metadata.", type: :boolean, default: false
+    method_option :destroy, aliases: "-D", desc: "Destroy all project metadata.", type: :boolean, default: false
     def project
       say
 
       case
         when options[:create] then create_project_metadata
+        when options[:destroy] then destroy_project_metadata
         else help("--project")
       end
 
@@ -68,12 +70,24 @@ module SublimeTextKit
       workspaces_path = @settings.fetch :workspaces_path
 
       info "Creating project metadata..."
-      info "Workspaces Path: #{session.workspaces_absolute_path}"
+      info "Workspaces Path: #{workspaces_path}"
       project_roots.each do |project_root|
         info "Processing project root: #{project_root}..."
         SublimeTextKit::ProjectMetadata.create project_root, workspaces_path
       end
       info "Project metadata created."
+    end
+
+    def destroy_project_metadata
+      workspaces_path = @settings.fetch :workspaces_path
+
+      if yes? "Delete all project metadata in #{workspaces_path}?"
+        info "Deleting project metadata..."
+        SublimeTextKit::ProjectMetadata.delete workspaces_path
+        info "Project metadata deleted."
+      else
+        info "Project metadata deletion aborted."
+      end
     end
 
     def rebuild_recent_workspaces

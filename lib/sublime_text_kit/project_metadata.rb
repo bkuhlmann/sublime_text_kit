@@ -11,6 +11,11 @@ module SublimeTextKit
       project_paths.each { |project_dir| new(project_dir, workspaces_path).save }
     end
 
+    def self.delete workspaces_path
+      workspaces_path = File.expand_path workspaces_path
+      ::Pathname.glob("#{workspaces_path}/*.sublime-*").each(&:delete)
+    end
+
     def initialize project_dir, workspaces_path
       @name = File.basename project_dir
       @project_dir = File.expand_path project_dir
