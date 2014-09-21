@@ -5,7 +5,7 @@ module SublimeTextKit
     attr_accessor :workspaces_path
 
     def self.home_path
-      ENV["HOME"]
+      ENV.fetch "HOME"
     end
 
     def self.session_path

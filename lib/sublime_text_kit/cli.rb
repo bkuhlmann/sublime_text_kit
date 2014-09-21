@@ -11,7 +11,7 @@ module SublimeTextKit
     # Initialize.
     def initialize args = [], options = {}, config = {}
       super args, options, config
-      @settings_file = File.join ENV["HOME"], ".sublime", "settings.yml"
+      @settings_file = File.join ENV.fetch("HOME"), ".sublime", "settings.yml"
       @settings = load_yaml @settings_file
     end
 
