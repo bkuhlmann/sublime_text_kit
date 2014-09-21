@@ -2,7 +2,7 @@ require "multi_json"
 
 module SublimeTextKit
   class Session
-    attr_accessor :workspaces_path
+    attr_reader :workspace_dir
 
     def self.home_path
       ENV.fetch "HOME"
@@ -13,15 +13,11 @@ module SublimeTextKit
     end
 
     def initialize options = {}
-      @workspaces_path = options.fetch :workspaces_path, ''
-    end
-
-    def workspaces_absolute_path
-      File.expand_path workspaces_path
+      @workspace_dir = File.expand_path options.fetch(:workspace_dir)
     end
 
     def workspaces
-      Dir["#{workspaces_absolute_path}/*.sublime-project"].sort
+      Dir["#{workspace_dir}/*.sublime-project"].sort
     end
 
     def rebuild_recent_workspaces

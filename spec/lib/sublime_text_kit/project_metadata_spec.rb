@@ -24,7 +24,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "deletes *.sublime-workspace files" do
-      workspace_file = File.join subject.workspaces_path, "test_1.sublime-workspace"
+      workspace_file = File.join subject.workspace_dir, "test_1.sublime-workspace"
       FileUtils.touch workspace_file
       described_class.delete temp_dir
 
@@ -61,10 +61,10 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
   end
 
-  describe "#workspaces_path" do
+  describe "#workspace_dir" do
     it "answers absolute path" do
       subject = described_class.new project_dir, "~/tmp"
-      expect(subject.workspaces_path).to_not start_with('~')
+      expect(subject.workspace_dir).to_not start_with('~')
     end
   end
 
@@ -75,7 +75,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "answers metadata file path" do
-      project_file = File.join subject.workspaces_path, "#{subject.name}.sublime-project"
+      project_file = File.join subject.workspace_dir, "#{subject.name}.sublime-project"
       expect(subject.project_file).to eq(project_file)
     end
   end

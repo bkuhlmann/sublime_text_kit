@@ -69,24 +69,24 @@ module SublimeTextKit
       @project_roots ||= @settings.fetch :project_roots, []
     end
 
-    def workspaces_path
-      @workspaces_path ||= File.expand_path @settings.fetch(:workspaces_path)
+    def workspace_dir
+      @workspace_dir ||= File.expand_path @settings.fetch(:workspace_dir)
     end
 
     def create_project_metadata
       info "Creating project metadata..."
-      info "Workspaces Path: #{workspaces_path}"
+      info "Workspaces Path: #{workspace_dir}"
       project_roots.each do |project_root|
         info "Processing project root: #{File.expand_path project_root}..."
-        SublimeTextKit::ProjectMetadata.create project_root, workspaces_path
+        SublimeTextKit::ProjectMetadata.create project_root, workspace_dir
       end
       info "Project metadata created."
     end
 
     def destroy_project_metadata
-      if yes? "Delete all project metadata in #{workspaces_path}?"
+      if yes? "Delete all project metadata in #{workspace_dir}?"
         info "Deleting project metadata..."
-        SublimeTextKit::ProjectMetadata.delete workspaces_path
+        SublimeTextKit::ProjectMetadata.delete workspace_dir
         info "Project metadata deleted."
       else
         info "Project metadata deletion aborted."
@@ -95,9 +95,9 @@ module SublimeTextKit
 
     def rebuild_recent_workspaces
       info "Rebuilding recent workspaces..."
-      info "Workspaces Path: #{workspaces_path}"
+      info "Workspaces Path: #{workspace_dir}"
       info "Sublime Text Session: #{SublimeTextKit::Session.session_path}"
-      session = SublimeTextKit::Session.new workspaces_path: workspaces_path
+      session = SublimeTextKit::Session.new workspace_dir: workspace_dir
       session.rebuild_recent_workspaces
       info "Recent workspaces rebuilt."
     end
