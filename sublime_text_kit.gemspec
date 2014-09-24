@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.version               = SublimeTextKit::VERSION
   spec.platform              = Gem::Platform::RUBY
   spec.authors               = ["Brooke Kuhlmann"]
-  spec.email                 = ["brooke@redalchemist.com"]
+  spec.email                 = ["bkuhlmann@alchemists.io"]
   spec.homepage              = "https://github.com/bkuhlmann/sublime_text_kit"
   spec.summary               = "Command line utilities for Sublime Text."
   spec.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
