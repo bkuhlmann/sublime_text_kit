@@ -6,6 +6,9 @@ module SublimeTextKit
     attr_reader :name, :project_dir, :workspace_dir, :project_file
 
     def self.create projects_dir, workspace_dir
+      return unless valid_dir?(projects_dir, "Projects")
+      return unless valid_dir?(workspace_dir, "Workspace")
+
       projects_dir = File.expand_path projects_dir
       project_paths = ::Pathname.new(projects_dir).children.select {|child| child if child.directory? }
       project_paths.each { |project_dir| new(project_dir, workspace_dir).save }
@@ -34,6 +37,17 @@ module SublimeTextKit
     def save
       unless File.exist? project_file
         File.open(project_file, 'w') { |file| file.write MultiJson.dump(to_h, pretty: true) }
+      end
+    end
+
+    private
+
+    def self.valid_dir? dir, label
+      if File.exist?(dir)
+        true
+      else
+        puts "#{label} directory doesn't exist: #{dir}."
+        false
       end
     end
   end

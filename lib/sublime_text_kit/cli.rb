@@ -5,8 +5,8 @@ require "thor_plus/actions"
 
 module SublimeTextKit
   class CLI < Thor
-  	include Thor::Actions
-  	include ThorPlus::Actions
+    include Thor::Actions
+    include ThorPlus::Actions
 
     # Initialize.
     def initialize args = [], options = {}, config = {}
