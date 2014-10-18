@@ -60,6 +60,13 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
 
       expect(File.exists?(test_dir)).to eq(true)
     end
+
+    it "outputs workspace dir does not exist" do
+      bogus_dir = "bogus"
+      result = -> { described_class.delete bogus_dir }
+
+      expect(&result).to output("Workspace directory doesn't exist: #{bogus_dir}.\n").to_stdout
+    end
   end
 
   describe "#name" do

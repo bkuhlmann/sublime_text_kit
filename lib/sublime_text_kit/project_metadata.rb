@@ -15,6 +15,8 @@ module SublimeTextKit
     end
 
     def self.delete workspace_dir
+      return unless valid_dir?(workspace_dir, "Workspace")
+
       workspace_dir = File.expand_path workspace_dir
       ::Pathname.glob("#{workspace_dir}/*.sublime-*").each(&:delete)
     end
