@@ -1,3 +1,10 @@
+# v1.1.0 (2014-10-22)
+
+- Fixed exception when projects or workspace directory doesn't exist when rebuilding project information.
+- Fixed exception thrown when workspace directory doesn't exist when trying to delete project information.
+- Updated Multi-JSON gem.
+- Updated Thor+ gem.
+
 # v1.0.0 (2014-09-21)
 
 - Updated to Ruby 2.1.3.
