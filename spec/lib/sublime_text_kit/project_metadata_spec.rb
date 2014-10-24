@@ -15,14 +15,14 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "outputs projects dir does not exist" do
-      bogus_dir = "bogus"
+      bogus_dir = File.join Dir.pwd, "bogus"
       result = -> { described_class.create bogus_dir, temp_dir }
 
       expect(&result).to output("Projects directory doesn't exist: #{bogus_dir}.\n").to_stdout
     end
 
     it "outputs workspace dir does not exist" do
-      bogus_dir = "bogus"
+      bogus_dir = File.join Dir.pwd, "bogus"
       result = -> { described_class.create projects_dir, bogus_dir }
 
       expect(&result).to output("Workspace directory doesn't exist: #{bogus_dir}.\n").to_stdout
@@ -62,7 +62,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "outputs workspace dir does not exist" do
-      bogus_dir = "bogus"
+      bogus_dir = File.join Dir.pwd, "bogus"
       result = -> { described_class.delete bogus_dir }
 
       expect(&result).to output("Workspace directory doesn't exist: #{bogus_dir}.\n").to_stdout

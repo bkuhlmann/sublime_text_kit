@@ -6,18 +6,21 @@ module SublimeTextKit
     attr_reader :name, :project_dir, :workspace_dir, :project_file
 
     def self.create projects_dir, workspace_dir
+      projects_dir = File.expand_path projects_dir
+      workspace_dir = File.expand_path workspace_dir
+
       return unless valid_dir?(projects_dir, "Projects")
       return unless valid_dir?(workspace_dir, "Workspace")
 
-      projects_dir = File.expand_path projects_dir
       project_paths = ::Pathname.new(projects_dir).children.select {|child| child if child.directory? }
       project_paths.each { |project_dir| new(project_dir, workspace_dir).save }
     end
 
     def self.delete workspace_dir
+      workspace_dir = File.expand_path workspace_dir
+
       return unless valid_dir?(workspace_dir, "Workspace")
 
-      workspace_dir = File.expand_path workspace_dir
       ::Pathname.glob("#{workspace_dir}/*.sublime-*").each(&:delete)
     end
 
