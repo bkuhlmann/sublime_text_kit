@@ -1,3 +1,7 @@
+# v1.1.1 (2014-10-25)
+
+- Fixed bug where projects and workspace directories were not expanded to full path.
+
 # v1.1.0 (2014-10-22)
 
 - Fixed exception when projects or workspace directory doesn't exist when rebuilding project information.
