@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description           = "Command line utilities for Sublime Text packaged as a Ruby Gem."
   spec.license               = "MIT"
 
-  unless ENV["CI"] == "true"
+  if ENV["RUBY_GEM_SECURITY"] == "enabled"
     spec.signing_key = File.expand_path("~/.ssh/gem-private.pem")
     spec.cert_chain = [File.expand_path("~/.ssh/gem-public.pem")]
   end
