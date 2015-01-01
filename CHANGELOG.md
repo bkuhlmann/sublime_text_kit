@@ -1,3 +1,12 @@
+# v2.0.0 (2015-01-01)
+
+- Removed Ruby 2.0.0 support.
+- Removed Rubinius support.
+- Updated spec helper to comment custom config until needed.
+- Updated gemspec to use RUBY_GEM_SECURITY env var for gem certs.
+- Updated to Thor+ 2.x.x.
+- Added Ruby 2.2.0 support.
+
 # v1.1.1 (2014-10-25)
 
 - Fixed bug where projects and workspace directories were not expanded to full path.
