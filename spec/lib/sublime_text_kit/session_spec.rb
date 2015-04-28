@@ -16,9 +16,9 @@ describe SublimeTextKit::Session do
   describe "#workspaces" do
     it "answers an alpha-sorted list of sublime project files" do
       project_files = %W(
-        #{subject.workspace_dir}/black.sublime-project
-        #{subject.workspace_dir}/red.sublime-project
-        #{subject.workspace_dir}/white.sublime-project
+        #{subject.workspace_dir}/black.sublime-workspace
+        #{subject.workspace_dir}/red.sublime-workspace
+        #{subject.workspace_dir}/white.sublime-workspace
       )
 
       expect(subject.workspaces).to eq(project_files)
@@ -30,9 +30,9 @@ describe SublimeTextKit::Session do
       session = {
         "workspaces" => {
           "recent_workspaces" => [
-            "#{subject.workspace_dir}/black.sublime-project",
-            "#{subject.workspace_dir}/red.sublime-project",
-            "#{subject.workspace_dir}/white.sublime-project"
+            "#{subject.workspace_dir}/black.sublime-workspace",
+            "#{subject.workspace_dir}/red.sublime-workspace",
+            "#{subject.workspace_dir}/white.sublime-workspace"
           ]
         }
       }

@@ -9,7 +9,7 @@ module SublimeTextKit
     end
 
     def self.session_path
-      "#{home_path}/Library/Application Support/Sublime Text 2/Settings/Session.sublime_session"
+      "#{home_path}/Library/Application Support/Sublime Text 3/Local/Session.sublime_session"
     end
 
     def initialize options = {}
@@ -17,7 +17,7 @@ module SublimeTextKit
     end
 
     def workspaces
-      Dir["#{workspace_dir}/*.sublime-project"].sort
+      Dir["#{workspace_dir}/*.sublime-workspace"].sort
     end
 
     def rebuild_recent_workspaces
