@@ -21,11 +21,11 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
       expect(&result).to output("Projects directory doesn't exist: #{bogus_dir}.\n").to_stdout
     end
 
-    it "outputs workspace dir does not exist" do
+    it "outputs metadata dir does not exist" do
       bogus_dir = File.join Dir.pwd, "bogus"
       result = -> { described_class.create projects_dir, bogus_dir }
 
-      expect(&result).to output("Workspace directory doesn't exist: #{bogus_dir}.\n").to_stdout
+      expect(&result).to output("Metadata directory doesn't exist: #{bogus_dir}.\n").to_stdout
     end
   end
 
@@ -38,7 +38,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "deletes *.sublime-workspace files" do
-      workspace_file = File.join subject.workspace_dir, "test_1.sublime-workspace"
+      workspace_file = File.join subject.metadata_dir, "test_1.sublime-workspace"
       FileUtils.touch workspace_file
       described_class.delete temp_dir
 
@@ -65,7 +65,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
       bogus_dir = File.join Dir.pwd, "bogus"
       result = -> { described_class.delete bogus_dir }
 
-      expect(&result).to output("Workspace directory doesn't exist: #{bogus_dir}.\n").to_stdout
+      expect(&result).to output("Metadata directory doesn't exist: #{bogus_dir}.\n").to_stdout
     end
   end
 
@@ -82,10 +82,10 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
   end
 
-  describe "#workspace_dir" do
+  describe "#metadata_dir" do
     it "answers absolute path" do
       subject = described_class.new project_dir, "~/tmp"
-      expect(subject.workspace_dir).to_not start_with('~')
+      expect(subject.metadata_dir).to_not start_with('~')
     end
   end
 
@@ -96,7 +96,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
 
     it "answers metadata file path" do
-      project_file = File.join subject.workspace_dir, "#{subject.name}.sublime-project"
+      project_file = File.join subject.metadata_dir, "#{subject.name}.sublime-project"
       expect(subject.project_file).to eq(project_file)
     end
   end

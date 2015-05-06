@@ -1,20 +1,20 @@
 require "spec_helper"
 
 describe SublimeTextKit::Session do
-  subject { described_class.new metadata_dir: File.expand_path("../../../support/metadata", __FILE__) }
+  subject { described_class.new File.expand_path("../../../support/metadata", __FILE__) }
   let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
   before { allow(described_class).to receive_messages session_path: session_file }
 
   describe "#metadata_dir" do
     it "answers absolute path" do
-      subject = described_class.new metadata_dir: "~/tmp"
+      subject = described_class.new "~/tmp"
       expect(subject.metadata_dir).to_not start_with('~')
     end
   end
 
   describe "#workspaces" do
-    it "answers an alpha-sorted list of sublime workspace files" do
+    it "answers alpha-sorted list of sublime workspace files" do
       project_files = %W(
         #{subject.metadata_dir}/black.sublime-workspace
         #{subject.metadata_dir}/red.sublime-workspace
@@ -45,7 +45,7 @@ describe SublimeTextKit::Session do
     end
 
     it "updates session when no workspaces are found" do
-      subject = described_class.new metadata_dir: File.expand_path("../../../support", __FILE__)
+      subject = described_class.new File.expand_path("../../../support", __FILE__)
       session = {
         "workspaces" => {
           "recent_workspaces" => []
@@ -59,7 +59,7 @@ describe SublimeTextKit::Session do
       expect(updated_session).to eq(session)
     end
 
-    it "skips updating the session when session file is not found" do
+    it "skips updating session when session file is missing" do
       bogus_session_file = File.expand_path "../../../support/bogus.sublime_session", __FILE__
       allow(described_class).to receive_messages session_path: bogus_session_file
 
@@ -68,7 +68,7 @@ describe SublimeTextKit::Session do
       expect(File.exists?(bogus_session_file)).to eq(false)
     end
 
-    it "skips updating the session when keys are missing" do
+    it "skips updating session when keys are missing" do
       bogus_session_file = File.expand_path "../../../support/Session.missing_keys", __FILE__
       allow(described_class).to receive_messages session_path: bogus_session_file
 

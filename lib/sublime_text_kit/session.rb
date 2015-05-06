@@ -12,8 +12,8 @@ module SublimeTextKit
       "#{home_path}/Library/Application Support/Sublime Text 3/Local/Session.sublime_session"
     end
 
-    def initialize metadata_dir: nil
-      @metadata_dir = File.expand_path metadata_dir
+    def initialize metadata_directory
+      @metadata_dir = File.expand_path metadata_directory
     end
 
     def workspaces
