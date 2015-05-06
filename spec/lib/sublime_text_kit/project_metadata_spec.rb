@@ -8,7 +8,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
   describe ".create" do
     it "creates project metadata for all project in root directory" do
       described_class.create projects_dir, temp_dir
-      files = %w(test_1 test_2).map { |name| File.join temp_dir, "#{name}.sublime-project" }
+      files = %w(black red white).map { |name| File.join temp_dir, "#{name}.sublime-project" }
       created = files.all? { |path| File.exist? path }
 
       expect(created).to eq(true)

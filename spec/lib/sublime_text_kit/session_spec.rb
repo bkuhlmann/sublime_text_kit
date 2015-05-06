@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe SublimeTextKit::Session do
-  subject { described_class.new workspace_dir: File.expand_path("../../../support/workspaces", __FILE__) }
+  subject { described_class.new workspace_dir: File.expand_path("../../../support/metadata", __FILE__) }
   let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
   before { allow(described_class).to receive_messages session_path: session_file }
