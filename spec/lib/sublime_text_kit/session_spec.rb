@@ -1,24 +1,24 @@
 require "spec_helper"
 
 describe SublimeTextKit::Session do
-  subject { described_class.new workspace_dir: File.expand_path("../../../support/metadata", __FILE__) }
+  subject { described_class.new metadata_dir: File.expand_path("../../../support/metadata", __FILE__) }
   let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
   before { allow(described_class).to receive_messages session_path: session_file }
 
-  describe "#workspace_dir" do
+  describe "#metadata_dir" do
     it "answers absolute path" do
-      subject = described_class.new workspace_dir: "~/tmp"
-      expect(subject.workspace_dir).to_not start_with('~')
+      subject = described_class.new metadata_dir: "~/tmp"
+      expect(subject.metadata_dir).to_not start_with('~')
     end
   end
 
   describe "#workspaces" do
-    it "answers an alpha-sorted list of sublime project files" do
+    it "answers an alpha-sorted list of sublime workspace files" do
       project_files = %W(
-        #{subject.workspace_dir}/black.sublime-workspace
-        #{subject.workspace_dir}/red.sublime-workspace
-        #{subject.workspace_dir}/white.sublime-workspace
+        #{subject.metadata_dir}/black.sublime-workspace
+        #{subject.metadata_dir}/red.sublime-workspace
+        #{subject.metadata_dir}/white.sublime-workspace
       )
 
       expect(subject.workspaces).to eq(project_files)
@@ -30,9 +30,9 @@ describe SublimeTextKit::Session do
       session = {
         "workspaces" => {
           "recent_workspaces" => [
-            "#{subject.workspace_dir}/black.sublime-workspace",
-            "#{subject.workspace_dir}/red.sublime-workspace",
-            "#{subject.workspace_dir}/white.sublime-workspace"
+            "#{subject.metadata_dir}/black.sublime-workspace",
+            "#{subject.metadata_dir}/red.sublime-workspace",
+            "#{subject.metadata_dir}/white.sublime-workspace"
           ]
         }
       }
@@ -45,7 +45,7 @@ describe SublimeTextKit::Session do
     end
 
     it "updates session when no workspaces are found" do
-      subject = described_class.new workspace_dir: File.expand_path("../../../support", __FILE__)
+      subject = described_class.new metadata_dir: File.expand_path("../../../support", __FILE__)
       session = {
         "workspaces" => {
           "recent_workspaces" => []
@@ -65,7 +65,7 @@ describe SublimeTextKit::Session do
 
       subject.rebuild_recent_workspaces
 
-      expect(File.exists?(bogus_session_file)).to be_falsey
+      expect(File.exists?(bogus_session_file)).to eq(false)
     end
 
     it "skips updating the session when keys are missing" do

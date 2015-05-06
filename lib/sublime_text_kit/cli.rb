@@ -97,7 +97,7 @@ module SublimeTextKit
       info "Rebuilding recent workspaces..."
       info "Workspaces Path: #{workspace_dir}"
       info "Sublime Text Session: #{SublimeTextKit::Session.session_path}"
-      session = SublimeTextKit::Session.new workspace_dir: workspace_dir
+      session = SublimeTextKit::Session.new metadata_dir: workspace_dir
       session.rebuild_recent_workspaces
       info "Recent workspaces rebuilt."
     end
