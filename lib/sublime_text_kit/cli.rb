@@ -15,17 +15,17 @@ module SublimeTextKit
       @settings = load_yaml @settings_file
     end
 
-    desc "-p, [--project]", "Manage project metadata."
-    map %w(-p --project) => :project
-    method_option :create, aliases: "-c", desc: "Create project metadata.", type: :boolean, default: false
-    method_option :destroy, aliases: "-D", desc: "Destroy all project metadata.", type: :boolean, default: false
-    def project
+    desc "-m, [--metadata]", "Manage metadata."
+    map %w(-m --metadata) => :metadata
+    method_option :create, aliases: "-c", desc: "Create metadata.", type: :boolean, default: false
+    method_option :destroy, aliases: "-D", desc: "Destroy metadata.", type: :boolean, default: false
+    def metadata
       say
 
       case
-        when options[:create] then create_project_metadata
-        when options[:destroy] then destroy_project_metadata
-        else help("--project")
+        when options[:create] then create_metadata
+        when options[:destroy] then destroy_metadata
+        else help("--metadata")
       end
 
       say
@@ -73,23 +73,25 @@ module SublimeTextKit
       @workspace_dir ||= File.expand_path @settings.fetch(:workspace_dir)
     end
 
-    def create_project_metadata
-      info "Creating project metadata..."
-      info "Workspaces Path: #{workspace_dir}"
+    def create_metadata
+      info "Creating metadata..."
+      info "Metadata Path: #{workspace_dir}"
       project_roots.each do |project_root|
         info "Processing project root: #{File.expand_path project_root}..."
         SublimeTextKit::ProjectMetadata.create project_root, workspace_dir
+        SublimeTextKit::WorkspaceMetadata.create project_root, workspace_dir
       end
-      info "Project metadata created."
+      info "Metadata created."
     end
 
-    def destroy_project_metadata
-      if yes? "Delete all project metadata in #{workspace_dir}?"
-        info "Deleting project metadata..."
+    def destroy_metadata
+      if yes? "Delete all metadata in #{workspace_dir}?"
+        info "Deleting metadata..."
         SublimeTextKit::ProjectMetadata.delete workspace_dir
-        info "Project metadata deleted."
+        SublimeTextKit::WorkspaceMetadata.delete workspace_dir
+        info "Metadata deleted."
       else
-        info "Project metadata deletion aborted."
+        info "Metadata deletion aborted."
       end
     end
 
