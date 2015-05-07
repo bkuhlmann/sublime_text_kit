@@ -1,14 +1,16 @@
 require "spec_helper"
 
-describe SublimeTextKit::ProjectMetadata, :temp_dir do
-  let(:projects_dir) { File.expand_path("../../../support/projects", __FILE__) }
-  let(:project_dir) { File.join projects_dir, "test_1" }
+describe SublimeTextKit::Metadata::Workspace, :temp_dir do
+  let(:metadata_dir) { temp_dir }
+  let(:projects_dir) { File.expand_path("../../../../support/projects", __FILE__) }
+  let(:project_name) { "test" }
+  let(:project_dir) { File.join projects_dir, project_name }
   subject { described_class.new project_dir, temp_dir }
 
   describe ".create" do
     it "creates project metadata for all project in root directory" do
       described_class.create projects_dir, temp_dir
-      files = %w(black red white).map { |name| File.join temp_dir, "#{name}.sublime-project" }
+      files = %w(black red white).map { |name| File.join temp_dir, "#{name}.sublime-workspace" }
       created = files.all? { |path| File.exist? path }
 
       expect(created).to eq(true)
@@ -30,11 +32,11 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
   end
 
   describe ".delete" do
-    it "deletes *.sublime-project files" do
-      FileUtils.touch subject.project_file
+    it "deletes *.sublime-workspace files" do
+      FileUtils.touch subject.workspace_file
       described_class.delete temp_dir
 
-      expect(File.exists?(subject.project_file)).to eq(false)
+      expect(File.exists?(subject.workspace_file)).to eq(false)
     end
 
     it "deletes *.sublime-workspace files" do
@@ -71,7 +73,7 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
 
   describe "#name" do
     it "answers project name" do
-      expect(subject.name).to eq("test_1")
+      expect(subject.name).to eq("test")
     end
   end
 
@@ -89,24 +91,27 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
     end
   end
 
-  describe "#project_file" do
+  describe "#workspace_file" do
     it "answers absolute file path" do
       subject = described_class.new project_dir, "~/tmp"
-      expect(subject.project_file).to_not start_with('~')
+      expect(subject.workspace_file).to_not start_with('~')
     end
 
     it "answers metadata file path" do
-      project_file = File.join subject.metadata_dir, "#{subject.name}.sublime-project"
-      expect(subject.project_file).to eq(project_file)
+      workspace_file = File.join subject.metadata_dir, "#{subject.name}.sublime-workspace"
+      expect(subject.workspace_file).to eq(workspace_file)
     end
   end
 
   describe "#to_h" do
     it "answers hash with project path" do
       proof = {
-        folders: [
-          {path: "#{project_dir}"}
-        ]
+        expanded_folders: ["#{project_dir}"],
+        select_project: {
+          selected_items: [
+            ["#{project_name}", "#{metadata_dir}/#{project_name}.sublime-project"]
+          ]
+        }
       }
 
       expect(subject.to_h).to eq(proof)
@@ -116,20 +121,20 @@ describe SublimeTextKit::ProjectMetadata, :temp_dir do
   describe "#save" do
     it "saves metadata to file" do
       subject.save
-      expect(File.exist?(subject.project_file)).to eq(true)
+      expect(File.exist?(subject.workspace_file)).to eq(true)
     end
 
     it "saves metadata with project path" do
       subject.save
-      metadata = MultiJson.load File.read(subject.project_file)
-      path = metadata["folders"].first["path"]
+      metadata = MultiJson.load File.read(subject.workspace_file)
+      path = metadata["expanded_folders"].first
 
       expect(path).to eq(subject.project_dir)
     end
 
     it "does not save metadata if file already exists" do
-      FileUtils.touch subject.project_file
-      expect(File.zero?(subject.project_file)).to eq(true)
+      FileUtils.touch subject.workspace_file
+      expect(File.zero?(subject.workspace_file)).to eq(true)
     end
   end
 end

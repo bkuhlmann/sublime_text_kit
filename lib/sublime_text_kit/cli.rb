@@ -78,8 +78,8 @@ module SublimeTextKit
       info "Metadata Path: #{workspace_dir}"
       project_roots.each do |project_root|
         info "Processing project root: #{File.expand_path project_root}..."
-        SublimeTextKit::ProjectMetadata.create project_root, workspace_dir
-        SublimeTextKit::WorkspaceMetadata.create project_root, workspace_dir
+        SublimeTextKit::Metadata::Project.create project_root, workspace_dir
+        SublimeTextKit::Metadata::Workspace.create project_root, workspace_dir
       end
       info "Metadata created."
     end
@@ -87,8 +87,8 @@ module SublimeTextKit
     def destroy_metadata
       if yes? "Delete all metadata in #{workspace_dir}?"
         info "Deleting metadata..."
-        SublimeTextKit::ProjectMetadata.delete workspace_dir
-        SublimeTextKit::WorkspaceMetadata.delete workspace_dir
+        SublimeTextKit::Metadata::Project.delete workspace_dir
+        SublimeTextKit::Metadata::Workspace.delete workspace_dir
         info "Metadata deleted."
       else
         info "Metadata deletion aborted."
