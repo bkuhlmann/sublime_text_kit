@@ -5,6 +5,8 @@ describe SublimeTextKit::Metadata::Workspace, :temp_dir do
   let(:project_dir) { File.join projects_dir, "test" }
   subject { described_class.new project_dir, temp_dir }
 
+  it_behaves_like "sublime metadata"
+
   describe "#file_extension" do
     it "answers file extension" do
       expect(subject.file_extension).to eq("sublime-workspace")
@@ -23,6 +25,24 @@ describe SublimeTextKit::Metadata::Workspace, :temp_dir do
       }
 
       expect(subject.to_h).to eq(proof)
+    end
+  end
+
+  describe "#save" do
+    it "saves metadata as empty hash" do
+      subject.save
+      metadata = MultiJson.load File.read(subject.metadata_file)
+
+      proof = {
+        "expanded_folders" => ["#{project_dir}"],
+        "select_project" => {
+          "selected_items" => [
+            ["test", "#{temp_dir}/test.sublime-project"]
+          ]
+        }
+      }
+
+      expect(metadata).to eq(proof)
     end
   end
 end
