@@ -3,7 +3,7 @@ require "thor"
 require "thor/actions"
 require "thor_plus/actions"
 
-module SublimeTextKit
+  module SublimeTextKit
   class CLI < Thor
     include Thor::Actions
     include ThorPlus::Actions
@@ -19,12 +19,14 @@ module SublimeTextKit
     map %w(-m --metadata) => :metadata
     method_option :create, aliases: "-c", desc: "Create metadata.", type: :boolean, default: false
     method_option :destroy, aliases: "-D", desc: "Destroy metadata.", type: :boolean, default: false
+    method_option :rebuild, aliases: "-R", desc: "Rebuild metadata.", type: :boolean, default: false
     def metadata
       say
 
       case
         when options[:create] then create_metadata
         when options[:destroy] then destroy_metadata
+        when options[:rebuild] then rebuild_metadata
         else help("--metadata")
       end
 
@@ -85,13 +87,32 @@ module SublimeTextKit
     end
 
     def destroy_metadata
-      if yes? "Delete all metadata in #{metadata_dir}?"
+      if yes? "Delete metadata in #{metadata_dir}?"
         info "Deleting metadata..."
         SublimeTextKit::Metadata::Project.delete metadata_dir
         SublimeTextKit::Metadata::Workspace.delete metadata_dir
         info "Metadata deleted."
       else
         info "Metadata deletion aborted."
+      end
+    end
+
+    def rebuild_metadata
+      if yes? "Rebuild metadata in #{metadata_dir}?"
+        info "Deleting metadata..."
+        SublimeTextKit::Metadata::Project.delete metadata_dir
+        SublimeTextKit::Metadata::Workspace.delete metadata_dir
+
+        info "Creating metadata..."
+        project_roots.each do |project_root|
+          info "Processing project root: #{File.expand_path project_root}..."
+          SublimeTextKit::Metadata::Project.create project_root, metadata_dir
+          SublimeTextKit::Metadata::Workspace.create project_root, metadata_dir
+        end
+
+        info "Metadata rebuilt."
+      else
+        info "Metadata rebuild aborted."
       end
     end
 
