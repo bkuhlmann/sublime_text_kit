@@ -15,6 +15,28 @@ require "thor_plus/actions"
       @settings = load_yaml @settings_file
     end
 
+    desc "-c, [--configure]", "Configure Sublime Text with current settings."
+    map %w(-c --configure) => :configure
+    def configure
+      create_metadata
+      say
+      rebuild_session
+    end
+
+    desc "-s, [--session]", "Manage session metadata."
+    map %w(-s --session) => :session
+    method_option :rebuild_session, aliases: "-r", desc: "Rebuild session metadata.", type: :boolean, default: false
+    def session
+      say
+
+      case
+        when options[:rebuild_session] then rebuild_session
+        else help("--session")
+      end
+
+      say
+    end
+
     desc "-m, [--metadata]", "Manage project/workspace metadata."
     map %w(-m --metadata) => :metadata
     method_option :create, aliases: "-c", desc: "Create metadata.", type: :boolean, default: false
