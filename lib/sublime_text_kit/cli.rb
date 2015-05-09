@@ -15,7 +15,7 @@ module SublimeTextKit
       @settings = load_yaml @settings_file
     end
 
-    desc "-m, [--metadata]", "Manage metadata."
+    desc "-m, [--metadata]", "Manage project/workspace metadata."
     map %w(-m --metadata) => :metadata
     method_option :create, aliases: "-c", desc: "Create metadata.", type: :boolean, default: false
     method_option :destroy, aliases: "-D", desc: "Destroy metadata.", type: :boolean, default: false
@@ -70,7 +70,7 @@ module SublimeTextKit
     end
 
     def metadata_dir
-      @metadata_dir ||= File.expand_path @settings.fetch(:workspace_dir)
+      @metadata_dir ||= File.expand_path @settings.fetch(:metadata_dir)
     end
 
     def create_metadata
