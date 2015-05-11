@@ -1,3 +1,16 @@
+# v3.0.0 (2015-05-10)
+
+- Removed CLI --project support (replaced with --metadata)
+- Removed ProjectMetadata#workspace_dir (changed to #metadata_dir instead).
+- Removed the workspace_dir YAML settings (replaced with metadata_dir).
+- Updated to Ruby 2.2.2.
+- Updated session path to use Sublime Text 3 file structure.
+- Added Sublime Text 3 support (removed Sublime Text 2 support).
+- Added `stk --configure` option.
+- Added `stk --metadata --rebuild` option.
+- Added code of conduct documentation.
+- Added workspace metadata generation.
+
 # v2.0.0 (2015-01-01)
 
 - Removed Ruby 2.0.0 support.

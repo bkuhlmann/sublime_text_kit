@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sublime_text_kit (2.0.0)
+    sublime_text_kit (3.0.0)
       multi_json (~> 1.10)
       thor (~> 0.19)
       thor_plus (~> 2.0)

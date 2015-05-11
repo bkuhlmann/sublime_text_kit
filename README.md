@@ -11,12 +11,13 @@ Provides a collection of utilities that aid in Sublime Text management.
 
 # Features
 
-- Creates project metadata (i.e. *.sublime-project files) for easy project switching via the `COMMAND+CONTROL+P`
-  shortcut.
-- Destroys project metadata (i.e. *.sublime-project and *.sublime-workspace files).
-- Rebuilds recent workspace history (via Project -> Recent Projects) from existing project files (assumes workspaces are
-  in a single directory) so one can easily toggle between up-to-date project information via the `COMMAND+CONTROL+P`
-  shortcut.
+- Provides project metadata (i.e. *.sublime-project and *.sublime-workspace files) management for project
+  switching via the `CONTROL+COMMAND+P` shortcut.
+- Rebuilds project history (Project -> Recent Projects) from existing project files (assumes project
+  metadata is in a directory) so one can easily toggle between up-to-date project information via the
+  `CONTROL+COMMAND+P` shortcut.
+
+[![asciicast](https://asciinema.org/a/19858.png)](https://asciinema.org/a/19858)
 
 # Requirements
 
@@ -50,12 +51,12 @@ Example:
       - "~/Dropbox/Development/Misc"
       - "~/Dropbox/Development/OSS"
       - "~/Dropbox/Development/Work"
-    :workspace_dir: "~/Dropbox/Cache/Sublime"
+    :metadata_dir: "~/Dropbox/Cache/Sublime"
 
-The project roots are the root level directories to where project folders are located. When project metadata (i.e.
-*.sublime-project) is generated, the name of the metadata file will be the same name as that of the project folder. All
-project metadata, regardless of root location, is written to the same workspace directory. If using the example settings
-shown above and assuming the following directory structure exists...
+The project roots define the root level directories where project folders are located. When project metadata (i.e.
+*.sublime-project, *.sublime-workspace) is generated, the name of the metadata file will be the same name as that
+of the project folder. All project metadata, regardless of root location, is written to the same metadata directory.
+If using the example settings shown above and assuming the following directory structure exists...
 
     ~/Dropbox/Development/Misc/example
     ~/Dropbox/Development/OSS/sublime_text_kit
@@ -63,26 +64,30 @@ shown above and assuming the following directory structure exists...
 ...the project metadata will be created in the workspace directory as follows:
 
     ~/Dropbox/Cache/Sublime/example.sublime-project
+    ~/Dropbox/Cache/Sublime/example.sublime-workspace
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
+    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 
 # Usage
 
-From the command line, type: stk
+From the command line, type: `stk`
 
+    stk -c, [--configure]  # Configure Sublime Text with current settings.
     stk -e, [--edit]       # Edit settings in default editor (assumes $EDITOR environment variable).
     stk -h, [--help=HELP]  # Show this message or get help for a command.
-    stk -p, [--project]    # Manage project metadata.
-    stk -s, [--session]    # Manage session data.
+    stk -m, [--metadata]   # Manage project/workspace metadata.
+    stk -s, [--session]    # Manage session metadata.
     stk -v, [--version]    # Show version.
 
-For project options, type: stk --project
+For metadata options, type: `stk --metadata`
 
-    -c, [--create], [--no-create]    # Create project metadata.
-    -D, [--destroy], [--no-destroy]  # Destroy all project metadata.
+    -c, [--create], [--no-create]    # Create metadata.
+    -D, [--destroy], [--no-destroy]  # Destroy metadata.
+    -R, [--rebuild], [--no-rebuild]  # Rebuild metadata.
 
-For session options, type: stk --session
+For session options, type: `stk --session`
 
-    -r, [--rebuild-recent-workspaces]  # Rebuild recent workspaces.
+    -r, [--rebuild-session], [--no-rebuild-session]  # Rebuild session metadata.
 
 # Tests
 
@@ -90,26 +95,35 @@ To test, run:
 
     bundle exec rspec spec
 
+# Upgrading
+
+For those upgrading from Sublime Text Kit v2.0.0 or earlier, be mindful of the following changes:
+
+0. Ensure you are using Sublime Text 3 (it is currently in Beta but your v2.0.0 license will work).
+0. Update the `~/.sublime/settings.yml` file to switch from a `workspace_dir` to a `metadata_dir` instead.
+0. Run the following commands to rebuild your project/workspace and session metadata:
+
+        stk -m -R # Destroys and rebuilds your existing project/workspace metadata to Sublime Text 3 format.
+        skt -s -r # Rebuilds your session history with project metadata as generated above.
+
 # Workflow
 
-The following demonstrates a common workflow that makes you more productive with Sublime Text:
+The following demonstrates a default Sublime Text setup:
 
-0. Run: `stk -e` (define Sublime Text Kit settings for project roots and workspace directory).
+0. Run: `stk -e` (define Sublime Text Kit settings for project roots and metadata directory).
 0. Shutdown Sublime Text (i.e. `CONTROL+Q`).
-0. Run: `stk -p -D` (optional -- start with a clean slate. WARNING: This deletes all project metadata in the workspace
-   dir).
-0. Run: `stk -p -c` (creates project metadata so Sublime Text knows where to source the project from).
-0. Run: `stk -s -r` (rebuilds Sublime Text recent workspace metadata based on the project metadata created in Step #4).
-0. Launch Sublime Text
-0. Type: `COMMAND+CONTROL+P` to toggle between projects. Notice that you can easily (fuzzy type) project names to jump
-   between them.
+0. Run: `stk -c` (creates project metadata and rebuilds the session metadata so Sublime Text has a complete project
+   history from which to jump through via the `CONTROL+COMMMAND+P` shortcut).
+   ).
+0. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between projects. Notice that
+   you can (fuzzy type) project names to jump between them.
 0. Breeze through your project workload with ease. :)
 
 # Troubleshooting
 
 - When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
 - When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a directory containing
-  *.sublime-project files.
+  *.sublime-project and *.sublime-workspace files.
 
 # Versioning
 
