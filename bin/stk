@@ -2,4 +2,7 @@
 
 require "sublime_text_kit"
 require "sublime_text_kit/cli"
+require "sublime_text_kit/identity"
+
+Process.setproctitle SublimeTextKit::Identity.label_version
 SublimeTextKit::CLI.start

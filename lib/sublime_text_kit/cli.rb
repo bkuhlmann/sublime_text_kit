@@ -78,7 +78,7 @@ require "thor_plus/actions"
     desc "-v, [--version]", "Show version."
     map %w(-v --version) => :version
     def version
-      say "Sublime Text Kit " + VERSION
+      say SublimeTextKit::Identity.label_version
     end
 
     desc "-h, [--help=HELP]", "Show this message or get help for a command."
