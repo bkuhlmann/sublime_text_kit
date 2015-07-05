@@ -1,9 +1,9 @@
 $:.push File.expand_path("../lib", __FILE__)
-require "sublime_text_kit/version"
+require "sublime_text_kit/identity"
 
 Gem::Specification.new do |spec|
-  spec.name                  = "sublime_text_kit"
-  spec.version               = SublimeTextKit::VERSION
+  spec.name                  = SublimeTextKit::Identity.name
+  spec.version               = SublimeTextKit::Identity.version
   spec.platform              = Gem::Platform::RUBY
   spec.authors               = ["Brooke Kuhlmann"]
   spec.email                 = ["brooke@alchemists.io"]
