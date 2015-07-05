@@ -1,3 +1,9 @@
+# v3.1.0 (2015-07-05)
+
+- Removed JRuby support (no longer officially supported).
+- Fixed secure gem installs (new cert has 10 year lifespan).
+- Added CLI process title support.
+
 # v3.0.0 (2015-05-10)
 
 - Removed CLI --project support (replaced with --metadata)
