@@ -3,10 +3,12 @@ require "thor"
 require "thor/actions"
 require "thor_plus/actions"
 
-  module SublimeTextKit
+module SublimeTextKit
   class CLI < Thor
     include Thor::Actions
     include ThorPlus::Actions
+
+    package_name SublimeTextKit::Identity.label
 
     # Initialize.
     def initialize args = [], options = {}, config = {}
