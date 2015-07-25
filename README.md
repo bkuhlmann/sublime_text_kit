@@ -9,6 +9,27 @@
 
 Provides a collection of utilities that aid in Sublime Text management.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Setup](#setup)
+    - [Upgrading](#upgrading)
+- [Usage](#usage)
+    - [Workflow](#workflow)
+    - [Troubleshooting](#troubleshooting)
+- [Tests](#tests)
+- [Versioning](#versioning)
+- [Code of Conduct](#code-of-conduct)
+- [Contributions](#contributions)
+- [License](#license)
+- [History](#history)
+- [Credits](#credits)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Features
 
 - Provides project metadata (i.e. *.sublime-project and *.sublime-workspace files) management for project
@@ -66,6 +87,17 @@ If using the example settings shown above and assuming the following directory s
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 
+## Upgrading
+
+For those upgrading from Sublime Text Kit v2.0.0 or earlier, be mindful of the following changes:
+
+0. Ensure you are using Sublime Text 3 (it is currently in Beta but your v2.0.0 license will work).
+0. Update the `~/.sublime/settings.yml` file to switch from a `workspace_dir` to a `metadata_dir` instead.
+0. Run the following commands to rebuild your project/workspace and session metadata:
+
+        stk -m -R # Destroys and rebuilds your existing project/workspace metadata to Sublime Text 3 format.
+        skt -s -r # Rebuilds your session history with project metadata as generated above.
+
 # Usage
 
 From the command line, type: `stk`
@@ -87,24 +119,7 @@ For session options, type: `stk --session`
 
     -r, [--rebuild-session], [--no-rebuild-session]  # Rebuild session metadata.
 
-# Tests
-
-To test, run:
-
-    bundle exec rspec spec
-
-# Upgrading
-
-For those upgrading from Sublime Text Kit v2.0.0 or earlier, be mindful of the following changes:
-
-0. Ensure you are using Sublime Text 3 (it is currently in Beta but your v2.0.0 license will work).
-0. Update the `~/.sublime/settings.yml` file to switch from a `workspace_dir` to a `metadata_dir` instead.
-0. Run the following commands to rebuild your project/workspace and session metadata:
-
-        stk -m -R # Destroys and rebuilds your existing project/workspace metadata to Sublime Text 3 format.
-        skt -s -r # Rebuilds your session history with project metadata as generated above.
-
-# Workflow
+## Workflow
 
 The following demonstrates a default Sublime Text setup:
 
@@ -117,11 +132,17 @@ The following demonstrates a default Sublime Text setup:
    you can (fuzzy type) project names to jump between them.
 0. Breeze through your project workload with ease. :)
 
-# Troubleshooting
+## Troubleshooting
 
 - When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
 - When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a directory containing
   *.sublime-project and *.sublime-workspace files.
+
+# Tests
+
+To test, run:
+
+    bundle exec rspec spec
 
 # Versioning
 
