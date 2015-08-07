@@ -1,6 +1,6 @@
 # Sublime Text Kit
 
-[![Gem Version](https://badge.fury.io/rb/sublime_text_kit.png)](http://badge.fury.io/rb/sublime_text_kit)
+[![Gem Version](https://badge.fury.io/rb/sublime_text_kit.svg)](http://badge.fury.io/rb/sublime_text_kit)
 [![Code Climate GPA](https://codeclimate.com/github/bkuhlmann/sublime_text_kit.png)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Code Climate Coverage](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/coverage.png)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.png)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
