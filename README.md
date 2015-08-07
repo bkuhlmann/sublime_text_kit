@@ -5,7 +5,6 @@
 [![Code Climate Coverage](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/coverage.svg)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.svg)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
 [![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.svg)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
-[![Gittip](http://img.shields.io/gittip/bkuhlmann.svg)](https://www.gittip.com/bkuhlmann)
 
 Provides a collection of utilities that aid in Sublime Text management.
 
