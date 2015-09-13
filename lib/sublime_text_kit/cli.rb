@@ -71,7 +71,7 @@ module SublimeTextKit
       say
     end
 
-    desc "-e, [--edit]", "Edit settings in default editor (assumes $EDITOR environment variable)."
+    desc "-e, [--edit]", "Edit #{SublimeTextKit::Identity.label} settings in default editor."
     map %w(-e --edit) => :edit
     def edit
       `#{editor} #{@settings_file}`
