@@ -8,7 +8,7 @@ module SublimeTextKit
     include Thor::Actions
     include ThorPlus::Actions
 
-    package_name SublimeTextKit::Identity.label
+    package_name SublimeTextKit::Identity.version_label
 
     # Initialize.
     def initialize args = [], options = {}, config = {}
@@ -80,7 +80,7 @@ module SublimeTextKit
     desc "-v, [--version]", "Show version."
     map %w(-v --version) => :version
     def version
-      say SublimeTextKit::Identity.label_version
+      say SublimeTextKit::Identity.version_label
     end
 
     desc "-h, [--help=HELP]", "Show this message or get help for a command."
