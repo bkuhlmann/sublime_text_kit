@@ -77,7 +77,7 @@ module SublimeTextKit
       `#{editor} #{@settings_file}`
     end
 
-    desc "-v, [--version]", "Show version."
+    desc "-v, [--version]", "Show #{SublimeTextKit::Identity.label} version."
     map %w(-v --version) => :version
     def version
       say SublimeTextKit::Identity.version_label
