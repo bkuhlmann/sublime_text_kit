@@ -6,7 +6,7 @@
 [![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.svg)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
 [![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.svg)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
 
-Provides a collection of utilities that aid in Sublime Text management.
+A command line interface for managing Sublime Text metadata.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
