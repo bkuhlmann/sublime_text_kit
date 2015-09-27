@@ -1,4 +1,5 @@
 module SublimeTextKit
+  # Gem identity information.
   module Identity
     def self.name
       "sublime_text_kit"
