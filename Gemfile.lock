@@ -22,6 +22,10 @@ GEM
     docile (1.1.5)
     ffi (1.9.10)
     formatador (0.2.5)
+    gemsmith (5.6.0)
+      milestoner (~> 1.0)
+      thor (~> 0.19)
+      thor_plus (~> 2.1)
     guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -43,6 +47,9 @@ GEM
       rb-inotify (>= 0.9)
     lumberjack (1.0.9)
     method_source (0.8.2)
+    milestoner (1.1.0)
+      thor
+      thor_plus
     multi_json (1.11.2)
     nenv (0.2.0)
     notiffany (0.0.8)
@@ -101,6 +108,7 @@ PLATFORMS
 
 DEPENDENCIES
   codeclimate-test-reporter
+  gemsmith
   guard-rspec
   pry
   pry-byebug
