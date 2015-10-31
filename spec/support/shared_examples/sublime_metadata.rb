@@ -28,7 +28,7 @@ shared_examples_for "sublime metadata" do
       FileUtils.touch subject.metadata_file
       described_class.delete temp_dir
 
-      expect(File.exists?(subject.metadata_file)).to eq(false)
+      expect(File.exist?(subject.metadata_file)).to eq(false)
     end
 
     it "does not delete non-metadata files" do
@@ -36,7 +36,7 @@ shared_examples_for "sublime metadata" do
       FileUtils.touch test_file
       described_class.delete temp_dir
 
-      expect(File.exists?(test_file)).to eq(true)
+      expect(File.exist?(test_file)).to eq(true)
     end
 
     it "does not delete directories" do
@@ -44,7 +44,7 @@ shared_examples_for "sublime metadata" do
       FileUtils.mkdir test_dir
       described_class.delete temp_dir
 
-      expect(File.exists?(test_dir)).to eq(true)
+      expect(File.exist?(test_dir)).to eq(true)
     end
 
     it "outputs error message when metadata directory does not exist" do
@@ -64,21 +64,21 @@ shared_examples_for "sublime metadata" do
   describe "#project_dir" do
     it "answers absolute path" do
       subject = described_class.new "~/tmp", temp_dir
-      expect(subject.project_dir).to_not start_with('~')
+      expect(subject.project_dir).to_not start_with("~")
     end
   end
 
   describe "#metadata_dir" do
     it "answers absolute path" do
       subject = described_class.new project_dir, "~/tmp"
-      expect(subject.metadata_dir).to_not start_with('~')
+      expect(subject.metadata_dir).to_not start_with("~")
     end
   end
 
   describe "#metadata_file" do
     it "answers absolute path" do
       subject = described_class.new project_dir, "~/tmp"
-      expect(subject.metadata_file).to_not start_with('~')
+      expect(subject.metadata_file).to_not start_with("~")
     end
 
     it "answers metadata file" do

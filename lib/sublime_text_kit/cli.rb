@@ -4,6 +4,7 @@ require "thor/actions"
 require "thor_plus/actions"
 
 module SublimeTextKit
+  # The Command Line Interface (CLI) for the gem.
   class CLI < Thor
     include Thor::Actions
     include ThorPlus::Actions
@@ -52,20 +53,6 @@ module SublimeTextKit
         when options[:destroy] then destroy_metadata
         when options[:rebuild] then rebuild_metadata
         else help("--metadata")
-      end
-
-      say
-    end
-
-    desc "-s, [--session]", "Manage session metadata."
-    map %w(-s --session) => :session
-    method_option :rebuild_session, aliases: "-r", desc: "Rebuild session metadata.", type: :boolean, default: false
-    def session
-      say
-
-      case
-        when options[:rebuild_session] then rebuild_session
-        else help("--session")
       end
 
       say

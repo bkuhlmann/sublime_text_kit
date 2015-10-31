@@ -9,7 +9,7 @@ describe SublimeTextKit::Session do
   describe "#metadata_dir" do
     it "answers absolute path" do
       subject = described_class.new "~/tmp"
-      expect(subject.metadata_dir).to_not start_with('~')
+      expect(subject.metadata_dir).to_not start_with("~")
     end
   end
 
@@ -65,7 +65,7 @@ describe SublimeTextKit::Session do
 
       subject.rebuild_recent_workspaces
 
-      expect(File.exists?(bogus_session_file)).to eq(false)
+      expect(File.exist?(bogus_session_file)).to eq(false)
     end
 
     it "skips updating session when keys are missing" do

@@ -1,5 +1,6 @@
 module SublimeTextKit
   module Metadata
+    # Processes workspace metadata.
     class Workspace < Base
       def initialize project_dir, metadata_dir
         super project_dir, metadata_dir

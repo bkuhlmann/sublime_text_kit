@@ -1,0 +1,9 @@
+Metrics/AbcSize:
+  Exclude:
+    - "lib/sublime_text_kit/cli.rb"
+Metrics/ClassLength:
+  Exclude:
+    - "lib/sublime_text_kit/cli.rb"
+Metrics/MethodLength:
+  Exclude:
+    - "lib/sublime_text_kit/cli.rb"

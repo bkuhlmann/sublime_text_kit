@@ -1,6 +1,7 @@
 require "multi_json"
 
 module SublimeTextKit
+  # Manages Sublime Text session data.
   class Session
     attr_reader :metadata_dir
 
@@ -22,21 +23,20 @@ module SublimeTextKit
 
     def rebuild_recent_workspaces
       session = load_session
+      return unless session && session["workspaces"] && session["workspaces"]["recent_workspaces"]
 
-      if session && session["workspaces"] && session["workspaces"]["recent_workspaces"]
-        session["workspaces"]["recent_workspaces"] = workspaces
-        save_session session
-      end
+      session["workspaces"]["recent_workspaces"] = workspaces
+      save_session session
     end
 
     private
 
     def load_session
-      File.exists?(self.class.session_path) ? MultiJson.load(File.read(self.class.session_path)) : {}
+      File.exist?(self.class.session_path) ? MultiJson.load(File.read(self.class.session_path)) : {}
     end
 
     def save_session json
-      File.open(self.class.session_path, 'w') { |file| file.write MultiJson.dump(json, pretty: true) }
+      File.open(self.class.session_path, "w") { |file| file.write MultiJson.dump(json, pretty: true) }
     end
   end
 end

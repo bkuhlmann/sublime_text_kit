@@ -1,4 +1,4 @@
-$:.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require "sublime_text_kit/identity"
 
 Gem::Specification.new do |spec|
@@ -33,10 +33,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "terminal-notifier"
   spec.add_development_dependency "terminal-notifier-guard"
+  spec.add_development_dependency "rubocop"
   spec.add_development_dependency "codeclimate-test-reporter"
 
   spec.files            = Dir["lib/**/*", "vendor/**/*"]
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
-  spec.executables      << "stk"
-  spec.require_paths    = ["lib"]
+  spec.executables << "stk"
+  spec.require_paths = ["lib"]
 end
