@@ -9,17 +9,17 @@
 
 A command line interface for managing Sublime Text metadata.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- Tocer[start]: Auto-generated, don't remove. -->
+
 # Table of Contents
 
 - [Features](#features)
 - [Requirements](#requirements)
 - [Setup](#setup)
-    - [Upgrading](#upgrading)
+  - [Upgrading](#upgrading)
 - [Usage](#usage)
-    - [Workflow](#workflow)
-    - [Troubleshooting](#troubleshooting)
+  - [Workflow](#workflow)
+  - [Troubleshooting](#troubleshooting)
 - [Tests](#tests)
 - [Versioning](#versioning)
 - [Code of Conduct](#code-of-conduct)
@@ -28,7 +28,7 @@ A command line interface for managing Sublime Text metadata.
 - [History](#history)
 - [Credits](#credits)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- Tocer[finish]: Auto-generated, don't remove. -->
 
 # Features
 
