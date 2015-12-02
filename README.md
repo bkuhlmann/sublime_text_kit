@@ -4,7 +4,7 @@
 [![Code Climate GPA](https://codeclimate.com/github/bkuhlmann/sublime_text_kit.svg)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Code Climate Coverage](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/coverage.svg)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.svg)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
-[![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.svg)](http://travis-ci.org/bkuhlmann/sublime_text_kit)
+[![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.svg)](https://travis-ci.org/bkuhlmann/sublime_text_kit)
 [![Patreon](https://img.shields.io/badge/patreon-donate-brightgreen.svg)](https://www.patreon.com/bkuhlmann)
 
 A command line interface for managing Sublime Text metadata.
@@ -42,8 +42,8 @@ A command line interface for managing Sublime Text metadata.
 
 # Requirements
 
-0. [MRI 2.x.x](http://www.ruby-lang.org).
-0. [Sublime Text 2](http://www.sublimetext.com).
+0. [MRI 2.x.x](https://www.ruby-lang.org).
+0. [Sublime Text 2](https://www.sublimetext.com).
 
 # Setup
 
