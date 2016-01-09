@@ -1,4 +1,4 @@
-shared_examples_for "sublime metadata" do
+RSpec.shared_examples_for "sublime metadata" do
   describe ".create" do
     it "creates metadata for all projects in projects root directory" do
       described_class.create projects_dir, temp_dir

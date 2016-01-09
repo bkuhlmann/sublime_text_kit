@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe SublimeTextKit::Session do
+RSpec.describe SublimeTextKit::Session do
   subject { described_class.new File.expand_path("../../../support/metadata", __FILE__) }
   let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
   let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }

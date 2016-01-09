@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe SublimeTextKit::Metadata::Project, :temp_dir do
+RSpec.describe SublimeTextKit::Metadata::Project, :temp_dir do
   let(:projects_dir) { File.expand_path("../../../../support/projects", __FILE__) }
   let(:project_dir) { File.join projects_dir, "test" }
   subject { described_class.new project_dir, temp_dir }
