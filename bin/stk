@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#! /usr/bin/ruby
 
 require "sublime_text_kit"
 require "sublime_text_kit/cli"

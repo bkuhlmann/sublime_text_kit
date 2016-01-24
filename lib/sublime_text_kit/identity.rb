@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SublimeTextKit
   # Gem identity information.
   module Identity

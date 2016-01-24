@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples_for "sublime metadata" do
   describe ".create" do
     it "creates metadata for all projects in projects root directory" do
