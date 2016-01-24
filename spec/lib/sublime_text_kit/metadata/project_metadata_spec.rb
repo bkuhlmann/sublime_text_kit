@@ -19,7 +19,7 @@ RSpec.describe SublimeTextKit::Metadata::Project, :temp_dir do
     it "answers hash with project path" do
       proof = {
         folders: [
-          {path: "#{project_dir}"}
+          {path: project_dir}
         ]
       }
 
@@ -34,7 +34,7 @@ RSpec.describe SublimeTextKit::Metadata::Project, :temp_dir do
 
       proof = {
         "folders" => [
-          {"path" => "#{project_dir}"}
+          {"path" => project_dir}
         ]
       }
 

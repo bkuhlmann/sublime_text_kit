@@ -15,7 +15,7 @@ module SublimeTextKit
       def to_h
         {
           folders: [
-            {path: "#{project_dir}"}
+            {path: project_dir}
           ]
         }
       end

@@ -18,7 +18,7 @@ RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
   describe "#to_h" do
     it "answers hash with project path" do
       proof = {
-        expanded_folders: ["#{project_dir}"],
+        expanded_folders: [project_dir],
         select_project: {
           selected_items: [
             ["test", "#{temp_dir}/test.sublime-project"]
@@ -36,7 +36,7 @@ RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
       metadata = MultiJson.load File.read(subject.metadata_file)
 
       proof = {
-        "expanded_folders" => ["#{project_dir}"],
+        "expanded_folders" => [project_dir],
         "select_project" => {
           "selected_items" => [
             ["test", "#{temp_dir}/test.sublime-project"]

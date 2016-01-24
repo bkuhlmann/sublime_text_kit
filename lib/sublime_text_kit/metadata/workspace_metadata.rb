@@ -14,7 +14,7 @@ module SublimeTextKit
 
       def to_h
         {
-          expanded_folders: ["#{project_dir}"],
+          expanded_folders: [project_dir],
           select_project: {
             selected_items: [
               [name, File.join(metadata_dir, "#{name}.sublime-project")]
