@@ -14,6 +14,7 @@ A command line interface for managing Sublime Text metadata.
 # Table of Contents
 
 - [Features](#features)
+- [Screencasts](#screencasts)
 - [Requirements](#requirements)
 - [Setup](#setup)
   - [Upgrading](#upgrading)
@@ -37,6 +38,8 @@ A command line interface for managing Sublime Text metadata.
 - Rebuilds project history (Project -> Recent Projects) from existing project files (assumes project
   metadata is in a directory) so one can easily toggle between up-to-date project information via the
   `CONTROL+COMMAND+P` shortcut.
+
+# Screencasts
 
 [![asciicast](https://asciinema.org/a/19858.png)](https://asciinema.org/a/19858)
 
