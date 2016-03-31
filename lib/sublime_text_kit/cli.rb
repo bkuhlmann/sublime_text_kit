@@ -20,9 +20,9 @@ module SublimeTextKit
       @settings = load_yaml @settings_file
     end
 
-    desc "-c, [--configure]", "Configure Sublime Text with current settings."
-    map %w[-c --configure] => :configure
-    def configure
+    desc "-u, [--update]", "Update Sublime Text with current settings."
+    map %w(-u --update) => :update
+    def update
       create_metadata
       say
       rebuild_session
