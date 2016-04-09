@@ -4,7 +4,7 @@ RSpec.shared_examples_for "sublime metadata" do
   describe ".create" do
     it "creates metadata for all projects in projects root directory" do
       described_class.create projects_dir, temp_dir
-      files = %w(black red white).map { |name| File.join temp_dir, "#{name}.#{subject.file_extension}" }
+      files = %w[black red white].map { |name| File.join temp_dir, "#{name}.#{subject.file_extension}" }
       created = files.all? { |path| File.exist? path }
 
       expect(created).to eq(true)

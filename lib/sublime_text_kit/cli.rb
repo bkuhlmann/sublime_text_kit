@@ -21,7 +21,7 @@ module SublimeTextKit
     end
 
     desc "-c, [--configure]", "Configure Sublime Text with current settings."
-    map %w(-c --configure) => :configure
+    map %w[-c --configure] => :configure
     def configure
       create_metadata
       say
@@ -29,7 +29,7 @@ module SublimeTextKit
     end
 
     desc "-s, [--session]", "Manage session metadata."
-    map %w(-s --session) => :session
+    map %w[-s --session] => :session
     method_option :rebuild_session, aliases: "-r", desc: "Rebuild session metadata.", type: :boolean, default: false
     def session
       say
@@ -43,7 +43,7 @@ module SublimeTextKit
     end
 
     desc "-m, [--metadata]", "Manage project/workspace metadata."
-    map %w(-m --metadata) => :metadata
+    map %w[-m --metadata] => :metadata
     method_option :create, aliases: "-c", desc: "Create metadata.", type: :boolean, default: false
     method_option :destroy, aliases: "-D", desc: "Destroy metadata.", type: :boolean, default: false
     method_option :rebuild, aliases: "-R", desc: "Rebuild metadata.", type: :boolean, default: false
@@ -61,21 +61,21 @@ module SublimeTextKit
     end
 
     desc "-e, [--edit]", "Edit #{SublimeTextKit::Identity.label} settings in default editor."
-    map %w(-e --edit) => :edit
+    map %w[-e --edit] => :edit
     def edit
       `#{editor} #{@settings_file}`
     end
 
     desc "-v, [--version]", "Show #{SublimeTextKit::Identity.label} version."
-    map %w(-v --version) => :version
+    map %w[-v --version] => :version
     def version
       say SublimeTextKit::Identity.version_label
     end
 
     desc "-h, [--help=HELP]", "Show this message or get help for a command."
-    map %w(-h --help) => :help
+    map %w[-h --help] => :help
     def help task = nil
-      say && super
+      say and super
     end
 
     private

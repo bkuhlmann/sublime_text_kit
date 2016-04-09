@@ -17,11 +17,11 @@ RSpec.describe SublimeTextKit::Session do
 
   describe "#workspaces" do
     it "answers alpha-sorted list of sublime workspace files" do
-      project_files = %W(
+      project_files = %W[
         #{subject.metadata_dir}/black.sublime-workspace
         #{subject.metadata_dir}/red.sublime-workspace
         #{subject.metadata_dir}/white.sublime-workspace
-      )
+      ]
 
       expect(subject.workspaces).to eq(project_files)
     end
