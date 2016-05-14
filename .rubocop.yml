@@ -1,5 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
+AllCops:
+  TargetVersion: 2.3
 Style/AndOr:
   EnforcedStyle: conditionals
 Style/CaseIndentation:

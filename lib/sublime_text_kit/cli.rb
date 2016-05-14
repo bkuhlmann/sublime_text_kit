@@ -21,7 +21,7 @@ module SublimeTextKit
     end
 
     desc "-u, [--update]", "Update Sublime Text with current settings."
-    map %w(-u --update) => :update
+    map %w[-u --update] => :update
     def update
       create_metadata
       say
@@ -33,11 +33,7 @@ module SublimeTextKit
     method_option :rebuild_session, aliases: "-r", desc: "Rebuild session metadata.", type: :boolean, default: false
     def session
       say
-
-      if options[:rebuild_session] then rebuild_session
-      else help("--session")
-      end
-
+      options[:rebuild_session] ? rebuild_session : help("--session")
       say
     end
 
@@ -59,13 +55,13 @@ module SublimeTextKit
     end
 
     desc "-e, [--edit]", "Edit gem settings in default editor."
-    map %w(-e --edit) => :edit
+    map %w[-e --edit] => :edit
     def edit
       `#{editor} #{@settings_file}`
     end
 
     desc "-v, [--version]", "Show gem version."
-    map %w(-v --version) => :version
+    map %w[-v --version] => :version
     def version
       say SublimeTextKit::Identity.version_label
     end
