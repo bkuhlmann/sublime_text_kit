@@ -34,9 +34,8 @@ module SublimeTextKit
     def session
       say
 
-      case
-        when options[:rebuild_session] then rebuild_session
-        else help("--session")
+      if options[:rebuild_session] then rebuild_session
+      else help("--session")
       end
 
       say
@@ -50,11 +49,10 @@ module SublimeTextKit
     def metadata
       say
 
-      case
-        when options[:create] then create_metadata
-        when options[:destroy] then destroy_metadata
-        when options[:rebuild] then rebuild_metadata
-        else help("--metadata")
+      if options[:create] then create_metadata
+      elsif options[:destroy] then destroy_metadata
+      elsif options[:rebuild] then rebuild_metadata
+      else help("--metadata")
       end
 
       say
