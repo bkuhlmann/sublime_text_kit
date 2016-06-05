@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "multi_json"
+require "json"
 
 module SublimeTextKit
   # Manages Sublime Text session data.
@@ -34,11 +34,11 @@ module SublimeTextKit
     private
 
     def load_session
-      File.exist?(self.class.session_path) ? MultiJson.load(File.read(self.class.session_path)) : {}
+      File.exist?(self.class.session_path) ? JSON.load(File.read(self.class.session_path)) : {}
     end
 
     def save_session json
-      File.open(self.class.session_path, "w") { |file| file.write MultiJson.dump(json, pretty: true) }
+      File.open(self.class.session_path, "w") { |file| file.write JSON.dump(json) }
     end
   end
 end

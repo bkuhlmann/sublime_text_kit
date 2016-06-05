@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "multi_json"
+require "json"
 require "pathname"
 
 module SublimeTextKit
@@ -42,7 +42,7 @@ module SublimeTextKit
 
       def save
         return if File.exist? metadata_file
-        File.open(metadata_file, "w") { |file| file.write MultiJson.dump(to_h, pretty: true) }
+        File.open(metadata_file, "w") { |file| file.write JSON.dump(to_h) }
       end
 
       def self.valid_dir? dir, label

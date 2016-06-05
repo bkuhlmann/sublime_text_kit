@@ -30,7 +30,7 @@ RSpec.describe SublimeTextKit::Metadata::Project, :temp_dir do
   describe "#save" do
     it "saves metadata as empty hash" do
       subject.save
-      metadata = MultiJson.load File.read(subject.metadata_file)
+      metadata = JSON.load File.read(subject.metadata_file)
 
       proof = {
         "folders" => [
