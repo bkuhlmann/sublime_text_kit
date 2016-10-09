@@ -34,7 +34,7 @@ module SublimeTextKit
     private
 
     def load_session
-      File.exist?(self.class.session_path) ? JSON.load(File.read(self.class.session_path)) : {}
+      File.exist?(self.class.session_path) ? JSON.parse(File.read(self.class.session_path)) : {}
     end
 
     def save_session json

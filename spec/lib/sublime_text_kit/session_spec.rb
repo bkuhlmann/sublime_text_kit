@@ -40,7 +40,7 @@ RSpec.describe SublimeTextKit::Session do
       }
 
       subject.rebuild_recent_workspaces
-      updated_session = JSON.load File.read(described_class.session_path)
+      updated_session = JSON.parse File.read(described_class.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq(session)
@@ -55,7 +55,7 @@ RSpec.describe SublimeTextKit::Session do
       }
 
       subject.rebuild_recent_workspaces
-      updated_session = JSON.load File.read(described_class.session_path)
+      updated_session = JSON.parse File.read(described_class.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq(session)
@@ -75,7 +75,7 @@ RSpec.describe SublimeTextKit::Session do
       allow(described_class).to receive_messages session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
-      updated_session = JSON.load File.read(described_class.session_path)
+      updated_session = JSON.parse File.read(described_class.session_path)
       FileUtils.cp session_backup_file, session_file
 
       expect(updated_session).to eq({})
