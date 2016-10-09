@@ -45,7 +45,7 @@ A command line interface for managing Sublime Text metadata.
 
 # Requirements
 
-0. [MRI 2.x.x](https://www.ruby-lang.org).
+0. [Ruby 2.x.x](https://www.ruby-lang.org).
 0. [Sublime Text 2](https://www.sublimetext.com).
 
 # Setup
