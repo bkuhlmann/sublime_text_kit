@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop", "~> 0.41"
   spec.add_development_dependency "codeclimate-test-reporter"
 
-  spec.files            = Dir["lib/**/*", "vendor/**/*"]
+  spec.files            = Dir["lib/**/*"]
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
   spec.executables << "stk"
   spec.require_paths = ["lib"]
