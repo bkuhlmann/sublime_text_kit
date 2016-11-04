@@ -60,12 +60,6 @@ module SublimeTextKit
       say
     end
 
-    desc "-e, [--edit]", "Edit gem settings in default editor."
-    map %w[-e --edit] => :edit
-    def edit
-      `#{editor} #{@settings_file}`
-    end
-
     desc "-c, [--config]", "Manage gem configuration."
     map %w[-c --config] => :config
     method_option :edit, aliases: "-e", desc: "Edit gem configuration.", type: :boolean, default: false
