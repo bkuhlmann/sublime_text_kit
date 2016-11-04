@@ -4,6 +4,7 @@ require "yaml"
 require "thor"
 require "thor/actions"
 require "thor_plus/actions"
+require "runcom"
 
 module SublimeTextKit
   # The Command Line Interface (CLI) for the gem.
@@ -13,11 +14,16 @@ module SublimeTextKit
 
     package_name SublimeTextKit::Identity.version_label
 
+    def self.defaults
+      {}
+    end
+
     # Initialize.
     def initialize args = [], options = {}, config = {}
       super args, options, config
       @settings_file = File.join ENV["HOME"], Identity.file_name
       @settings = load_yaml @settings_file
+      @configuration = ::Runcom::Configuration.new file_name: Identity.file_name, defaults: self.class.defaults
     end
 
     desc "-u, [--update]", "Update Sublime Text with current settings."
@@ -60,6 +66,17 @@ module SublimeTextKit
       `#{editor} #{@settings_file}`
     end
 
+    desc "-c, [--config]", "Manage gem configuration."
+    map %w[-c --config] => :config
+    method_option :edit, aliases: "-e", desc: "Edit gem configuration.", type: :boolean, default: false
+    method_option :info, aliases: "-i", desc: "Print gem configuration info.", type: :boolean, default: false
+    def config
+      if options.edit? then `#{editor} #{configuration.computed_path}`
+      elsif options.info? then say("Using: #{configuration.computed_path}.")
+      else help(:config)
+      end
+    end
+
     desc "-v, [--version]", "Show gem version."
     map %w[-v --version] => :version
     def version
@@ -73,6 +90,8 @@ module SublimeTextKit
     end
 
     private
+
+    attr_reader :configuration
 
     def project_roots
       @project_roots ||= @settings.fetch :project_roots, []
