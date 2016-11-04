@@ -21,8 +21,6 @@ module SublimeTextKit
     # Initialize.
     def initialize args = [], options = {}, config = {}
       super args, options, config
-      @settings_file = File.join ENV["HOME"], Identity.file_name
-      @settings = load_yaml @settings_file
       @configuration = ::Runcom::Configuration.new file_name: Identity.file_name, defaults: self.class.defaults
     end
 
@@ -88,11 +86,11 @@ module SublimeTextKit
     attr_reader :configuration
 
     def project_roots
-      @project_roots ||= @settings.fetch :project_roots, []
+      @project_roots ||= configuration.to_h.fetch :project_roots, []
     end
 
     def metadata_dir
-      @metadata_dir ||= File.expand_path @settings.fetch(:metadata_dir)
+      @metadata_dir ||= File.expand_path configuration.to_h.fetch(:metadata_dir)
     end
 
     def create_metadata
