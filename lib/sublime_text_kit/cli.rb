@@ -14,14 +14,13 @@ module SublimeTextKit
 
     package_name SublimeTextKit::Identity.version_label
 
-    def self.defaults
-      {}
+    def self.configuration
+      Runcom::Configuration.new file_name: Identity.file_name
     end
 
     # Initialize.
     def initialize args = [], options = {}, config = {}
       super args, options, config
-      @configuration = ::Runcom::Configuration.new file_name: Identity.file_name, defaults: self.class.defaults
     end
 
     desc "-u, [--update]", "Update Sublime Text with current settings."
@@ -63,8 +62,10 @@ module SublimeTextKit
     method_option :edit, aliases: "-e", desc: "Edit gem configuration.", type: :boolean, default: false
     method_option :info, aliases: "-i", desc: "Print gem configuration info.", type: :boolean, default: false
     def config
-      if options.edit? then `#{editor} #{configuration.computed_path}`
-      elsif options.info? then say("Using: #{configuration.computed_path}.")
+      path = self.class.configuration.computed_path
+
+      if options.edit? then `#{editor} #{path}`
+      elsif options.info? then say("Using: #{path}.")
       else help(:config)
       end
     end
@@ -83,14 +84,12 @@ module SublimeTextKit
 
     private
 
-    attr_reader :configuration
-
     def project_roots
-      @project_roots ||= configuration.to_h.fetch :project_roots, []
+      @project_roots ||= self.class.configuration.to_h.fetch :project_roots, []
     end
 
     def metadata_dir
-      @metadata_dir ||= File.expand_path configuration.to_h.fetch(:metadata_dir)
+      @metadata_dir ||= File.expand_path self.class.configuration.to_h.fetch(:metadata_dir)
     end
 
     def create_metadata
