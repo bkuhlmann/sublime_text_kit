@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "yaml"
 require "thor"
 require "thor/actions"
 require "thor_plus/actions"
@@ -12,7 +11,7 @@ module SublimeTextKit
     include Thor::Actions
     include ThorPlus::Actions
 
-    package_name SublimeTextKit::Identity.version_label
+    package_name Identity.version_label
 
     def self.configuration
       Runcom::Configuration.new file_name: Identity.file_name
@@ -79,7 +78,7 @@ module SublimeTextKit
     desc "-v, [--version]", "Show gem version."
     map %w[-v --version] => :version
     def version
-      say SublimeTextKit::Identity.version_label
+      say Identity.version_label
     end
 
     desc "-h, [--help=COMMAND]", "Show this message or get help for a command."
@@ -103,8 +102,8 @@ module SublimeTextKit
       info "Metadata Path: #{metadata_dir}"
       project_roots.each do |project_root|
         info "Processing project root: #{File.expand_path project_root}..."
-        SublimeTextKit::Metadata::Project.create project_root, metadata_dir
-        SublimeTextKit::Metadata::Workspace.create project_root, metadata_dir
+        Metadata::Project.create project_root, metadata_dir
+        Metadata::Workspace.create project_root, metadata_dir
       end
       info "Metadata created."
     end
@@ -112,8 +111,8 @@ module SublimeTextKit
     def destroy_metadata
       if yes? "Delete metadata in #{metadata_dir}?"
         info "Deleting metadata..."
-        SublimeTextKit::Metadata::Project.delete metadata_dir
-        SublimeTextKit::Metadata::Workspace.delete metadata_dir
+        Metadata::Project.delete metadata_dir
+        Metadata::Workspace.delete metadata_dir
         info "Metadata deleted."
       else
         info "Metadata deletion aborted."
@@ -123,14 +122,14 @@ module SublimeTextKit
     def rebuild_metadata
       if yes? "Rebuild metadata in #{metadata_dir}?"
         info "Deleting metadata..."
-        SublimeTextKit::Metadata::Project.delete metadata_dir
-        SublimeTextKit::Metadata::Workspace.delete metadata_dir
+        Metadata::Project.delete metadata_dir
+        Metadata::Workspace.delete metadata_dir
 
         info "Creating metadata..."
         project_roots.each do |project_root|
           info "Processing project root: #{File.expand_path project_root}..."
-          SublimeTextKit::Metadata::Project.create project_root, metadata_dir
-          SublimeTextKit::Metadata::Workspace.create project_root, metadata_dir
+          Metadata::Project.create project_root, metadata_dir
+          Metadata::Workspace.create project_root, metadata_dir
         end
 
         info "Metadata rebuilt."
@@ -142,8 +141,8 @@ module SublimeTextKit
     def rebuild_session
       info "Rebuilding session metadata..."
       info "Metadata (project/workspace) Path: #{metadata_dir}"
-      info "Session Path: #{SublimeTextKit::Session.session_path}"
-      session = SublimeTextKit::Session.new metadata_dir
+      info "Session Path: #{Session.session_path}"
+      session = Session.new metadata_dir
       session.rebuild_recent_workspaces
       info "Session metadata rebuilt."
     end

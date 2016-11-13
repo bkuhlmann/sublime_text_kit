@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "sublime_text_kit/cli"
 
 RSpec.describe SublimeTextKit::CLI do
   describe ".start" do
