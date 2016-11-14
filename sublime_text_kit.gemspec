@@ -39,6 +39,6 @@ Gem::Specification.new do |spec|
 
   spec.files            = Dir["lib/**/*"]
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
-  spec.executables << "stk"
+  spec.executables << "sublime_text_kit"
   spec.require_paths = ["lib"]
 end
