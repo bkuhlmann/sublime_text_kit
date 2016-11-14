@@ -17,7 +17,6 @@ A command line interface for managing Sublime Text metadata.
 - [Screencasts](#screencasts)
 - [Requirements](#requirements)
 - [Setup](#setup)
-  - [Upgrading](#upgrading)
 - [Usage](#usage)
   - [Workflow](#workflow)
   - [Troubleshooting](#troubleshooting)
@@ -33,15 +32,15 @@ A command line interface for managing Sublime Text metadata.
 
 # Features
 
-- Provides project metadata (i.e. *.sublime-project and *.sublime-workspace files) management for project
-  switching via the `CONTROL+COMMAND+P` shortcut.
+- Provides project metadata (i.e. *.sublime-project and *.sublime-workspace files) management for
+  project switching via the `CONTROL+COMMAND+P` shortcut.
 - Rebuilds project history (Project -> Recent Projects) from existing project files (assumes project
-  metadata is in a directory) so one can easily toggle between up-to-date project information via the
-  `CONTROL+COMMAND+P` shortcut.
+  metadata is in a directory) so one can easily toggle between up-to-date project information via
+  the `CONTROL+COMMAND+P` shortcut.
 
 # Screencasts
 
-[![asciicast](https://asciinema.org/a/19858.png)](https://asciinema.org/a/19858)
+[![asciicast](https://asciinema.org/a/92707.png)](https://asciinema.org/a/92707)
 
 # Requirements
 
@@ -55,8 +54,9 @@ For a secure install, type the following from the command line (recommended):
     gem cert --add <(curl --location --silent https://www.alchemists.io/gem-public.pem)
     gem install sublime_text_kit --trust-policy MediumSecurity
 
-NOTE: A HighSecurity trust policy would be best but MediumSecurity enables signed gem verification while
-allowing the installation of unsigned dependencies since they are beyond the scope of this gem.
+NOTE: A HighSecurity trust policy would be best but MediumSecurity enables signed gem verification
+while allowing the installation of unsigned dependencies since they are beyond the scope of this
+gem.
 
 For an insecure install, type the following (not recommended):
 
@@ -64,7 +64,7 @@ For an insecure install, type the following (not recommended):
 
 You can define settings by creating the following file:
 
-    ~/.sublime/settings.yml
+    ~/.sublime_text_kitrc
 
 Example:
 
@@ -75,10 +75,11 @@ Example:
       - "~/Dropbox/Development/Work"
     :metadata_dir: "~/Dropbox/Cache/Sublime"
 
-The project roots define the root level directories where project folders are located. When project metadata (i.e.
-*.sublime-project, *.sublime-workspace) is generated, the name of the metadata file will be the same name as that
-of the project folder. All project metadata, regardless of root location, is written to the same metadata directory.
-If using the example settings shown above and assuming the following directory structure exists...
+The project roots define the root level directories where project folders are located. When project
+metadata (i.e. *.sublime-project, *.sublime-workspace) is generated, the name of the metadata file
+will be the same name as that of the project folder. All project metadata, regardless of root
+location, is written to the same metadata directory. If using the example settings shown above and
+assuming the following directory structure exists...
 
     ~/Dropbox/Development/Misc/example
     ~/Dropbox/Development/OSS/sublime_text_kit
@@ -90,56 +91,51 @@ If using the example settings shown above and assuming the following directory s
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 
-## Upgrading
-
-For those upgrading from Sublime Text Kit v2.0.0 or earlier, be mindful of the following changes:
-
-0. Ensure you are using Sublime Text 3 (it is currently in Beta but your v2.0.0 license will work).
-0. Update the `~/.sublime/settings.yml` file to switch from a `workspace_dir` to a `metadata_dir` instead.
-0. Run the following commands to rebuild your project/workspace and session metadata:
-
-        stk -m -R # Destroys and rebuilds your existing project/workspace metadata to Sublime Text 3 format.
-        skt -s -r # Rebuilds your session history with project metadata as generated above.
-
 # Usage
 
-From the command line, type: `stk`
+From the command line, type: `sublime_text_kit`
 
-    stk -c, [--configure]  # Configure Sublime Text with current settings.
-    stk -e, [--edit]       # Edit settings in default editor (assumes $EDITOR environment variable).
-    stk -h, [--help=HELP]  # Show this message or get help for a command.
-    stk -m, [--metadata]   # Manage project/workspace metadata.
-    stk -s, [--session]    # Manage session metadata.
-    stk -v, [--version]    # Show version.
+    sublime_text_kit -c, [--config]        # Manage gem configuration.
+    sublime_text_kit -h, [--help=COMMAND]  # Show this message or get help for a command.
+    sublime_text_kit -m, [--metadata]      # Manage project/workspace metadata.
+    sublime_text_kit -s, [--session]       # Manage session metadata.
+    sublime_text_kit -u, [--update]        # Update Sublime Text with current settings.
+    sublime_text_kit -v, [--version]       # Show gem version.
 
-For metadata options, type: `stk --metadata`
+For configuration options, type: `sublime_text_kit --help --config`
+
+    -e, [--edit], [--no-edit]  # Edit gem configuration.
+    -i, [--info], [--no-info]  # Print gem configuration.
+
+For metadata options, type: `sublime_text_kit --help --metadata`
 
     -c, [--create], [--no-create]    # Create metadata.
     -D, [--destroy], [--no-destroy]  # Destroy metadata.
     -R, [--rebuild], [--no-rebuild]  # Rebuild metadata.
 
-For session options, type: `stk --session`
+For session options, type: `sublime_text_kit --help --session`
 
-    -r, [--rebuild-session], [--no-rebuild-session]  # Rebuild session metadata.
+    -R, [--rebuild], [--no-rebuild]  # Rebuild session metadata.
 
 ## Workflow
 
 The following demonstrates a default Sublime Text setup:
 
-0. Run: `stk -e` (define Sublime Text Kit settings for project roots and metadata directory).
+0. Run: `sublime_text_kit --config --edit` (define Sublime Text Kit settings for project roots and
+   metadata directory).
 0. Shutdown Sublime Text (i.e. `CONTROL+Q`).
-0. Run: `stk -c` (creates project metadata and rebuilds the session metadata so Sublime Text has a complete project
-   history from which to jump through via the `CONTROL+COMMMAND+P` shortcut).
-   ).
-0. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between projects. Notice that
-   you can (fuzzy type) project names to jump between them.
+0. Run: `sublime_text_kit --metadata --create` (creates project metadata and rebuilds the session
+   metadata so Sublime Text has a complete project history from which to jump through via the
+   `CONTROL+COMMMAND+P` shortcut).
+0. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between projects.
+   Notice that you can (fuzzy type) project names to jump between them.
 0. Breeze through your project workload with ease. :)
 
 ## Troubleshooting
 
 - When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
-- When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a directory containing
-  *.sublime-project and *.sublime-workspace files.
+- When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a
+  directory containing `*.sublime-project` and `*.sublime-workspace` files.
 
 # Tests
 
@@ -157,8 +153,8 @@ Read [Semantic Versioning](http://semver.org) for details. Briefly, it means:
 
 # Code of Conduct
 
-Please note that this project is released with a [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By participating in this project
-you agree to abide by its terms.
+Please note that this project is released with a [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By
+participating in this project you agree to abide by its terms.
 
 # Contributions
 
@@ -176,5 +172,6 @@ Built with [Gemsmith](https://github.com/bkuhlmann/gemsmith).
 
 # Credits
 
-Developed by [Brooke Kuhlmann](https://www.alchemists.io) at [Alchemists](https://www.alchemists.io).
+Developed by [Brooke Kuhlmann](https://www.alchemists.io) at
+[Alchemists](https://www.alchemists.io).
 

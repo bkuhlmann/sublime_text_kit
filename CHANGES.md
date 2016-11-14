@@ -1,3 +1,64 @@
+# v4.0.0 (2016-11-14)
+
+- Fixed Rakefile to safely load Gemsmith tasks.
+- Fixed Rubocop Security/JSONLoad issues.
+- Fixed Ruby pragma.
+- Fixed contributing guideline links.
+- Added Code Climate engine support.
+- Added GitHub issue and pull request templates.
+- Added IRB development console Rake task support.
+- Added README Screencasts section.
+- Added Reek support.
+- Added Rubocop Style/SignalException cop style.
+- Added Ruby 2.3.0 frozen string literal support.
+- Added Runcom support.
+- Added `Gemfile.lock` to `.gitignore`.
+- Added bond, wirb, hirb, and awesome_print development dependencies.
+- Added frozen string literal pragma.
+- Added version release changes.
+- Updated CLI command option documentation.
+- Updated GitHub issue and pull request templates.
+- Updated README secure gem install documentation.
+- Updated README to mention "Ruby" instead of "MRI".
+- Updated README versioning documentation.
+- Updated RSpec temp directory to use Bundler root path.
+- Updated Rubocop PercentLiteralDelimiters and AndOr styles.
+- Updated `--config` command to use computed path.
+- Updated gem dependencies.
+- Updated gemspec with conservative versions.
+- Updated to Code Climate Test Reporter 1.0.0.
+- Updated to Code of Conduct, Version 1.4.0.
+- Updated to Gemsmith 7.7.0.
+- Updated to Gemsmith 8.1.0.
+- Updated to RSpec 3.5.0.
+- Updated to Rubocop 0.40.0.
+- Updated to Rubocop 0.44.
+- Updated to Ruby 2.2.4.
+- Updated to Ruby 2.3.0.
+- Updated to Ruby 2.3.1.
+- Updated to Thor+ 4.0.0.
+- Removed --configure, -c command (use --update, -u instead).
+- Removed CHANGELOG.md (use CHANGES.md instead).
+- Removed CLI defaults (using configuration instead).
+- Removed MultiJson gem.
+- Removed RSpec default monkey patching behavior.
+- Removed Rake console task.
+- Removed Ruby 2.1.x and 2.2.x support.
+- Removed `--edit` command.
+- Removed `--rebuild-session` (use `--rebuild` instead).
+- Removed `settings.yml` (use `~/.sublime_text_kitrc` instead).
+- Removed `stk` binary (use `sublime_text_kit` instead).
+- Removed gem label from CLI edit and version descriptions
+- Removed gemspec description.
+- Removed rb-fsevent development dependency from gemspec.
+- Removed session information.
+- Removed terminal notifier gems from gemspec.
+- Removed unnecessary use of string interpolation.
+- Removed unused "vendor" folder from gemspec.
+- Refactored RSpec spec helper configuration.
+- Refactored gemspec to use default security keys.
+- Refactored source requirements.
+
 # v3.2.0 (2015-12-02)
 
 - Fixed README URLs to use HTTPS schemes where possible.
