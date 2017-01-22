@@ -36,7 +36,8 @@ RSpec.describe SublimeTextKit::CLI do
 
     shared_examples_for "a version command" do
       it "prints version" do
-        expect(&cli).to output(/#{SublimeTextKit::Identity.label}\s#{SublimeTextKit::Identity.version}\n/).to_stdout
+        pattern = /#{SublimeTextKit::Identity.label}\s#{SublimeTextKit::Identity.version}\n/
+        expect(&cli).to output(pattern).to_stdout
       end
     end
 

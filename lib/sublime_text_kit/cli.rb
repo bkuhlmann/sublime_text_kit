@@ -32,7 +32,11 @@ module SublimeTextKit
 
     desc "-s, [--session]", "Manage session metadata."
     map %w[-s --session] => :session
-    method_option :rebuild, aliases: "-R", desc: "Rebuild session metadata.", type: :boolean, default: false
+    method_option :rebuild,
+                  aliases: "-R",
+                  desc: "Rebuild session metadata.",
+                  type: :boolean,
+                  default: false
     def session
       say
       options.rebuild? ? rebuild_session : help("--session")

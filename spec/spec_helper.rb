@@ -9,8 +9,13 @@ require "pry-byebug"
 require "pry-state"
 require "sublime_text_kit"
 
-Dir[File.join(File.dirname(__FILE__), "support/shared_contexts/**/*.rb")].each { |file| require file }
-Dir[File.join(File.dirname(__FILE__), "support/shared_examples/**/*.rb")].each { |file| require file }
+Dir[File.join(File.dirname(__FILE__), "support/shared_contexts/**/*.rb")].each do |file|
+  require file
+end
+
+Dir[File.join(File.dirname(__FILE__), "support/shared_examples/**/*.rb")].each do |file|
+  require file
+end
 
 RSpec.configure do |config|
   config.order = "random"
