@@ -4,7 +4,7 @@
 [![Code Climate GPA](https://codeclimate.com/github/bkuhlmann/sublime_text_kit.svg)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Code Climate Coverage](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/coverage.svg)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit)
 [![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.svg)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
-[![Travis CI Status](https://secure.travis-ci.org/bkuhlmann/sublime_text_kit.svg)](https://travis-ci.org/bkuhlmann/sublime_text_kit)
+[![Circle CI Status](https://circleci.com/gh/bkuhlmann/sublime_text_kit.svg?style=svg)](https://circleci.com/gh/bkuhlmann/sublime_text_kit)
 [![Patreon](https://img.shields.io/badge/patreon-donate-brightgreen.svg)](https://www.patreon.com/bkuhlmann)
 
 A command line interface for managing Sublime Text metadata.
