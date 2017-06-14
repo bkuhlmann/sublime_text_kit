@@ -18,6 +18,8 @@ A command line interface for managing Sublime Text metadata.
 - [Requirements](#requirements)
 - [Setup](#setup)
 - [Usage](#usage)
+  - [Command Line Interface (CLI)](#command-line-interface-cli)
+  - [Customization](#customization)
   - [Workflow](#workflow)
   - [Troubleshooting](#troubleshooting)
 - [Tests](#tests)
@@ -62,36 +64,9 @@ For an insecure install, type the following (not recommended):
 
     gem install sublime_text_kit
 
-You can define settings by creating the following file:
-
-    ~/.sublime_text_kitrc
-
-Example:
-
-    ---
-    :project_roots:
-      - "~/Dropbox/Development/Misc"
-      - "~/Dropbox/Development/OSS"
-      - "~/Dropbox/Development/Work"
-    :metadata_dir: "~/Dropbox/Cache/Sublime"
-
-The project roots define the root level directories where project folders are located. When project
-metadata (i.e. *.sublime-project, *.sublime-workspace) is generated, the name of the metadata file
-will be the same name as that of the project folder. All project metadata, regardless of root
-location, is written to the same metadata directory. If using the example settings shown above and
-assuming the following directory structure exists...
-
-    ~/Dropbox/Development/Misc/example
-    ~/Dropbox/Development/OSS/sublime_text_kit
-
-...the project metadata will be created in the workspace directory as follows:
-
-    ~/Dropbox/Cache/Sublime/example.sublime-project
-    ~/Dropbox/Cache/Sublime/example.sublime-workspace
-    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
-    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
-
 # Usage
+
+## Command Line Interface (CLI)
 
 From the command line, type: `sublime_text_kit`
 
@@ -116,6 +91,41 @@ For metadata options, type: `sublime_text_kit --help --metadata`
 For session options, type: `sublime_text_kit --help --session`
 
     -R, [--rebuild], [--no-rebuild]  # Rebuild session metadata.
+
+## Customization
+
+This gem can be configured via a global configuration:
+
+    ~/.config/sublime_text_kit/configuration.yml
+
+It can also be configured via [XDG environment variables](https://github.com/bkuhlmann/runcom#xdg)
+as provided by the [Runcom](https://github.com/bkuhlmann/runcom) gem.
+
+An example configuration could be:
+
+    :project_roots:
+      - "~/Dropbox/Development/Misc"
+      - "~/Dropbox/Development/OSS"
+      - "~/Dropbox/Development/Work"
+    :metadata_dir: "~/Dropbox/Cache/Sublime"
+
+Feel free to take this configuration, modify, and save as your own custom `configuration.yml`.
+
+The project roots define the root level directories where project folders are located. When project
+metadata (i.e. *.sublime-project, *.sublime-workspace) is generated, the name of the metadata file
+will be the same name as that of the project folder. All project metadata, regardless of root
+location, is written to the same metadata directory. If using the example settings shown above and
+assuming the following directory structure exists...
+
+    ~/Dropbox/Development/Misc/example
+    ~/Dropbox/Development/OSS/sublime_text_kit
+
+...the project metadata will be created in the workspace directory as follows:
+
+    ~/Dropbox/Cache/Sublime/example.sublime-project
+    ~/Dropbox/Cache/Sublime/example.sublime-workspace
+    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
+    ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 
 ## Workflow
 
