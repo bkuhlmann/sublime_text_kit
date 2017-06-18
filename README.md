@@ -11,28 +11,28 @@ A command line interface for managing Sublime Text metadata.
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 
-# Table of Contents
+## Table of Contents
 
-- [Features](#features)
-- [Screencasts](#screencasts)
-- [Requirements](#requirements)
-- [Setup](#setup)
-- [Usage](#usage)
-  - [Command Line Interface (CLI)](#command-line-interface-cli)
-  - [Customization](#customization)
-  - [Workflow](#workflow)
-  - [Troubleshooting](#troubleshooting)
-- [Tests](#tests)
-- [Versioning](#versioning)
-- [Code of Conduct](#code-of-conduct)
-- [Contributions](#contributions)
-- [License](#license)
-- [History](#history)
-- [Credits](#credits)
+  - [Features](#features)
+  - [Screencasts](#screencasts)
+  - [Requirements](#requirements)
+  - [Setup](#setup)
+  - [Usage](#usage)
+    - [Command Line Interface (CLI)](#command-line-interface-cli)
+    - [Customization](#customization)
+    - [Workflow](#workflow)
+    - [Troubleshooting](#troubleshooting)
+  - [Tests](#tests)
+  - [Versioning](#versioning)
+  - [Code of Conduct](#code-of-conduct)
+  - [Contributions](#contributions)
+  - [License](#license)
+  - [History](#history)
+  - [Credits](#credits)
 
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
 
-# Features
+## Features
 
 - Provides project metadata (i.e. *.sublime-project and *.sublime-workspace files) management for
   project switching via the `CONTROL+COMMAND+P` shortcut.
@@ -40,16 +40,16 @@ A command line interface for managing Sublime Text metadata.
   metadata is in a directory) so one can easily toggle between up-to-date project information via
   the `CONTROL+COMMAND+P` shortcut.
 
-# Screencasts
+## Screencasts
 
 [![asciicast](https://asciinema.org/a/92707.png)](https://asciinema.org/a/92707)
 
-# Requirements
+## Requirements
 
 0. [Ruby 2.4.x](https://www.ruby-lang.org).
 0. [Sublime Text 2](https://www.sublimetext.com).
 
-# Setup
+## Setup
 
 For a secure install, type the following from the command line (recommended):
 
@@ -64,9 +64,9 @@ For an insecure install, type the following (not recommended):
 
     gem install sublime_text_kit
 
-# Usage
+## Usage
 
-## Command Line Interface (CLI)
+### Command Line Interface (CLI)
 
 From the command line, type: `sublime_text_kit`
 
@@ -92,7 +92,7 @@ For session options, type: `sublime_text_kit --help --session`
 
     -R, [--rebuild], [--no-rebuild]  # Rebuild session metadata.
 
-## Customization
+### Customization
 
 This gem can be configured via a global configuration:
 
@@ -127,7 +127,7 @@ assuming the following directory structure exists...
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-project
     ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 
-## Workflow
+### Workflow
 
 The following demonstrates a default Sublime Text setup:
 
@@ -141,19 +141,19 @@ The following demonstrates a default Sublime Text setup:
    Notice that you can (fuzzy type) project names to jump between them.
 0. Breeze through your project workload with ease. :)
 
-## Troubleshooting
+### Troubleshooting
 
 - When rebuilding workspaces, ensure Sublime Text is shutdown or changes won't be applied.
 - When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a
   directory containing `*.sublime-project` and `*.sublime-workspace` files.
 
-# Tests
+## Tests
 
 To test, run:
 
     bundle exec rake
 
-# Versioning
+## Versioning
 
 Read [Semantic Versioning](http://semver.org) for details. Briefly, it means:
 
@@ -161,26 +161,26 @@ Read [Semantic Versioning](http://semver.org) for details. Briefly, it means:
 - Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
 - Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
 
-# Code of Conduct
+## Code of Conduct
 
 Please note that this project is released with a [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By
 participating in this project you agree to abide by its terms.
 
-# Contributions
+## Contributions
 
 Read [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-# License
+## License
 
 Copyright (c) 2014 [Alchemists](https://www.alchemists.io).
 Read [LICENSE](LICENSE.md) for details.
 
-# History
+## History
 
 Read [CHANGES](CHANGES.md) for details.
 Built with [Gemsmith](https://github.com/bkuhlmann/gemsmith).
 
-# Credits
+## Credits
 
 Developed by [Brooke Kuhlmann](https://www.alchemists.io) at
 [Alchemists](https://www.alchemists.io).
