@@ -2,14 +2,12 @@
 
 require "thor"
 require "thor/actions"
-require "thor_plus/actions"
 require "runcom"
 
 module SublimeTextKit
   # The Command Line Interface (CLI) for the gem.
   class CLI < Thor
     include Thor::Actions
-    include ThorPlus::Actions
 
     package_name Identity.version_label
 
@@ -73,7 +71,7 @@ module SublimeTextKit
     def config
       path = self.class.configuration.path
 
-      if options.edit? then `#{editor} #{path}`
+      if options.edit? then `#{ENV["EDITOR"]} #{path}`
       elsif options.info?
         path ? say(path) : say("Configuration doesn't exist.")
       else help(:config)
@@ -103,53 +101,53 @@ module SublimeTextKit
     end
 
     def create_metadata
-      info "Creating metadata..."
-      info "Metadata Path: #{metadata_dir}"
+      say_status :info, "Creating metadata...", :green
+      say_status :info, "Metadata Path: #{metadata_dir}", :green
       project_roots.each do |project_root|
-        info "Processing project root: #{File.expand_path project_root}..."
+        say_status :info, "Processing project root: #{File.expand_path project_root}...", :green
         Metadata::Project.create project_root, metadata_dir
         Metadata::Workspace.create project_root, metadata_dir
       end
-      info "Metadata created."
+      say_status :info, "Metadata created.", :green
     end
 
     def destroy_metadata
       if yes? "Delete metadata in #{metadata_dir}?"
-        info "Deleting metadata..."
+        say_status :info, "Deleting metadata...", :green
         Metadata::Project.delete metadata_dir
         Metadata::Workspace.delete metadata_dir
-        info "Metadata deleted."
+        say_status :info, "Metadata deleted.", :green
       else
-        info "Metadata deletion aborted."
+        say_status :info, "Metadata deletion aborted.", :green
       end
     end
 
     def rebuild_metadata
       if yes? "Rebuild metadata in #{metadata_dir}?"
-        info "Deleting metadata..."
+        say_status :info, "Deleting metadata...", :green
         Metadata::Project.delete metadata_dir
         Metadata::Workspace.delete metadata_dir
 
-        info "Creating metadata..."
+        say_status :info, "Creating metadata...", :green
         project_roots.each do |project_root|
-          info "Processing project root: #{File.expand_path project_root}..."
+          say_status :info, "Processing project root: #{File.expand_path project_root}...", :green
           Metadata::Project.create project_root, metadata_dir
           Metadata::Workspace.create project_root, metadata_dir
         end
 
-        info "Metadata rebuilt."
+        say_status :info, "Metadata rebuilt.", :green
       else
-        info "Metadata rebuild aborted."
+        say_status :info, "Metadata rebuild aborted.", :green
       end
     end
 
     def rebuild_session
-      info "Rebuilding session metadata..."
-      info "Metadata (project/workspace) Path: #{metadata_dir}"
-      info "Session Path: #{Session.session_path}"
+      say_status :info, "Rebuilding session metadata...", :green
+      say_status :info, "Metadata (project/workspace) Path: #{metadata_dir}", :green
+      say_status :info, "Session Path: #{Session.session_path}", :green
       session = Session.new metadata_dir
       session.rebuild_recent_workspaces
-      info "Session metadata rebuilt."
+      say_status :info, "Session metadata rebuilt.", :green
     end
   end
 end
