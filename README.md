@@ -3,7 +3,6 @@
 [![Gem Version](https://badge.fury.io/rb/sublime_text_kit.svg)](http://badge.fury.io/rb/sublime_text_kit)
 [![Code Climate Maintainability](https://api.codeclimate.com/v1/badges/ad83a2a96bf791ff47b7/maintainability)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/maintainability)
 [![Code Climate Test Coverage](https://api.codeclimate.com/v1/badges/ad83a2a96bf791ff47b7/test_coverage)](https://codeclimate.com/github/bkuhlmann/sublime_text_kit/test_coverage)
-[![Gemnasium Status](https://gemnasium.com/bkuhlmann/sublime_text_kit.svg)](https://gemnasium.com/bkuhlmann/sublime_text_kit)
 [![Circle CI Status](https://circleci.com/gh/bkuhlmann/sublime_text_kit.svg?style=svg)](https://circleci.com/gh/bkuhlmann/sublime_text_kit)
 
 A command line interface for managing Sublime Text metadata.
