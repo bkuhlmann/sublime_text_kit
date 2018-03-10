@@ -3,9 +3,9 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Session do
-  subject { described_class.new File.expand_path("../../../support/metadata", __FILE__) }
-  let(:session_file) { File.expand_path "../../../support/Session.sublime_session", __FILE__ }
-  let(:session_backup_file) { File.expand_path "../../../support/Session.backup", __FILE__ }
+  subject { described_class.new Bundler.root.join("spec", "support", "metadata") }
+  let(:session_file) { Bundler.root.join "spec", "support", "Session.sublime_session" }
+  let(:session_backup_file) { Bundler.root.join "spec", "support", "Session.backup" }
   before { allow(described_class).to receive_messages session_path: session_file }
 
   describe "#metadata_dir" do
@@ -47,7 +47,7 @@ RSpec.describe SublimeTextKit::Session do
     end
 
     it "updates session when no workspaces are found" do
-      subject = described_class.new File.expand_path("../../../support", __FILE__)
+      subject = described_class.new File.expand_path("../../support", __dir__)
       session = {
         "workspaces" => {
           "recent_workspaces" => []
@@ -62,7 +62,7 @@ RSpec.describe SublimeTextKit::Session do
     end
 
     it "skips updating session when session file is missing" do
-      bogus_session_file = File.expand_path "../../../support/bogus.sublime_session", __FILE__
+      bogus_session_file = File.expand_path "../../support/bogus.sublime_session", __dir__
       allow(described_class).to receive_messages session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
@@ -71,7 +71,7 @@ RSpec.describe SublimeTextKit::Session do
     end
 
     it "skips updating session when keys are missing" do
-      bogus_session_file = File.expand_path "../../../support/Session.missing_keys", __FILE__
+      bogus_session_file = File.expand_path "../../support/Session.missing_keys", __dir__
       allow(described_class).to receive_messages session_path: bogus_session_file
 
       subject.rebuild_recent_workspaces
