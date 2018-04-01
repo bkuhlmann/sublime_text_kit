@@ -1,4 +1,4 @@
-# v7.1.0 (2018-04-01)
+# 7.1.0 (2018-04-01)
 
 - Fixed gemspec issues with missing gem signing key/certificate.
 - Added gemspec metadata for source, changes, and issue tracker URLs.
@@ -13,7 +13,7 @@
 - Removed Patreon badge from README.
 - Refactored temp dir shared context as a pathname.
 
-# v7.0.0 (2018-01-01)
+# 7.0.0 (2018-01-01)
 
 - Updated Code Climate badges.
 - Updated Code Climate configuration to Version 2.0.0.
@@ -24,19 +24,19 @@
 - Removed documentation for secure installs.
 - Refactored code to use Ruby 2.5.0 `Array#append` syntax.
 
-# v6.2.1 (2017-11-19)
+# 6.2.1 (2017-11-19)
 
 - Updated to Git Cop 1.7.0.
 - Updated to Rake 12.3.0.
 
-# v6.2.0 (2017-10-29)
+# 6.2.0 (2017-10-29)
 
 - Added Bundler Audit gem.
 - Updated to Rubocop 0.50.0.
 - Updated to Rubocop 0.51.0.
 - Updated to Ruby 2.4.2.
 
-# v6.1.0 (2017-08-27)
+# 6.1.0 (2017-08-27)
 
 - Added Git Cop code quality task.
 - Added dynamic formatting of RSpec output.
@@ -52,7 +52,7 @@
 - Removed Thor+ gem.
 - Refactored CLI version/help specs.
 
-# v6.0.0 (2017-06-17)
+# 6.0.0 (2017-06-17)
 
 - Fixed Travis CI configuration to not update gems.
 - Added Circle CI support.
@@ -72,7 +72,7 @@
 - Removed Travis CI support.
 - Removed `.bundle` directory from `.gitignore`.
 
-# v5.0.0 (2017-01-22)
+# 5.0.0 (2017-01-22)
 
 - Updated Rubocop Metrics/LineLength to 100 characters.
 - Updated Rubocop Metrics/ParameterLists max to three.
@@ -82,7 +82,7 @@
 - Updated to Ruby 2.4.0.
 - Removed Rubocop Style/Documentation check.
 
-# v4.1.0 (2016-12-18)
+# 4.1.0 (2016-12-18)
 
 - Fixed Rakefile support for RSpec, Reek, Rubocop, and SCSS Lint.
 - Updated Travis CI configuration to use defaults.
@@ -92,7 +92,7 @@
 - Updated to Ruby 2.3.2.
 - Updated to Ruby 2.3.3.
 
-# v4.0.0 (2016-11-14)
+# 4.0.0 (2016-11-14)
 
 - Fixed Rakefile to safely load Gemsmith tasks.
 - Fixed Rubocop Security/JSONLoad issues.
@@ -153,7 +153,7 @@
 - Refactored gemspec to use default security keys.
 - Refactored source requirements.
 
-# v3.2.0 (2015-12-02)
+# 3.2.0 (2015-12-02)
 
 - Fixed README URLs to use HTTPS schemes where possible.
 - Fixed README test command instructions.
@@ -178,13 +178,13 @@
 - Removed GitTip badge from README.
 - Removed unnecessary exclusions from .gitignore.
 
-# v3.1.0 (2015-07-05)
+# 3.1.0 (2015-07-05)
 
 - Removed JRuby support (no longer officially supported).
 - Fixed secure gem installs (new cert has 10 year lifespan).
 - Added CLI process title support.
 
-# v3.0.0 (2015-05-10)
+# 3.0.0 (2015-05-10)
 
 - Removed CLI --project support (replaced with --metadata)
 - Removed ProjectMetadata#workspace_dir (changed to #metadata_dir instead).
@@ -197,7 +197,7 @@
 - Added code of conduct documentation.
 - Added workspace metadata generation.
 
-# v2.0.0 (2015-01-01)
+# 2.0.0 (2015-01-01)
 
 - Removed Ruby 2.0.0 support.
 - Removed Rubinius support.
@@ -206,18 +206,18 @@
 - Updated to Thor+ 2.x.x.
 - Added Ruby 2.2.0 support.
 
-# v1.1.1 (2014-10-25)
+# 1.1.1 (2014-10-25)
 
 - Fixed bug where projects and workspace directories were not expanded to full path.
 
-# v1.1.0 (2014-10-22)
+# 1.1.0 (2014-10-22)
 
 - Fixed exception when projects or workspace directory doesn't exist when rebuilding project information.
 - Fixed exception thrown when workspace directory doesn't exist when trying to delete project information.
 - Updated Multi-JSON gem.
 - Updated Thor+ gem.
 
-# v1.0.0 (2014-09-21)
+# 1.0.0 (2014-09-21)
 
 - Updated to Ruby 2.1.3.
 - Updated gemspec to add security keys unless in a CI environment.
@@ -229,13 +229,13 @@
 - Refactored RSpec setup and support files.
 - Refactored workspaces_path to workspace_dir (make sure to update your settings.yml).
 
-# v0.4.0 (2014-07-06)
+# 0.4.0 (2014-07-06)
 
 - Added Code Climate test coverage support.
 - Updated to Ruby 2.1.2.
 - Updated gem-public.pem for gem install certificate chain.
 
-# v0.3.0 (2014-04-16)
+# 0.3.0 (2014-04-16)
 
 - Fixed bug where workspace would not be expanded to absolute path properly.
 - Updated to MRI 2.1.1.
@@ -248,10 +248,10 @@
 - Added Rails 4.1.x support.
 - Added multi_json support.
 
-# v0.2.0 (2014-02-16)
+# 0.2.0 (2014-02-16)
 
 - Added JRuby and Rubinius VM support.
 
-# v0.1.0 (2014-01-27)
+# 0.1.0 (2014-01-27)
 
 - Initial version.
