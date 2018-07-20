@@ -44,8 +44,8 @@ A command line interface for managing Sublime Text metadata.
 
 ## Requirements
 
-0. [Ruby 2.5.x](https://www.ruby-lang.org).
-0. [Sublime Text 3](https://www.sublimetext.com).
+1. [Ruby 2.5.x](https://www.ruby-lang.org).
+1. [Sublime Text 3](https://www.sublimetext.com).
 
 ## Setup
 
@@ -121,15 +121,15 @@ assuming the following directory structure exists...
 
 The following demonstrates a default Sublime Text setup:
 
-0. Run: `sublime_text_kit --config --edit` (define Sublime Text Kit settings for project roots and
+1. Run: `sublime_text_kit --config --edit` (define Sublime Text Kit settings for project roots and
    metadata directory).
-0. Shutdown Sublime Text (i.e. `CONTROL+Q`).
-0. Run: `sublime_text_kit --metadata --create` (creates project metadata and rebuilds the session
+1. Shutdown Sublime Text (i.e. `CONTROL+Q`).
+1. Run: `sublime_text_kit --metadata --create` (creates project metadata and rebuilds the session
    metadata so Sublime Text has a complete project history from which to jump through via the
    `CONTROL+COMMMAND+P` shortcut).
-0. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between projects.
+1. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between projects.
    Notice that you can (fuzzy type) project names to jump between them.
-0. Breeze through your project workload with ease. :)
+1. Breeze through your project workload with ease. :)
 
 ### Troubleshooting
 
