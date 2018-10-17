@@ -42,6 +42,7 @@ module SublimeTextKit
 
       def save
         return if File.exist? metadata_file
+
         File.open(metadata_file, "w") { |file| file.write JSON.dump(to_h) }
       end
 
