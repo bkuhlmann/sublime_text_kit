@@ -30,8 +30,8 @@ RSpec.describe SublimeTextKit::Session do
   end
 
   describe "#rebuild_recent_workspaces" do
-    it "updates session when workspaces are found" do
-      workspaces = {
+    let :workspaces do
+      {
         "workspaces" => {
           "recent_workspaces" => [
             "#{session.metadata_dir}/black.sublime-workspace",
@@ -40,7 +40,9 @@ RSpec.describe SublimeTextKit::Session do
           ]
         }
       }
+    end
 
+    it "updates session when workspaces are found" do
       session.rebuild_recent_workspaces
       updated_session = JSON.parse File.read(described_class.session_path)
       FileUtils.cp session_backup_file, session_file
@@ -50,17 +52,13 @@ RSpec.describe SublimeTextKit::Session do
 
     it "updates session when no workspaces are found" do
       session = described_class.new File.expand_path("../../support", __dir__)
-      workspaces = {
-        "workspaces" => {
-          "recent_workspaces" => []
-        }
-      }
+      empty_workspaces = workspaces.merge "workspaces" => {"recent_workspaces" => []}
 
       session.rebuild_recent_workspaces
       updated_session = JSON.parse File.read(described_class.session_path)
       FileUtils.cp session_backup_file, session_file
 
-      expect(updated_session).to eq(workspaces)
+      expect(updated_session).to eq(empty_workspaces)
     end
 
     it "skips updating session when session file is missing" do

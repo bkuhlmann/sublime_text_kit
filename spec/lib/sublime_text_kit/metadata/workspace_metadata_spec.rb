@@ -34,11 +34,8 @@ RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
   end
 
   describe "#save" do
-    it "saves metadata as empty hash" do
-      workspace.save
-      metadata = JSON.parse File.read(workspace.metadata_file)
-
-      proof = {
+    let :proof do
+      {
         "expanded_folders" => [project_dir],
         "select_project" => {
           "selected_items" => [
@@ -46,6 +43,11 @@ RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
           ]
         }
       }
+    end
+
+    it "saves metadata as empty hash" do
+      workspace.save
+      metadata = JSON.parse File.read(workspace.metadata_file)
 
       expect(metadata).to eq(proof)
     end
