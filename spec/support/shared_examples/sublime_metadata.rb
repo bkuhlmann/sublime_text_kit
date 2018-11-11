@@ -6,7 +6,7 @@ RSpec.shared_examples_for "sublime metadata" do
       described_class.create projects_dir, temp_dir
 
       files = %w[black red white].map do |name|
-        File.join temp_dir, "#{name}.#{subject.file_extension}"
+        File.join temp_dir, "#{name}.#{metadata.file_extension}"
       end
 
       created = files.all? { |path| File.exist? path }
@@ -31,10 +31,10 @@ RSpec.shared_examples_for "sublime metadata" do
 
   describe ".delete" do
     it "deletes *.sublime-* metadata files" do
-      FileUtils.touch subject.metadata_file
+      FileUtils.touch metadata.metadata_file
       described_class.delete temp_dir
 
-      expect(File.exist?(subject.metadata_file)).to eq(false)
+      expect(File.exist?(metadata.metadata_file)).to eq(false)
     end
 
     it "does not delete non-metadata files" do
@@ -63,45 +63,45 @@ RSpec.shared_examples_for "sublime metadata" do
 
   describe "#name" do
     it "answers project name" do
-      expect(subject.name).to eq("test")
+      expect(metadata.name).to eq("test")
     end
   end
 
   describe "#project_dir" do
     it "answers absolute path" do
-      subject = described_class.new "~/tmp", temp_dir
-      expect(subject.project_dir).to_not start_with("~")
+      metadata = described_class.new "~/tmp", temp_dir
+      expect(metadata.project_dir).not_to start_with("~")
     end
   end
 
   describe "#metadata_dir" do
     it "answers absolute path" do
-      subject = described_class.new project_dir, "~/tmp"
-      expect(subject.metadata_dir).to_not start_with("~")
+      metadata = described_class.new project_dir, "~/tmp"
+      expect(metadata.metadata_dir).not_to start_with("~")
     end
   end
 
   describe "#metadata_file" do
     it "answers absolute path" do
-      subject = described_class.new project_dir, "~/tmp"
-      expect(subject.metadata_file).to_not start_with("~")
+      metadata = described_class.new project_dir, "~/tmp"
+      expect(metadata.metadata_file).not_to start_with("~")
     end
 
     it "answers metadata file" do
-      metadata_file = File.join subject.metadata_dir, "#{subject.name}.#{subject.file_extension}"
-      expect(subject.metadata_file).to eq(metadata_file)
+      metadata_file = File.join metadata.metadata_dir, "#{metadata.name}.#{metadata.file_extension}"
+      expect(metadata.metadata_file).to eq(metadata_file)
     end
   end
 
   describe "#save" do
     it "saves metadata to file" do
-      subject.save
-      expect(File.exist?(subject.metadata_file)).to eq(true)
+      metadata.save
+      expect(File.exist?(metadata.metadata_file)).to eq(true)
     end
 
     it "does not save metadata when file exists" do
-      FileUtils.touch subject.metadata_file
-      expect(File.zero?(subject.metadata_file)).to eq(true)
+      FileUtils.touch metadata.metadata_file
+      expect(File.zero?(metadata.metadata_file)).to eq(true)
     end
   end
 end

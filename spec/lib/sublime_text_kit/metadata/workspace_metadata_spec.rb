@@ -3,15 +3,18 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
+  subject(:workspace) { described_class.new project_dir, temp_dir }
+
   let(:projects_dir) { Bundler.root.join "spec", "support", "projects" }
   let(:project_dir) { File.join projects_dir, "test" }
-  subject { described_class.new project_dir, temp_dir }
 
-  it_behaves_like "sublime metadata"
+  it_behaves_like "sublime metadata" do
+    let(:metadata) { workspace }
+  end
 
   describe "#file_extension" do
     it "answers file extension" do
-      expect(subject.file_extension).to eq("sublime-workspace")
+      expect(workspace.file_extension).to eq("sublime-workspace")
     end
   end
 
@@ -26,14 +29,14 @@ RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
         }
       }
 
-      expect(subject.to_h).to eq(proof)
+      expect(workspace.to_h).to eq(proof)
     end
   end
 
   describe "#save" do
     it "saves metadata as empty hash" do
-      subject.save
-      metadata = JSON.parse File.read(subject.metadata_file)
+      workspace.save
+      metadata = JSON.parse File.read(workspace.metadata_file)
 
       proof = {
         "expanded_folders" => [project_dir],
