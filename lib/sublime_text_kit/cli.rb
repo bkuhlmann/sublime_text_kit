@@ -12,7 +12,7 @@ module SublimeTextKit
     package_name Identity.version_label
 
     def self.configuration
-      Runcom::Configuration.new Identity.name
+      Runcom::Config.new Identity.name
     end
 
     # Initialize.
