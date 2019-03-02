@@ -11,8 +11,8 @@ module SublimeTextKit
 
       def self.create projects_dir, metadata_dir
         instance = new projects_dir, metadata_dir
-        return unless valid_dir?(instance.project_dir, "Projects")
-        return unless valid_dir?(instance.metadata_dir, "Metadata")
+        return unless valid_dir? instance.project_dir, "Projects"
+        return unless valid_dir? instance.metadata_dir, "Metadata"
 
         project_paths = ::Pathname.new(instance.project_dir).children.select(&:directory?)
         project_paths.each { |project_dir| new(project_dir, metadata_dir).save }
@@ -20,7 +20,7 @@ module SublimeTextKit
 
       def self.delete metadata_dir
         instance = new "", metadata_dir
-        return unless valid_dir?(instance.metadata_dir, "Metadata")
+        return unless valid_dir? instance.metadata_dir, "Metadata"
 
         ::Pathname.glob("#{instance.metadata_dir}/*.#{instance.file_extension}").each(&:delete)
       end
@@ -47,7 +47,7 @@ module SublimeTextKit
       end
 
       def self.valid_dir? dir, label
-        if File.exist?(dir)
+        if File.exist? dir
           true
         else
           puts "#{label} directory doesn't exist: #{dir}."

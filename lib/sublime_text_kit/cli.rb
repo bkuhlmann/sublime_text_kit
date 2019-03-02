@@ -52,7 +52,7 @@ module SublimeTextKit
       if options[:create] then create_metadata
       elsif options[:destroy] then destroy_metadata
       elsif options[:rebuild] then rebuild_metadata
-      else help("--metadata")
+      else help "--metadata"
       end
 
       say
@@ -74,7 +74,7 @@ module SublimeTextKit
       if options.edit? then `#{ENV["EDITOR"]} #{path}`
       elsif options.info?
         path ? say(path) : say("Configuration doesn't exist.")
-      else help(:config)
+      else help :config
       end
     end
 
