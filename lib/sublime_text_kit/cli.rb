@@ -63,11 +63,13 @@ module SublimeTextKit
     method_option :edit,
                   aliases: "-e",
                   desc: "Edit gem configuration.",
-                  type: :boolean, default: false
+                  type: :boolean,
+                  default: false
     method_option :info,
                   aliases: "-i",
                   desc: "Print gem configuration.",
-                  type: :boolean, default: false
+                  type: :boolean,
+                  default: false
     def config
       path = self.class.configuration.path
 
