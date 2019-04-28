@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="sublime_text_kit.png" alt="Sublime Text Kit Icon"/>
+</p>
+
 # Sublime Text Kit
 
 [![Gem Version](https://badge.fury.io/rb/sublime_text_kit.svg)](http://badge.fury.io/rb/sublime_text_kit)
