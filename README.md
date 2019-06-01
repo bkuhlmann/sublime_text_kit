@@ -105,8 +105,8 @@ An example configuration could be:
 Feel free to take this configuration, modify, and save as your own custom `configuration.yml`.
 
 The project roots define the root level directories where project folders are located. When project
-metadata (i.e. *.sublime-project, *.sublime-workspace) is generated, the name of the metadata file
-will be the same name as that of the project folder. All project metadata, regardless of root
+metadata (i.e. `*.sublime-project`, `*.sublime-workspace`) is generated, the name of the metadata
+file will be the same name as that of the project folder. All project metadata, regardless of root
 location, is written to the same metadata directory. If using the example settings shown above and
 assuming the following directory structure exists...
 
