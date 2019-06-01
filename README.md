@@ -91,8 +91,7 @@ This gem can be configured via a global configuration:
 
     ~/.config/sublime_text_kit/configuration.yml
 
-It can also be configured via [XDG environment variables](https://github.com/bkuhlmann/runcom#xdg)
-as provided by the [Runcom](https://github.com/bkuhlmann/runcom) gem.
+It can also be configured via [XDG](https://github.com/bkuhlmann/xdg) environment variables.
 
 An example configuration could be:
 
