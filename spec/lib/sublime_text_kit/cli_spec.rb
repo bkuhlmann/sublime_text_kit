@@ -8,6 +8,18 @@ RSpec.describe SublimeTextKit::CLI do
     let(:command_line) { Array(command).concat options }
     let(:cli) { described_class.start command_line }
 
+    shared_examples_for "a snippet command", :temp_dir do
+      context "with no options" do
+        it "prints help text" do
+          result = -> { cli }
+
+          expect(&result).to output(
+            /\-p, \[\-\-snippets\].+\-m\,\s\[\-\-markdown\]\,\s\[\-\-no-markdown\]/m
+          ).to_stdout
+        end
+      end
+    end
+
     shared_examples_for "a config command", :temp_dir do
       context "with no options" do
         it "prints help text" do
@@ -33,6 +45,18 @@ RSpec.describe SublimeTextKit::CLI do
 
         expect(&result).to output(text).to_stdout
       end
+    end
+
+    describe "--snippets" do
+      let(:command) { "--snippets" }
+
+      it_behaves_like "a snippet command"
+    end
+
+    describe "-p" do
+      let(:command) { "-p" }
+
+      it_behaves_like "a snippet command"
     end
 
     describe "--config" do

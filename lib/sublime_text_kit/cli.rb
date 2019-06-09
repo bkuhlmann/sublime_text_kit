@@ -18,6 +18,7 @@ module SublimeTextKit
     # Initialize.
     def initialize args = [], options = {}, config = {}
       super args, options, config
+      @markdown_printer = Snippets::Printers::Markdown.new
     end
 
     desc "-u, [--update]", "Update Sublime Text with current settings."
@@ -38,6 +39,19 @@ module SublimeTextKit
     def session
       say
       options.rebuild? ? rebuild_session : help("--session")
+      say
+    end
+
+    desc "-p, [--snippets]", "Print user defined snippets."
+    map %w[-p --snippets] => :snippets
+    method_option :markdown,
+                  aliases: "-m",
+                  desc: "Print snippets in Markdown format.",
+                  type: :boolean,
+                  default: false
+    def snippets
+      say
+      options.markdown? ? markdown_printer.call : help("--snippets")
       say
     end
 
@@ -93,6 +107,8 @@ module SublimeTextKit
     end
 
     private
+
+    attr_reader :markdown_printer
 
     def project_roots
       @project_roots ||= self.class.configuration.to_h.fetch :project_roots, []
