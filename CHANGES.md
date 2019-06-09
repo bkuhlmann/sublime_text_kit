@@ -1,3 +1,12 @@
+# 8.5.0 (2019-06-09)
+
+- Added CLI command for printing snippets in Markdown format.
+- Added snippet Markdown printer.
+- Added snippet object.
+- Updated XDG documentation to reference XDG gem.
+- Updated to Gemsmith 13.5.0.
+- Updated to Git Cop 3.5.0.
+
 # 8.4.0 (2019-06-01)
 
 - Fixed RSpec/ContextWording issues.

@@ -44,7 +44,7 @@ A command line interface for managing Sublime Text metadata.
 
 ## Screencasts
 
-[![asciicast](https://asciinema.org/a/92707.png)](https://asciinema.org/a/92707)
+[![asciicast](https://asciinema.org/a/250653.svg)](https://asciinema.org/a/250653)
 
 ## Requirements
 
@@ -66,6 +66,7 @@ From the command line, type: `sublime_text_kit`
     sublime_text_kit -c, [--config]        # Manage gem configuration.
     sublime_text_kit -h, [--help=COMMAND]  # Show this message or get help for a command.
     sublime_text_kit -m, [--metadata]      # Manage project/workspace metadata.
+    sublime_text_kit -p, [--snippets]      # Print user defined snippets.
     sublime_text_kit -s, [--session]       # Manage session metadata.
     sublime_text_kit -u, [--update]        # Update Sublime Text with current settings.
     sublime_text_kit -v, [--version]       # Show gem version.
@@ -84,6 +85,10 @@ For metadata options, type: `sublime_text_kit --help --metadata`
 For session options, type: `sublime_text_kit --help --session`
 
     -R, [--rebuild], [--no-rebuild]  # Rebuild session metadata.
+
+For snippet options, type: `sublime_text_kit --help --snippets`
+
+    -m, [--markdown], [--no-markdown]  # Print snippets in Markdown format.
 
 ### Customization
 
