@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "open3"
+require "rexml/document"
 
 module SublimeTextKit
   module Snippets
