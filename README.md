@@ -44,7 +44,7 @@ A command line interface for managing Sublime Text metadata.
 
 ## Screencasts
 
-[![asciicast](https://asciinema.org/a/250653.svg)](https://asciinema.org/a/250653)
+[![asciicast](https://asciinema.org/a/263061.svg)](https://asciinema.org/a/263061)
 
 ## Requirements
 
