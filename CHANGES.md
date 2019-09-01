@@ -1,3 +1,12 @@
+# 8.5.1 (2019-09-01)
+
+- Fixed Markdown printer snippet requirements.
+- Updated README screencast tutorial.
+- Updated to Rubocop 0.73.0.
+- Updated to Rubocop Performance 1.4.0.
+- Updated to Ruby 2.6.4.
+- Refactored RSpec helper support requirements.
+
 # 8.5.0 (2019-06-09)
 
 - Added CLI command for printing snippets in Markdown format.
