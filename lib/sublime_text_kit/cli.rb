@@ -12,7 +12,7 @@ module SublimeTextKit
     package_name Identity.version_label
 
     def self.configuration
-      Runcom::Config.new Identity.name
+      Runcom::Config.new "#{Identity.name}/configuration.yml"
     end
 
     # Initialize.
@@ -85,7 +85,7 @@ module SublimeTextKit
                   type: :boolean,
                   default: false
     def config
-      path = self.class.configuration.path
+      path = self.class.configuration.current
 
       if options.edit? then `#{ENV["EDITOR"]} #{path}`
       elsif options.info?
