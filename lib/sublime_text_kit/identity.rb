@@ -12,7 +12,7 @@ module SublimeTextKit
     end
 
     def self.version
-      "8.5.2"
+      "9.0.0"
     end
 
     def self.version_label
