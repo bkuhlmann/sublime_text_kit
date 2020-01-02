@@ -48,7 +48,7 @@ A command line interface for managing Sublime Text metadata.
 
 ## Requirements
 
-1. [Ruby 2.6.x](https://www.ruby-lang.org).
+1. [Ruby 2.7.x](https://www.ruby-lang.org).
 1. [Sublime Text 3](https://www.sublimetext.com).
 
 ## Setup
