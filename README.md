@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="sublime_text_kit.png" alt="Sublime Text Kit Icon"/>
+  <img src="https://www.alchemists.io/images/projects/sublime_text_kit/icon.png" alt="Sublime Text Kit Icon"/>
 </p>
 
 # Sublime Text Kit
