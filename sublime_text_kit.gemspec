@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.append File.expand_path("lib", __dir__)
-require "sublime_text_kit/identity"
+require_relative "lib/sublime_text_kit/identity"
 
 Gem::Specification.new do |spec|
   spec.name = SublimeTextKit::Identity.name
