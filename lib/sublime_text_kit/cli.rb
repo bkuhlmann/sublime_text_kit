@@ -9,10 +9,10 @@ module SublimeTextKit
   class CLI < Thor
     include Thor::Actions
 
-    package_name Identity.version_label
+    package_name Identity::VERSION_LABEL
 
     def self.configuration
-      Runcom::Config.new "#{Identity.name}/configuration.yml"
+      Runcom::Config.new "#{Identity::NAME}/configuration.yml"
     end
 
     # Initialize.
@@ -97,7 +97,7 @@ module SublimeTextKit
     desc "-v, [--version]", "Show gem version."
     map %w[-v --version] => :version
     def version
-      say Identity.version_label
+      say Identity::VERSION_LABEL
     end
 
     desc "-h, [--help=COMMAND]", "Show this message or get help for a command."

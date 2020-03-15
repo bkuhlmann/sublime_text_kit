@@ -3,8 +3,8 @@
 require_relative "lib/sublime_text_kit/identity"
 
 Gem::Specification.new do |spec|
-  spec.name = SublimeTextKit::Identity.name
-  spec.version = SublimeTextKit::Identity.version
+  spec.name = SublimeTextKit::Identity::NAME
+  spec.version = SublimeTextKit::Identity::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]

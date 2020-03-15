@@ -5,5 +5,5 @@ require "sublime_text_kit"
 require "sublime_text_kit/cli"
 require "sublime_text_kit/identity"
 
-Process.setproctitle SublimeTextKit::Identity.version_label
+Process.setproctitle SublimeTextKit::Identity::VERSION_LABEL
 SublimeTextKit::CLI.start

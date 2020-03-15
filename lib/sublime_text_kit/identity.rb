@@ -3,20 +3,9 @@
 module SublimeTextKit
   # Gem identity information.
   module Identity
-    def self.name
-      "sublime_text_kit"
-    end
-
-    def self.label
-      "Sublime Text Kit"
-    end
-
-    def self.version
-      "9.0.0"
-    end
-
-    def self.version_label
-      "#{label} #{version}"
-    end
+    NAME = "sublime_text_kit"
+    LABEL = "Sublime Text Kit"
+    VERSION = "9.0.0"
+    VERSION_LABEL = "#{LABEL} #{VERSION}"
   end
 end
