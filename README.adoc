@@ -23,7 +23,7 @@ toc::[]
 
 == Screencasts
 
-[link=https://www.alchemists.io/screencasts/sublime_text_kit.html]
+[link=https://www.alchemists.io/screencasts/sublime_text_kit]
 image::https://www.alchemists.io/images/screencasts/sublime_text_kit/cover-original.png[Screencast,role=focal_point]
 
 == Requirements
