@@ -19,6 +19,7 @@ module SublimeTextKit
     def initialize args = [], options = {}, config = {}
       super args, options, config
       @markdown_printer = Snippets::Printers::Markdown.new
+      @ascii_doc_printer = Snippets::Printers::ASCIIDoc.new
     end
 
     desc "-u, [--update]", "Update Sublime Text with current settings."
@@ -44,6 +45,11 @@ module SublimeTextKit
 
     desc "-p, [--snippets]", "Print user defined snippets."
     map %w[-p --snippets] => :snippets
+    method_option :ascii_doc,
+                  aliases: "-a",
+                  desc: "Print snippets in ASCII Doc format.",
+                  type: :boolean,
+                  default: false
     method_option :markdown,
                   aliases: "-m",
                   desc: "Print snippets in Markdown format.",
@@ -51,7 +57,12 @@ module SublimeTextKit
                   default: false
     def snippets
       say
-      options.markdown? ? markdown_printer.call : help("--snippets")
+
+      if options.ascii_doc? then ascii_doc_printer.call
+      elsif options.markdown? then markdown_printer.call
+      else help "--snippets"
+      end
+
       say
     end
 
@@ -63,9 +74,9 @@ module SublimeTextKit
     def metadata
       say
 
-      if options[:create] then create_metadata
-      elsif options[:destroy] then destroy_metadata
-      elsif options[:rebuild] then rebuild_metadata
+      if options.create? then create_metadata
+      elsif options.destroy? then destroy_metadata
+      elsif options.rebuild? then rebuild_metadata
       else help "--metadata"
       end
 
@@ -108,7 +119,7 @@ module SublimeTextKit
 
     private
 
-    attr_reader :markdown_printer
+    attr_reader :ascii_doc_printer, :markdown_printer
 
     def project_roots
       @project_roots ||= self.class.configuration.to_h.fetch :project_roots, []

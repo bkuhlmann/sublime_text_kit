@@ -14,7 +14,13 @@ RSpec.describe SublimeTextKit::CLI do
           result = -> { cli }
 
           expect(&result).to output(
-            /\-p, \[\-\-snippets\].+\-m\,\s\[\-\-markdown\]\,\s\[\-\-no-markdown\]/m
+            /
+              \-p\,\s\[\-\-snippets\]
+              .+
+              \-a\,\s\[\-\-ascii\-doc\]\,\s\[\-\-no\-ascii\-doc\]
+              .+
+              \-m\,\s\[\-\-markdown\]\,\s\[\-\-no\-markdown\]
+            /xm
           ).to_stdout
         end
       end
