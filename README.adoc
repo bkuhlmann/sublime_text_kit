@@ -100,7 +100,8 @@ For session options, type: `sublime_text_kit --help --session`
 For snippet options, type: `sublime_text_kit --help --snippets`
 
 ....
--m, [--markdown], [--no-markdown]  # Print snippets in Markdown format.
+-a, [--ascii-doc], [--no-ascii-doc]  # Print snippets in ASCII Doc format.
+-m, [--markdown], [--no-markdown]    # Print snippets in Markdown format.
 ....
 
 === Customization
