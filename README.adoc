@@ -28,8 +28,8 @@ image::https://www.alchemists.io/images/screencasts/sublime_text_kit/cover-origi
 
 == Requirements
 
-. https://www.ruby-lang.org[Ruby 2.7.x].
-. https://www.sublimetext.com[Sublime Text 3].
+. link:https://www.ruby-lang.org[Ruby]
+. link:https://www.sublimetext.com[Sublime Text]
 
 == Setup
 
