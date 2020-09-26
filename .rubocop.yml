@@ -7,6 +7,3 @@ inherit_from:
 
 Lint/Void:
   CheckForMethodsWithNoSideEffects: false
-Style/OptionalBooleanParameter:
-  Exclude:
-    - "lib/sublime_text_kit/snippets/snippet.rb"
