@@ -4,10 +4,6 @@ module SublimeTextKit
   module Metadata
     # Processes project metadata.
     class Project < Base
-      def initialize project_dir, metadata_dir
-        super project_dir, metadata_dir
-      end
-
       def file_extension
         "sublime-project"
       end
