@@ -33,31 +33,11 @@ image::https://www.alchemists.io/images/screencasts/sublime_text_kit/cover.svg[S
 
 == Setup
 
-=== Production
-
 To install, run:
 
 [source,bash]
 ----
 gem install sublime_text_kit
-----
-
-=== Development
-
-To contribute, run:
-
-[source,bash]
-----
-git clone https://github.com/bkuhlmann/sublime_text_kit.git
-cd sublime_text_kit
-bin/setup
-----
-
-You can also use the IRB console for direct access to all objects:
-
-[source,bash]
-----
-bin/console
 ----
 
 == Usage
@@ -162,6 +142,24 @@ The following demonstrates a default Sublime Text setup:
 * When rebuilding workspaces, ensure Sublime Text is shutdown or changes won’t be applied.
 * When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a
   directory containing `.sublime-project` and `.sublime-workspace` files.
+
+== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/sublime_text_kit.git
+cd sublime_text_kit
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
 
 == Tests
 
