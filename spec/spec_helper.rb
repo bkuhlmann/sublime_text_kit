@@ -9,8 +9,8 @@ require "pry"
 require "pry-byebug"
 require "sublime_text_kit"
 
-Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each(&method(:require))
-Dir[File.join(__dir__, "support", "shared_examples", "**/*.rb")].sort.each(&method(:require))
+Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
+Dir[File.join(__dir__, "support", "shared_examples", "**/*.rb")].sort.each { |path| require path }
 
 RSpec.configure do |config|
   config.color = true
