@@ -1,16 +1,31 @@
 = Changes
 
+== 9.6.0 (2020-12-13)
+
+* Fixed Rubocop Performance/ConstantRegexp issues
+* Fixed Rubocop Performance/MethodObjectAsBlock issues
+* Fixed spec helper to only require tools
+* Added Amazing Print
+* Added Gemfile groups
+* Added Refinements development dependency
+* Added RubyCritic
+* Added RubyCritic configuration
+* Updated Circle CI configuration to skip RubyCritic
+* Updated Gemfile to put Guard RSpec in test group
+* Updated Gemfile to put SimpleCov in code quality group
+* Removed RubyGems requirement from binstubs
+
 == 9.5.0 (2020-11-14)
 
-- Added Alchemists style guide badge
-- Added Bundler Leak development dependency
-- Updated Rubocop gems
-- Updated project documentation to conform to Rubysmith template
-- Updated to Bundler Audit 0.7.0
-- Updated to Gemsmith 14.8.0
-- Updated to Git Lint 1.3.0
-- Updated to RSpec 3.10.0
-- Updated to Runcom 6.4.0
+* Added Alchemists style guide badge
+* Added Bundler Leak development dependency
+* Updated Rubocop gems
+* Updated project documentation to conform to Rubysmith template
+* Updated to Bundler Audit 0.7.0
+* Updated to Gemsmith 14.8.0
+* Updated to Git Lint 1.3.0
+* Updated to RSpec 3.10.0
+* Updated to Runcom 6.4.0
 
 == 9.4.0 (2020-10-12)
 

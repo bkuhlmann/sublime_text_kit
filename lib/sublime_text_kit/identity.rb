@@ -5,7 +5,7 @@ module SublimeTextKit
   module Identity
     NAME = "sublime_text_kit"
     LABEL = "Sublime Text Kit"
-    VERSION = "9.5.0"
+    VERSION = "9.6.0"
     VERSION_LABEL = "#{LABEL} #{VERSION}"
   end
 end
