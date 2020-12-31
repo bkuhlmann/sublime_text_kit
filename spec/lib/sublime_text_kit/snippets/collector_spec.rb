@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::Snippets::Collector, :temp_dir do
+RSpec.describe SublimeTextKit::Snippets::Collector do
   subject(:collection) { described_class.new environment: environment }
+
+  include_context "with temporary directory"
 
   let(:environment) { {"HOME" => temp_dir} }
   let(:support_path) { Bundler.root.join "spec/support/snippets" }

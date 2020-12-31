@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::Metadata::Workspace, :temp_dir do
+RSpec.describe SublimeTextKit::Metadata::Workspace do
   subject(:workspace) { described_class.new project_dir, temp_dir }
+
+  include_context "with temporary directory"
 
   let(:projects_dir) { Bundler.root.join "spec", "support", "projects" }
   let(:project_dir) { File.join projects_dir, "test" }

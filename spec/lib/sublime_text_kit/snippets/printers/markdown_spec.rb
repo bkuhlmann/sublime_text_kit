@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::Snippets::Printers::Markdown, :temp_dir do
+RSpec.describe SublimeTextKit::Snippets::Printers::Markdown do
   subject(:printer) { described_class.new collector: collector }
+
+  include_context "with temporary directory"
 
   let(:collector) { SublimeTextKit::Snippets::Collector.new environment: environment }
   let(:environment) { {"HOME" => temp_dir} }
