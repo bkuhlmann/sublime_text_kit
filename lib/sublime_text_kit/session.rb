@@ -20,7 +20,7 @@ module SublimeTextKit
     end
 
     def workspaces
-      Dir["#{metadata_dir}/*.sublime-workspace"].sort
+      Dir["#{metadata_dir}/*.sublime-workspace"]
     end
 
     def rebuild_recent_workspaces
