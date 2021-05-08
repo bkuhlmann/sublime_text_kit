@@ -22,11 +22,7 @@ RSpec.describe SublimeTextKit::Metadata::Project do
 
   describe "#to_h" do
     it "answers hash with project path" do
-      proof = {
-        folders: [
-          {path: project_dir}
-        ]
-      }
+      proof = {folders: [{path: project_dir}]}
 
       expect(project.to_h).to eq(proof)
     end
@@ -37,11 +33,7 @@ RSpec.describe SublimeTextKit::Metadata::Project do
       project.save
       metadata = JSON.parse File.read(project.metadata_file)
 
-      proof = {
-        "folders" => [
-          {"path" => project_dir}
-        ]
-      }
+      proof = {"folders" => [{"path" => project_dir}]}
 
       expect(metadata).to eq(proof)
     end
