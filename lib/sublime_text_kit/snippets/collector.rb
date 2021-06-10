@@ -6,7 +6,7 @@ require "rexml/document"
 module SublimeTextKit
   module Snippets
     class Collector
-      DEFAULT_USER_PATH = "Library/Application Support/Sublime Text 3/Packages/User"
+      DEFAULT_USER_PATH = "Library/Application Support/Sublime Text/Packages/User"
 
       def initialize model: Snippet, user_path: DEFAULT_USER_PATH, environment: ENV
         @model = model

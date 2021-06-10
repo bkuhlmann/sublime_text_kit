@@ -12,7 +12,7 @@ module SublimeTextKit
     end
 
     def self.session_path
-      "#{home_path}/Library/Application Support/Sublime Text 3/Local/Session.sublime_session"
+      "#{home_path}/Library/Application Support/Sublime Text/Local/Session.sublime_session"
     end
 
     def initialize metadata_directory
