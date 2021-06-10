@@ -10,7 +10,7 @@ RSpec.describe SublimeTextKit::Snippets::Printers::Markdown do
   let(:collector) { SublimeTextKit::Snippets::Collector.new environment: environment }
   let(:environment) { {"HOME" => temp_dir} }
   let(:support_path) { Bundler.root.join "spec/support/snippets" }
-  let(:snippets_path) { temp_dir.join "Library/Application Support/Sublime Text 3/Packages/User" }
+  let(:snippets_path) { temp_dir.join "Library/Application Support/Sublime Text/Packages/User" }
 
   describe "#call" do
     context "with snippets" do

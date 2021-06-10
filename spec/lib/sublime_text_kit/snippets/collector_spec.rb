@@ -9,7 +9,7 @@ RSpec.describe SublimeTextKit::Snippets::Collector do
 
   let(:environment) { {"HOME" => temp_dir} }
   let(:support_path) { Bundler.root.join "spec/support/snippets" }
-  let(:snippets_path) { temp_dir.join "Library/Application Support/Sublime Text 3/Packages/User" }
+  let(:snippets_path) { temp_dir.join "Library/Application Support/Sublime Text/Packages/User" }
 
   describe "#home_path" do
     it "answers path" do
