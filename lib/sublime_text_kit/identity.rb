@@ -7,5 +7,6 @@ module SublimeTextKit
     LABEL = "Sublime Text Kit"
     VERSION = "10.0.2"
     VERSION_LABEL = "#{LABEL} #{VERSION}".freeze
+    SUMMARY = "A command line interface for managing Sublime Text metadata."
   end
 end
