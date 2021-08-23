@@ -1,4 +1,3 @@
----
 detectors:
   DuplicateMethodCall:
     exclude:
@@ -11,8 +10,4 @@ detectors:
   TooManyStatements:
     exclude:
     - initialize
-    - SublimeTextKit::CLI#create_metadata
-    - SublimeTextKit::CLI#metadata
-    - SublimeTextKit::CLI#rebuild_metadata
-    - SublimeTextKit::CLI#rebuild_session
     - SublimeTextKit::Metadata::Base#self.create
