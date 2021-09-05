@@ -11,7 +11,9 @@ image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchem
 [link=https://circleci.com/gh/bkuhlmann/sublime_text_kit]
 image::https://circleci.com/gh/bkuhlmann/sublime_text_kit.svg?style=svg[Circle CI Status]
 
-A command line interface for managing Sublime Text metadata.
+Sublime Text Kit is a command line interface for managing Sublime Text metadata for multiple
+projects, sessions, etc. It's also great for generating the metadata you need, while avoiding manual
+labor, from existing projects.
 
 toc::[]
 
