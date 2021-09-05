@@ -6,6 +6,6 @@ module SublimeTextKit
     NAME = "sublime_text_kit"
     LABEL = "Sublime Text Kit"
     VERSION = "10.0.2"
-    VERSION_LABEL = "#{LABEL} #{VERSION}"
+    VERSION_LABEL = "#{LABEL} #{VERSION}".freeze
   end
 end
