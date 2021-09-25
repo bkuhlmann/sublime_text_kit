@@ -3,8 +3,6 @@ detectors:
     exclude:
     - SublimeTextKit::Metadata::Base#self.create
     - SublimeTextKit::Metadata::Base#self.delete
-    - SublimeTextKit::Session#load_session
-    - SublimeTextKit::Session#rebuild_recent_workspaces
   IrresponsibleModule:
     enabled: false
   TooManyStatements:
