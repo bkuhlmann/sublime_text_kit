@@ -3,56 +3,51 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Snippets::Collector do
-  subject(:collection) { described_class.new environment: environment }
+  subject(:collection) { described_class.new }
 
-  include_context "with temporary directory"
-
-  let(:environment) { {"HOME" => temp_dir} }
-  let(:support_path) { Bundler.root.join "spec/support/snippets" }
-  let(:snippets_path) { temp_dir.join "Library/Application Support/Sublime Text/Packages/User" }
-
-  describe "#home_path" do
-    it "answers path" do
-      expect(collection.home_path).to eq(temp_dir)
-    end
-  end
-
-  describe "#root_path" do
-    it "answers path" do
-      expect(collection.root_path).to eq(snippets_path)
-    end
-  end
+  include_context "with application container"
 
   describe "#call" do
-    context "with snippets" do
-      before do
-        FileUtils.mkdir_p snippets_path
-        FileUtils.cp_r "#{support_path}/.", snippets_path
-      end
-
-      it "answers snippets" do
-        expect(collection.call).to contain_exactly(
-          kind_of(SublimeTextKit::Snippets::Snippet),
-          kind_of(SublimeTextKit::Snippets::Snippet),
-          kind_of(SublimeTextKit::Snippets::Snippet)
-        )
-      end
-
-      it "sorts by description" do
-        expect(collection.call.map(&:description)).to eq(
-          [
-            "Ruby Then (multiple line)",
-            "Ruby Then (proc)",
-            "Ruby Then (single line)"
-          ]
-        )
-      end
+    let :records do
+      [
+        SublimeTextKit::Snippets::Model[
+          content: "\n",
+          trigger: "thenm",
+          description: "Ruby Then (multiple line)",
+          scope: "source.ruby, source.rails"
+        ],
+        SublimeTextKit::Snippets::Model[
+          content: "then(&method(:$1))",
+          trigger: "thenp",
+          description: "Ruby Then (proc)",
+          scope: "source.ruby, source.rails"
+        ],
+        SublimeTextKit::Snippets::Model[
+          content: "then { |$1| $2 }",
+          trigger: "then",
+          description: "Ruby Then (single line)",
+          scope: "source.ruby, source.rails"
+        ]
+      ]
     end
 
-    context "without snippets" do
-      it "answers empty array" do
-        expect(collection.call).to eq([])
-      end
+    it "answers snippets when snippets exist" do
+      expect(collection.call).to eq(records)
+    end
+
+    it "sorts by description when snippets exist" do
+      expect(collection.call.map(&:description)).to eq(
+        [
+          "Ruby Then (multiple line)",
+          "Ruby Then (proc)",
+          "Ruby Then (single line)"
+        ]
+      )
+    end
+
+    it "answers empty array when snippets don't exist" do
+      configuration.user_dir = temp_dir
+      expect(collection.call).to eq([])
     end
   end
 end
