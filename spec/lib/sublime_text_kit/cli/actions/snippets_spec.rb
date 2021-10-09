@@ -42,7 +42,9 @@ RSpec.describe SublimeTextKit::CLI::Actions::Snippets do
       configuration.snippets_format = :bogus
       expectation = proc { action.call }
 
-      expect(&expectation).to output("Invalid snippet format: bogus.\n").to_stdout
+      expect(&expectation).to output(
+        "Invalid snippet format (must be a symbol): bogus. Use: :ascii_doc or :markdown.\n"
+      ).to_stdout
     end
   end
 end
