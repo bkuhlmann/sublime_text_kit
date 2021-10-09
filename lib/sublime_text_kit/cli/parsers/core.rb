@@ -4,7 +4,6 @@ require "versionaire/extensions/option_parser"
 
 module SublimeTextKit
   module CLI
-    # Handles parsing of Command Line Interface (CLI) primary options.
     module Parsers
       # Handles parsing of Command Line Interface (CLI) core options.
       class Core
