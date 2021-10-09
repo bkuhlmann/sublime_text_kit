@@ -12,18 +12,19 @@ image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchem
 image::https://circleci.com/gh/bkuhlmann/sublime_text_kit.svg?style=svg[Circle CI Status]
 
 Sublime Text Kit is a command line interface for managing Sublime Text metadata for multiple
-projects, sessions, etc. It's also great for generating the metadata you need, while avoiding manual
-labor, from existing projects.
+projects, sessions, snippets, etc. This allows you to avoiding manual maintenance of your workspace
+so you can stay focused on your own work.
 
 toc::[]
 
 == Features
 
-* Provides project metadata (i.e. `.sublime-project` and `.sublime-workspace` files) management for
-  project switching via the `CONTROL+COMMAND+P` shortcut.
-* Rebuilds project history (Project -> Recent Projects) from existing project files (assumes project
-  metadata is in a directory) so one can easily toggle between up-to-date project information via
-  the `CONTROL+COMMAND+P` shortcut.
+* Manages project metadata (`.sublime-project` and `.sublime-workspace` files).
+* Manages session metadata so you can quickly toggle between projects via the `CONTROL+COMMAND+p`
+  shortcut.
+* Prints all of your custom snippets in either
+  link:https://daringfireball.net/projects/markdown[Markdown] or
+  link:https://asciidoctor.org[ASCII Doc] format.
 
 == Requirements
 
@@ -49,10 +50,10 @@ From the command line, type: `sublime_text_kit`
 USAGE:
   -c, --config ACTION                      Manage gem configuration. Actions: edit or view.
   -h, --help                               Show this message.
-  -m, --metadata ACTION                    Manage metadata. Actions: create, delete, or recreate.
-  -S, --session                            Rebuild session.
-  -s, --snippets [FORMAT]                  View snippets. Default: markdown. Formats: markdown or ascii_doc.
-  -u, --update                             Update metadata and session based on current settings.
+  -m, --metadata ACTION                    Manage project metadata. Actions: create, delete, or recreate.
+  -S, --session                            Rebuild session metadata.
+  -s, --snippets [FORMAT]                  View snippets. Default: ascii_doc. Formats: markdown or ascii_doc.
+  -u, --update                             Update project and session metadata based on current settings.
   -v, --version                            Show gem version.
 ....
 
@@ -67,26 +68,26 @@ An example configuration could be:
 [source,yaml]
 ----
 :project_roots:
-  - "~/Engineering/Contributions"
+  - "~/Engineering/Organizations"
   - "~/Engineering/OSS"
 :metadata_dir: "~/Dropbox/Cache/Sublime"
 :snippets_format: :ascii_doc
 ----
 
-Feel free to take this configuration, modify, and save as your own custom `+configuration.yml+`.
+Feel free to take this configuration, modify, and save as your own.
 
-The project roots define the root level directories where project folders are located. When project
-metadata (i.e. `.sublime-project`, `.sublime-workspace`) is generated, the name of the metadata file
-will be the same name as that of the project folder. All project metadata, regardless of root
-location, is written to the same metadata directory. If using the example settings shown above and
-assuming the following directory structure exists…
+The `project_roots` key defines the root level directories where your project folders are located.
+When project metadata (i.e. `.sublime-project`, `.sublime-workspace`) is generated, the name of the
+metadata file will be the same name as the project folder. All project metadata, regardless of root
+location, is written to the same metadata directory as defined by the `metadata_dir` key. If using
+the example settings shown above and assuming the following directory structure exists…
 
 ....
 ~/Engineering/OSS/example
 ~/Engineering/OSS/sublime_text_kit
 ....
 
-…the project metadata will be created in the workspace directory as follows:
+...project metadata will be created in the `metadata_dir` as follows:
 
 ....
 ~/Dropbox/Cache/Sublime/example.sublime-project
@@ -95,25 +96,33 @@ assuming the following directory structure exists…
 ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 ....
 
+The `snippets_format` key allows you define what format to print your snippets as. The default
+format is Markdown but you can switch to ASCII Doc too. You can always override your default
+configuration by specifying the format from the command line: `sublime_text_kit -s ascii_doc`. For
+example, this is how link:https://www.alchemists.io/projects/sublime_text_setup/#_snippets[snippets
+documentation] is genereted for the
+link:https://www.alchemists.io/projects/sublime_text_setup[Sublime Text Setup] project.
+
 === Workflow
 
 The following demonstrates a default Sublime Text setup:
 
-. Run: `sublime_text_kit --config --edit` (define Sublime Text Kit settings for project roots and
-  metadata directory).
-. Shutdown Sublime Text (i.e. `CONTROL+Q`).
-. Run: `sublime_text_kit --metadata create` (creates project metadata and rebuilds the session
-  metadata so Sublime Text has a complete project history from which to jump through via the
-  `CONTROL+COMMMAND+P` shortcut).
-. Launch Sublime Text and use the `CONTROL+COMMAND+P` keyboard shortcut to toggle between
-  projects. Notice that you can (fuzzy type) project names to jump between them.
-. Breeze through your project workload with ease. 🎉
+1. Start by defining your configuration: `sublime_text_kit --config edit`.
+1. Shutdown Sublime Text (i.e. `COMMAND+q`).
+1. Run `sublime_text_kit --update` which will create project metadata and rebuild session metadata
+   so Sublime Text has a complete project history from which to switch between via the
+   `CONTROL+COMMMAND+p` shortcut.
+1. Launch Sublime Text and use the `CONTROL+COMMAND+p` keyboard shortcut to toggle between projects.
+   Notice that you can (fuzzy type) project names to jump between them.
+1. Navigate through your project workload with ease. 🎉
 
 === Troubleshooting
 
-* When rebuilding workspaces, ensure Sublime Text is shutdown or changes won’t be applied.
-* When rebuilding workspaces, ensure workspace_dir (as defined via settings.yml) points to a
-  directory containing `.sublime-project` and `.sublime-workspace` files.
+* When rebuilding your session, ensure Sublime Text is shut down or changes might not be applied
+  properly.
+* When rebuilding project metadata, ensure the `metadata_dir` -- as defined via your configuration
+  -- points to an existing directory which can contain `.sublime-project` and `.sublime-workspace`
+  files.
 
 == Development
 

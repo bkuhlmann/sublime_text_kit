@@ -1,5 +1,11 @@
 = Changes
 
+== 11.0.1 (2021-10-09)
+
+* Fixed CLI documentation - Brooke Kuhlmann
+* Fixed CLI snippet action to provide additional error documentation - Brooke Kuhlmann
+* Refactored RSpec fixtures - Brooke Kuhlmann
+
 == 11.0.0 (2021-10-05)
 
 * Fixed Rubocop Style/MutableConstant issue - Brooke Kuhlmann
