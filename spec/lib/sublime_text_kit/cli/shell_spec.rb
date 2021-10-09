@@ -70,8 +70,10 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "rebuilds session" do
-      configuration.metadata_dir = Bundler.root.join "spec/support/metadata"
-      Bundler.root.join("spec/support/Session.sublime_session").copy configuration.session_path
+      configuration.metadata_dir = Bundler.root.join "spec/support/fixtures/metadata"
+      Bundler.root
+             .join("spec/support/fixtures/Session.sublime_session")
+             .copy configuration.session_path
       shell.call %w[--session]
 
       expect(JSON(configuration.session_path.read)).to eq(workspaces)

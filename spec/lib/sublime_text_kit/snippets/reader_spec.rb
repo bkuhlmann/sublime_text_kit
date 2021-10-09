@@ -9,7 +9,7 @@ RSpec.describe SublimeTextKit::Snippets::Reader do
 
   describe "#call" do
     it "answers record read from valid file path" do
-      path = Bundler.root.join "spec/support/snippets/ruby-then-proc.sublime-snippet"
+      path = Bundler.root.join "spec/support/fixtures/snippets/ruby-then-proc.sublime-snippet"
 
       expect(reader.call(path)).to eq(
         SublimeTextKit::Snippets::Model[

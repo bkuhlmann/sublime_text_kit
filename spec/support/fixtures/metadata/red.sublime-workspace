@@ -1,0 +1,8 @@
+{
+  "expanded_folders": ["spec/support/fixtures/projects/red"],
+  "select_project": {
+    "selected_items": [
+      ["red": "spec/support/fixtures/metadata/red.sublime-project"]
+    ]
+  }
+}

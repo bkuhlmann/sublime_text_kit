@@ -9,10 +9,10 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
 
   include_context "with application container"
 
-  let(:session_fixture) { Bundler.root.join "spec/support/Session.sublime_session" }
+  let(:session_fixture) { Bundler.root.join "spec/support/fixtures/Session.sublime_session" }
 
   before do
-    configuration.metadata_dir = Bundler.root.join "spec/support/metadata"
+    configuration.metadata_dir = Bundler.root.join "spec/support/fixtures/metadata"
     session_fixture.copy configuration.session_path
   end
 
@@ -51,7 +51,7 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
     end
 
     context "with missing session keys" do
-      let(:session_fixture) { Bundler.root.join "spec/support/Session.missing_keys" }
+      let(:session_fixture) { Bundler.root.join "spec/support/fixtures/Session.missing_keys" }
 
       it "updates session with empty hash" do
         session.call

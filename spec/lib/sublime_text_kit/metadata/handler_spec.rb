@@ -12,7 +12,7 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
   let :serializer do
     SublimeTextKit::Metadata::Serializers::Project.new(
       SublimeTextKit::Metadata::Pathway[
-        project_dir: Bundler.root.join("spec/support/projects/black"),
+        project_dir: Bundler.root.join("spec/support/fixtures/projects/black"),
         metadata_dir: temp_dir
       ]
     )
@@ -22,7 +22,8 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
 
   describe "#with_project" do
     it "handles project" do
-      handler = described_class.with_project Bundler.root.join("spec/support/projects/black"),
+      handler = described_class.with_project Bundler.root
+                                                    .join("spec/support/fixtures/projects/black"),
                                              temp_dir
       expect(handler.recreate).to eq(test_path)
     end
@@ -30,7 +31,8 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
 
   describe "#with_workspace" do
     it "handles project" do
-      handler = described_class.with_workspace Bundler.root.join("spec/support/projects/black"),
+      handler = described_class.with_workspace Bundler.root
+                                                      .join("spec/support/fixtures/projects/black"),
                                                temp_dir
       expect(handler.recreate).to eq(temp_dir.join("black.sublime-workspace"))
     end
@@ -41,7 +43,9 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
       handler.create
       content = JSON test_path.read, symbolize_names: true
 
-      expect(content).to eq(folders: [{path: "#{Bundler.root}/spec/support/projects/black"}])
+      expect(content).to eq(
+        folders: [{path: "#{Bundler.root}/spec/support/fixtures/projects/black"}]
+      )
     end
 
     it "answers path when path doesn't exist" do
@@ -90,14 +94,18 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
       handler.recreate
       content = JSON test_path.read, symbolize_names: true
 
-      expect(content).to eq(folders: [{path: "#{Bundler.root}/spec/support/projects/black"}])
+      expect(content).to eq(
+        folders: [{path: "#{Bundler.root}/spec/support/fixtures/projects/black"}]
+      )
     end
 
     it "recreates metadata when metadata doesn't exist" do
       handler.recreate
       content = JSON test_path.read, symbolize_names: true
 
-      expect(content).to eq(folders: [{path: "#{Bundler.root}/spec/support/projects/black"}])
+      expect(content).to eq(
+        folders: [{path: "#{Bundler.root}/spec/support/fixtures/projects/black"}]
+      )
     end
 
     it "answers metadata path" do

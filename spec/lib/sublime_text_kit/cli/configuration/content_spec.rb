@@ -35,12 +35,12 @@ RSpec.describe SublimeTextKit::CLI::Configuration::Content do
   describe "#project_dirs" do
     let :proof do
       [
-        Bundler.root.join("spec/support/projects/black"),
-        Bundler.root.join("spec/support/projects/red"),
-        Bundler.root.join("spec/support/projects/white"),
-        Bundler.root.join("spec/support/projects/black"),
-        Bundler.root.join("spec/support/projects/red"),
-        Bundler.root.join("spec/support/projects/white")
+        Bundler.root.join("spec/support/fixtures/projects/black"),
+        Bundler.root.join("spec/support/fixtures/projects/red"),
+        Bundler.root.join("spec/support/fixtures/projects/white"),
+        Bundler.root.join("spec/support/fixtures/projects/black"),
+        Bundler.root.join("spec/support/fixtures/projects/red"),
+        Bundler.root.join("spec/support/fixtures/projects/white")
       ]
     end
 
@@ -49,19 +49,19 @@ RSpec.describe SublimeTextKit::CLI::Configuration::Content do
     end
 
     it "answers project directories when single project root exists" do
-      content.project_roots = Bundler.root.join "spec/support/projects"
+      content.project_roots = Bundler.root.join "spec/support/fixtures/projects"
 
       expect(content.project_dirs).to contain_exactly(
-        Bundler.root.join("spec/support/projects/black"),
-        Bundler.root.join("spec/support/projects/red"),
-        Bundler.root.join("spec/support/projects/white")
+        Bundler.root.join("spec/support/fixtures/projects/black"),
+        Bundler.root.join("spec/support/fixtures/projects/red"),
+        Bundler.root.join("spec/support/fixtures/projects/white")
       )
     end
 
     it "answers project directories when multiple project roots exists" do
       content.project_roots = [
-        Bundler.root.join("spec/support/projects"),
-        Bundler.root.join("spec/support/projects").to_s
+        Bundler.root.join("spec/support/fixtures/projects"),
+        Bundler.root.join("spec/support/fixtures/projects").to_s
       ]
 
       expect(content.project_dirs).to contain_exactly(*proof)

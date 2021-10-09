@@ -32,7 +32,10 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
     end
 
     it "deletes metadata" do
-      Bundler.root.join("spec/support/metadata").files.each { |path| path.copy temp_dir }
+      Bundler.root
+             .join("spec/support/fixtures/fixtures/metadata")
+             .files
+             .each { |path| path.copy temp_dir }
       action.call :delete
 
       expect(temp_dir.files.empty?).to eq(true)
