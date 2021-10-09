@@ -44,14 +44,14 @@ module SublimeTextKit
             "-m",
             "--metadata ACTION",
             %i[create delete recreate],
-            "Manage metadata. Actions: create, delete, or recreate."
+            "Manage project metadata. Actions: create, delete, or recreate."
           ) do |action|
             configuration.action_metadata = action
           end
         end
 
         def add_session
-          client.on "-S", "--session", "Rebuild session." do
+          client.on "-S", "--session", "Rebuild session metadata." do
             configuration.action_session = true
           end
         end
@@ -70,7 +70,11 @@ module SublimeTextKit
         end
 
         def add_update
-          client.on "-u", "--update", "Update metadata and session based on current settings." do
+          client.on(
+            "-u",
+            "--update",
+            "Update project and session metadata based on current settings."
+          ) do
             configuration.action_update = true
           end
         end
