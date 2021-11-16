@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/bkuhlmann/sublime_text_kit/issues",
     "changelog_uri" => "https://www.alchemists.io/projects/sublime_text_kit/changes.html",
     "documentation_uri" => "https://www.alchemists.io/projects/sublime_text_kit",
+    "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/bkuhlmann/sublime_text_kit"
   }
 
