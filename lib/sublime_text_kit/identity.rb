@@ -5,7 +5,7 @@ module SublimeTextKit
   module Identity
     NAME = "sublime_text_kit"
     LABEL = "Sublime Text Kit"
-    VERSION = "11.0.2"
+    VERSION = "11.0.3"
     VERSION_LABEL = "#{LABEL} #{VERSION}".freeze
     SUMMARY = "A command line interface for managing Sublime Text metadata."
   end

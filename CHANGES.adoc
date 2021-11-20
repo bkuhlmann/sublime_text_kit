@@ -1,5 +1,11 @@
 = Changes
 
+== 11.0.3 (2021-11-20)
+
+* Added README community link - Brooke Kuhlmann
+* Added gemspec MFA opt in requirement - Brooke Kuhlmann
+* Refactored binary to exe instead of bin directory - Brooke Kuhlmann
+
 == 11.0.2 (2021-10-20)
 
 * Fixed README ASCII Doc issues with numbering - Brooke Kuhlmann
