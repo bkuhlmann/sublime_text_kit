@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: Please use the following metadata when citing this project in your work.
+title: Sublime Text Kit
+abstract: A command line interface for managing Sublime Text metadata.
+version: 11.0.3
+license: Hippocratic-3.0
+date-released: 2021-11-20
+authors:
+  - family-names: Kuhlmann
+    given-names: Brooke
+    affiliation: Alchemists
+    orcid: https://orcid.org/0000-0002-5810-6268
+keywords:
+ - ruby
+ - command line interface
+ - sublime text
+ - configuration management
+repository-code: https://www.alchemists.io/projects/sublime_text_kit
+repository-artifact: https://rubygems.org/gems/sublime_text_kit
