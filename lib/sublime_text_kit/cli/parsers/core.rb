@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "versionaire/extensions/option_parser"
-
 module SublimeTextKit
   module CLI
     module Parsers

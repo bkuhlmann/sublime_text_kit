@@ -3,8 +3,6 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Parsers::Core do
-  using Versionaire::Cast
-
   subject(:parser) { described_class.new }
 
   include_context "with application container"
