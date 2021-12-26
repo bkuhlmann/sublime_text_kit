@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::CLI::Actions::Update do
   using Refinements::Pathnames
 
-  subject(:action) { described_class.new session: session }
+  subject(:action) { described_class.new session: }
 
   include_context "with application container"
 

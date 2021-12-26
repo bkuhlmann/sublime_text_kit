@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::Metadata::Handler do
   using Refinements::Pathnames
 
-  subject(:handler) { described_class.new "sublime-project", serializer: serializer }
+  subject(:handler) { described_class.new "sublime-project", serializer: }
 
   include_context "with temporary directory"
 

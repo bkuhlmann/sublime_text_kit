@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Session do
-  subject(:action) { described_class.new rebuilder: rebuilder }
+  subject(:action) { described_class.new rebuilder: }
 
   include_context "with application container"
 

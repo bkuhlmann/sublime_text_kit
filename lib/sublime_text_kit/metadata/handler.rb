@@ -10,16 +10,12 @@ module SublimeTextKit
 
       def self.with_project project_dir, metadata_dir
         new "sublime-project",
-            serializer: Serializers::Project.new(
-              Pathway[project_dir: project_dir, metadata_dir: metadata_dir]
-            )
+            serializer: Serializers::Project.new(Pathway[project_dir:, metadata_dir:])
       end
 
       def self.with_workspace project_dir, metadata_dir
         new "sublime-workspace",
-            serializer: Serializers::Workspace.new(
-              Pathway[project_dir: project_dir, metadata_dir: metadata_dir]
-            )
+            serializer: Serializers::Workspace.new(Pathway[project_dir:, metadata_dir:])
       end
 
       def initialize extension, serializer:

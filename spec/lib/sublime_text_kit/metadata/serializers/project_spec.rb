@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::Metadata::Serializers::Project do
   subject(:serializer) { described_class.new pathway }
 
-  let(:pathway) { SublimeTextKit::Metadata::Pathway[project_dir: project_dir] }
+  let(:pathway) { SublimeTextKit::Metadata::Pathway[project_dir:] }
   let(:project_dir) { Bundler.root.join("test").to_s }
 
   describe "#pathway" do

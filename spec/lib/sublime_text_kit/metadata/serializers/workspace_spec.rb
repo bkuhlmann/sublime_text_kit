@@ -6,7 +6,7 @@ RSpec.describe SublimeTextKit::Metadata::Serializers::Workspace do
   subject(:serializer) { described_class.new pathway }
 
   let :pathway do
-    SublimeTextKit::Metadata::Pathway[project_dir: project_dir, metadata_dir: metadata_dir]
+    SublimeTextKit::Metadata::Pathway[project_dir:, metadata_dir:]
   end
 
   let(:project_dir) { Bundler.root.join("project").to_s }
