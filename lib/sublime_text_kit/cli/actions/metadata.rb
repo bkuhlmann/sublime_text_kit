@@ -19,7 +19,7 @@ module SublimeTextKit
             when :create then create
             when :delete then delete
             when :recreate then recreate
-            else logger.error "Unknown metadata action: #{kind}."
+            else logger.error { "Unknown metadata action: #{kind}." }
           end
         end
 

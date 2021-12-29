@@ -17,7 +17,7 @@ module SublimeTextKit
           logger.info "Updating metadata and session..."
           create_metadata
           session.call
-          logger.info "Metadata and session updated."
+          logger.info { "Metadata and session updated." }
         end
 
         private
