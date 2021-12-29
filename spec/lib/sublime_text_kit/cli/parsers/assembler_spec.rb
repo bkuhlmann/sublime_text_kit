@@ -14,7 +14,7 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Assembler do
     end
 
     it "answers configuration content by default" do
-      expect(parser.call).to be_a(SublimeTextKit::CLI::Configuration::Content)
+      expect(parser.call).to be_a(SublimeTextKit::Configuration::Content)
     end
 
     it "fails with invalid option" do

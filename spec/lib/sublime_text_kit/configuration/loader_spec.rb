@@ -2,11 +2,11 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::CLI::Configuration::Loader do
+RSpec.describe SublimeTextKit::Configuration::Loader do
   subject(:loader) { described_class.with_defaults }
 
   let :content do
-    SublimeTextKit::CLI::Configuration::Content[
+    SublimeTextKit::Configuration::Content[
       action_config: nil,
       action_help: nil,
       action_metadata: nil,
@@ -26,7 +26,7 @@ RSpec.describe SublimeTextKit::CLI::Configuration::Loader do
 
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call).to be_a(SublimeTextKit::CLI::Configuration::Content)
+      expect(described_class.call).to be_a(SublimeTextKit::Configuration::Content)
     end
   end
 

@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::CLI::Configuration::Content do
+RSpec.describe SublimeTextKit::Configuration::Content do
   subject(:content) { described_class.new }
 
   describe "#initialize" do

@@ -9,7 +9,7 @@ module SublimeTextKit
   module Container
     extend Dry::Container::Mixin
 
-    register(:configuration, memoize: true) { CLI::Configuration::Loader.call }
+    register(:configuration) { Configuration::Loader.call }
     register(:colorizer) { Pastel.new enabled: $stdout.tty? }
     register(:kernel) { Kernel }
 
