@@ -1,27 +1,32 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module SublimeTextKit
   module CLI
     module Parsers
       # Handles parsing of Command Line Interface (CLI) core options.
       class Core
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
-        def initialize client: CLIENT, container: Container
+        def initialize configuration = Container[:configuration], client: Parser::CLIENT
+          @configuration = configuration
           @client = client
-          @container = container
         end
 
         def call arguments = []
           client.banner = "#{Identity::LABEL} - #{Identity::SUMMARY}"
           client.separator "\nUSAGE:\n"
           collate
-          arguments.empty? ? arguments : client.parse!(arguments)
+          client.parse arguments
+          configuration
         end
 
         private
 
-        attr_reader :client, :container
+        attr_reader :configuration, :client
 
         def collate = private_methods.sort.grep(/add_/).each { |method| __send__ method }
 
@@ -32,7 +37,7 @@ module SublimeTextKit
             %i[edit view],
             "Manage gem configuration. Actions: edit or view."
           ) do |action|
-            configuration.action_config = action
+            configuration.merge! action_config: action
           end
         end
 
@@ -43,13 +48,13 @@ module SublimeTextKit
             %i[create delete recreate],
             "Manage project metadata. Actions: create, delete, or recreate."
           ) do |action|
-            configuration.action_metadata = action
+            configuration.merge! action_metadata: action
           end
         end
 
         def add_session
           client.on "-S", "--session", "Rebuild session metadata." do
-            configuration.action_session = true
+            configuration.merge! action_session: true
           end
         end
 
@@ -61,8 +66,7 @@ module SublimeTextKit
             "View snippets. Default: #{configuration.snippets_format}. " \
             "Formats: markdown or ascii_doc."
           ) do |kind|
-            configuration.action_snippets = true
-            configuration.snippets_format = kind if kind
+            configuration.merge! action_snippets: true, snippets_format: kind
           end
         end
 
@@ -72,25 +76,21 @@ module SublimeTextKit
             "--update",
             "Update project and session metadata based on current settings."
           ) do
-            configuration.action_update = true
+            configuration.merge! action_update: true
           end
         end
 
         def add_version
           client.on "-v", "--version", "Show gem version." do
-            configuration.action_version = Identity::VERSION_LABEL
+            configuration.merge! action_version: Identity::VERSION_LABEL
           end
         end
 
         def add_help
           client.on "-h", "--help", "Show this message." do
-            configuration.action_help = true
+            configuration.merge! action_help: true
           end
         end
-
-        private_methods
-
-        def configuration = container[__method__]
       end
     end
   end

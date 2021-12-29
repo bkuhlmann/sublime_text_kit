@@ -2,19 +2,14 @@
 
 require "spec_helper"
 
-RSpec.describe SublimeTextKit::CLI::Parsers::Assembler do
+RSpec.describe SublimeTextKit::CLI::Parser do
   subject(:parser) { described_class.new }
 
   include_context "with application container"
 
   describe "#call" do
     it "answers hash with valid option" do
-      configuration = parser.call %w[--help]
-      expect(configuration).to have_attributes(action_help: true)
-    end
-
-    it "answers configuration content by default" do
-      expect(parser.call).to be_a(SublimeTextKit::Configuration::Content)
+      expect(parser.call(%w[--help])).to have_attributes(action_help: true)
     end
 
     it "fails with invalid option" do

@@ -100,11 +100,6 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Core do
       expect(configuration.snippets_format).to eq(:markdown)
     end
 
-    it "answers snippets default format when no format is given" do
-      parser.call %w[--snippets]
-      expect(configuration.snippets_format).to eq(:markdown)
-    end
-
     it "fails with invalid snippets action" do
       expectation = proc { parser.call %w[--snippets bogus] }
       expect(&expectation).to raise_error(OptionParser::InvalidArgument, /bogus/)
