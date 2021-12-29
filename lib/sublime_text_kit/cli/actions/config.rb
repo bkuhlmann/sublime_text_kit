@@ -5,7 +5,7 @@ module SublimeTextKit
     module Actions
       # Handles gem configuration action.
       class Config
-        def initialize configuration: Configuration::Loader::HANDLER, container: Container
+        def initialize configuration: Configuration::Loader::CLIENT, container: Container
           @configuration = configuration
           @container = container
         end
