@@ -22,9 +22,8 @@ toc::[]
 * Manages project metadata (`.sublime-project` and `.sublime-workspace` files).
 * Manages session metadata so you can quickly toggle between projects via the `CONTROL+COMMAND+p`
   shortcut.
-* Prints all of your custom snippets in either
-  link:https://daringfireball.net/projects/markdown[Markdown] or
-  link:https://asciidoctor.org[ASCII Doc] format.
+* Prints all of your custom snippets in either link:https://asciidoctor.org[ASCII Doc] or
+  link:https://daringfireball.net/projects/markdown[Markdown] format.
 
 == Requirements
 
@@ -52,7 +51,7 @@ USAGE:
   -h, --help                               Show this message.
   -m, --metadata ACTION                    Manage project metadata. Actions: create, delete, or recreate.
   -S, --session                            Rebuild session metadata.
-  -s, --snippets [FORMAT]                  View snippets. Default: ascii_doc. Formats: markdown or ascii_doc.
+  -s, --snippets [FORMAT]                  View snippets. Formats: markdown or ascii_doc. Default: ascii_doc.
   -u, --update                             Update project and session metadata based on current settings.
   -v, --version                            Show gem version.
 ....
@@ -71,13 +70,13 @@ An example configuration could be:
   - "~/Engineering/Organizations"
   - "~/Engineering/OSS"
 :metadata_dir: "~/Dropbox/Cache/Sublime"
-:snippets_format: :ascii_doc
+:snippets_format: :markdown
 ----
 
 Feel free to take this configuration, modify, and save as your own.
 
 The `project_roots` key defines the root level directories where your project folders are located.
-When project metadata (i.e. `.sublime-project`, `.sublime-workspace`) is generated, the name of the
+When project metadata (i.e. `.sublime-project`, `.sublime-workspace`) is generated, the name of the
 metadata file will be the same name as the project folder. All project metadata, regardless of root
 location, is written to the same metadata directory as defined by the `metadata_dir` key. If using
 the example settings shown above and assuming the following directory structure exists…
@@ -96,12 +95,12 @@ the example settings shown above and assuming the following directory structure 
 ~/Dropbox/Cache/Sublime/sublime_text_kit.sublime-workspace
 ....
 
-The `snippets_format` key allows you define what format to print your snippets as. The default
-format is Markdown but you can switch to ASCII Doc too. You can always override your default
-configuration by specifying the format from the command line: `sublime_text_kit -s ascii_doc`. For
-example, this is how link:https://www.alchemists.io/projects/sublime_text_setup/#_snippets[snippets
-documentation] is genereted for the
-link:https://www.alchemists.io/projects/sublime_text_setup[Sublime Text Setup] project.
+The `snippets_format` key allows you define what format to print your snippets as. You can always
+override your default configuration by specifying the format from the command line:
+`sublime_text_kit -s ascii_doc`. For example, this is how
+link:https://www.alchemists.io/projects/sublime_text_setup/#_snippets[snippets documentation] is
+generated for the link:https://www.alchemists.io/projects/sublime_text_setup[Sublime Text Setup]
+project.
 
 === Workflow
 
