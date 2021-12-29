@@ -33,7 +33,7 @@ module SublimeTextKit
           in action_config: Symbol => action then config action
           in action_metadata: Symbol => kind then metadata kind
           in action_session: true then session
-          in action_snippets: true then snippets
+          in action_snippets: true then snippets configuration
           in action_update: true then update
           in action_version: true then logger.info Identity::VERSION_LABEL
           else usage
@@ -46,7 +46,7 @@ module SublimeTextKit
 
       def session = actions.fetch(__method__).call
 
-      def snippets = actions.fetch(__method__).call
+      def snippets(configuration) = actions.fetch(__method__).call(configuration.snippets_format)
 
       def update = actions.fetch(__method__).call
 

@@ -15,18 +15,17 @@ module SublimeTextKit
           @container = container
         end
 
-        def call
-          kind = configuration.snippets_format
+        def call kind
           printers.fetch(kind).call
         rescue KeyError
-          logger.error { "Invalid snippet format (must be a symbol): #{kind}. Use: #{formats}." }
+          logger.error { "Invalid snippet format: #{kind}. Use #{formats}." }
         end
 
         private
 
         attr_reader :printers, :container
 
-        def formats = printers.keys.map(&:inspect).join(" or ")
+        def formats = printers.keys.join(" or ")
 
         def configuration = container[__method__]
 

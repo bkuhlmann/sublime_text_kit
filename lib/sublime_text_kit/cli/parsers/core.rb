@@ -63,8 +63,8 @@ module SublimeTextKit
             "-s",
             "--snippets [FORMAT]",
             %i[markdown ascii_doc],
-            "View snippets. Default: #{configuration.snippets_format}. " \
-            "Formats: markdown or ascii_doc."
+            "View snippets. Formats: markdown or ascii_doc. " \
+            "Default: #{configuration.snippets_format}."
           ) do |kind|
             configuration.merge! action_snippets: true, snippets_format: kind
           end

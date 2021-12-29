@@ -16,7 +16,7 @@ RSpec.describe SublimeTextKit::Configuration::Loader do
       action_version: nil,
       project_roots: nil,
       metadata_dir: nil,
-      snippets_format: :markdown,
+      snippets_format: :ascii_doc,
       session_path: Pathname(
         %(#{ENV["HOME"]}/Library/Application Support/Sublime Text/Local/Session.sublime_session)
       ),
