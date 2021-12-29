@@ -127,12 +127,12 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Core do
 
     it "answers version (short)" do
       parser.call %w[-v]
-      expect(configuration.action_version).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
+      expect(configuration.action_version).to eq(true)
     end
 
     it "answers version (long)" do
       parser.call %w[--version]
-      expect(configuration.action_version).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
+      expect(configuration.action_version).to eq(true)
     end
 
     it "enables help (short)" do

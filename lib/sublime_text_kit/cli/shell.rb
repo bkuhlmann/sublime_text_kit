@@ -35,7 +35,7 @@ module SublimeTextKit
           in action_session: true then session
           in action_snippets: true then snippets
           in action_update: true then update
-          in action_version: String => version then logger.info version
+          in action_version: true then logger.info Identity::VERSION_LABEL
           else usage
         end
       end
