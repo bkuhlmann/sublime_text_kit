@@ -32,6 +32,8 @@ module SublimeTextKit
         )
 
         self[:user_dir] ||= home.join "Library/Application Support/Sublime Text/Packages/User"
+
+        freeze
       end
 
       def project_dirs

@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Configuration::Content do
+  using Refinements::Structs
+
   subject(:content) { described_class.new }
 
   describe "#initialize" do
@@ -49,9 +51,11 @@ RSpec.describe SublimeTextKit::Configuration::Content do
     end
 
     it "answers project directories when single project root exists" do
-      content.project_roots = Bundler.root.join "spec/support/fixtures/projects"
+      updated_content = content.merge(
+        project_roots: Bundler.root.join("spec/support/fixtures/projects")
+      )
 
-      expect(content.project_dirs).to contain_exactly(
+      expect(updated_content.project_dirs).to contain_exactly(
         Bundler.root.join("spec/support/fixtures/projects/black"),
         Bundler.root.join("spec/support/fixtures/projects/red"),
         Bundler.root.join("spec/support/fixtures/projects/white")
@@ -59,12 +63,12 @@ RSpec.describe SublimeTextKit::Configuration::Content do
     end
 
     it "answers project directories when multiple project roots exists" do
-      content.project_roots = [
+      updated_content = content.merge project_roots: [
         Bundler.root.join("spec/support/fixtures/projects"),
         Bundler.root.join("spec/support/fixtures/projects").to_s
       ]
 
-      expect(content.project_dirs).to contain_exactly(*proof)
+      expect(updated_content.project_dirs).to contain_exactly(*proof)
     end
   end
 end
