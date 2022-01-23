@@ -35,7 +35,7 @@ module SublimeTextKit
           in action_session: true then session
           in action_snippets: true then snippets configuration
           in action_update: true then update
-          in action_version: true then logger.info Identity::VERSION_LABEL
+          in action_version: true then logger.info { "Sublime Text Kit #{specification.version}" }
           else usage
         end
       end
@@ -51,6 +51,8 @@ module SublimeTextKit
       def update = actions.fetch(__method__).call
 
       def usage = logger.unknown { parser.to_s }
+
+      def specification = container[__method__]
 
       def logger = container[__method__]
     end

@@ -3,5 +3,4 @@
 
 require "sublime_text_kit"
 
-Process.setproctitle SublimeTextKit::Identity::VERSION_LABEL
 SublimeTextKit::CLI::Shell.new.call ARGV
