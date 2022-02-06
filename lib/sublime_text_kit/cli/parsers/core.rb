@@ -20,7 +20,7 @@ module SublimeTextKit
         end
 
         def call arguments = []
-          client.banner = "Sublime Text Kit - #{specification.summary}"
+          client.banner = specification.labeled_summary
           client.separator "\nUSAGE:\n"
           collate
           client.parse arguments

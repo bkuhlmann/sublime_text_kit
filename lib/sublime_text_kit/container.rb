@@ -3,16 +3,15 @@
 require "dry-container"
 require "logger"
 require "pastel"
+require "spek"
 
 module SublimeTextKit
   # Provides a global gem container for injection into other objects.
   module Container
     extend Dry::Container::Mixin
 
-    SPEC_PATH = "#{__dir__}/../../sublime_text_kit.gemspec".freeze
-
     register(:configuration) { Configuration::Loader.call }
-    register(:specification) { Gem::Specification.load SPEC_PATH }
+    register(:specification) { Spek::Loader.call "#{__dir__}/../../sublime_text_kit.gemspec" }
     register(:colorizer) { Pastel.new enabled: $stdout.tty? }
     register(:kernel) { Kernel }
 

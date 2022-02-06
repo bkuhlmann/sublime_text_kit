@@ -35,7 +35,7 @@ module SublimeTextKit
           in action_session: true then session
           in action_snippets: true then snippets configuration
           in action_update: true then update
-          in action_version: true then logger.info { "Sublime Text Kit #{specification.version}" }
+          in action_version: true then logger.info { specification.labeled_version }
           else usage
         end
       end
