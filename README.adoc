@@ -4,13 +4,6 @@
 
 = Sublime Text Kit
 
-[link=http://badge.fury.io/rb/sublime_text_kit]
-image::https://badge.fury.io/rb/sublime_text_kit.svg[Gem Version]
-[link=https://www.alchemists.io/projects/code_quality]
-image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchemists Style Guide]
-[link=https://circleci.com/gh/bkuhlmann/sublime_text_kit]
-image::https://circleci.com/gh/bkuhlmann/sublime_text_kit.svg?style=svg[Circle CI Status]
-
 Sublime Text Kit is a command line interface for managing Sublime Text metadata for multiple
 projects, sessions, snippets, etc. This allows you to avoiding manual maintenance of your workspace
 so you can stay focused on your own work.
