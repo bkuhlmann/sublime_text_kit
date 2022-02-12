@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "sublime_text_kit"
-  spec.version = "12.2.0"
+  spec.version = "12.3.0"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://www.alchemists.io/projects/sublime_text_kit"
