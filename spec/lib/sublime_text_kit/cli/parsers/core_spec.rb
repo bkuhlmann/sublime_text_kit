@@ -82,12 +82,12 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Core do
 
     it "enables snippets (short)" do
       parser.call %w[-s]
-      expect(configuration.action_snippets).to eq(true)
+      expect(configuration.action_snippets).to be(true)
     end
 
     it "enables snippets (long)" do
       parser.call %w[--snippets]
-      expect(configuration.action_snippets).to eq(true)
+      expect(configuration.action_snippets).to be(true)
     end
 
     it "answers snippets ASCII Doc format" do
@@ -107,42 +107,42 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Core do
 
     it "answers session rebuild (short)" do
       parser.call %w[-S]
-      expect(configuration.action_session).to eq(true)
+      expect(configuration.action_session).to be(true)
     end
 
     it "answers session rebuild (long)" do
       parser.call %w[--session]
-      expect(configuration.action_session).to eq(true)
+      expect(configuration.action_session).to be(true)
     end
 
     it "answers update (short)" do
       parser.call %w[-u]
-      expect(configuration.action_update).to eq(true)
+      expect(configuration.action_update).to be(true)
     end
 
     it "answers update (long)" do
       parser.call %w[--update]
-      expect(configuration.action_update).to eq(true)
+      expect(configuration.action_update).to be(true)
     end
 
     it "answers version (short)" do
       parser.call %w[-v]
-      expect(configuration.action_version).to eq(true)
+      expect(configuration.action_version).to be(true)
     end
 
     it "answers version (long)" do
       parser.call %w[--version]
-      expect(configuration.action_version).to eq(true)
+      expect(configuration.action_version).to be(true)
     end
 
     it "enables help (short)" do
       parser.call %w[-h]
-      expect(configuration.action_help).to eq(true)
+      expect(configuration.action_help).to be(true)
     end
 
     it "enables help (long)" do
       parser.call %w[--help]
-      expect(configuration.action_help).to eq(true)
+      expect(configuration.action_help).to be(true)
     end
   end
 end

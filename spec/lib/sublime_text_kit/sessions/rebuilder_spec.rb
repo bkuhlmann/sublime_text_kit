@@ -47,7 +47,7 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
       configuration.session_path.delete
       session.call
 
-      expect(configuration.session_path.exist?).to eq(false)
+      expect(configuration.session_path.exist?).to be(false)
     end
 
     context "with missing session keys" do

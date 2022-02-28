@@ -38,7 +38,7 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
              .each { |path| path.copy temp_dir }
       action.call :delete
 
-      expect(temp_dir.files.empty?).to eq(true)
+      expect(temp_dir.files.empty?).to be(true)
     end
 
     it "logs metadata being deleted" do

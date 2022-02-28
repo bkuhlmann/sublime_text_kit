@@ -11,7 +11,7 @@ RSpec.shared_examples "sublime metadata" do
 
       created = files.all? { |path| File.exist? path }
 
-      expect(created).to eq(true)
+      expect(created).to be(true)
     end
 
     it "outputs error message when projects directory does not exist" do
@@ -34,7 +34,7 @@ RSpec.shared_examples "sublime metadata" do
       FileUtils.touch metadata.metadata_file
       described_class.delete temp_dir
 
-      expect(File.exist?(metadata.metadata_file)).to eq(false)
+      expect(File.exist?(metadata.metadata_file)).to be(false)
     end
 
     it "does not delete non-metadata files" do
@@ -42,7 +42,7 @@ RSpec.shared_examples "sublime metadata" do
       FileUtils.touch test_file
       described_class.delete temp_dir
 
-      expect(File.exist?(test_file)).to eq(true)
+      expect(File.exist?(test_file)).to be(true)
     end
 
     it "does not delete directories" do
@@ -50,7 +50,7 @@ RSpec.shared_examples "sublime metadata" do
       FileUtils.mkdir test_dir
       described_class.delete temp_dir
 
-      expect(File.exist?(test_dir)).to eq(true)
+      expect(File.exist?(test_dir)).to be(true)
     end
 
     it "outputs error message when metadata directory does not exist" do
@@ -96,12 +96,12 @@ RSpec.shared_examples "sublime metadata" do
   describe "#save" do
     it "saves metadata to file" do
       metadata.save
-      expect(File.exist?(metadata.metadata_file)).to eq(true)
+      expect(File.exist?(metadata.metadata_file)).to be(true)
     end
 
     it "does not save metadata when file exists" do
       FileUtils.touch metadata.metadata_file
-      expect(File.zero?(metadata.metadata_file)).to eq(true)
+      expect(File.zero?(metadata.metadata_file)).to be(true)
     end
   end
 end

@@ -48,7 +48,7 @@ RSpec.describe SublimeTextKit::Snippets::Model do
 
   describe "#initialize" do
     it "freezes instance" do
-      expect(model.frozen?).to eq(true)
+      expect(model.frozen?).to be(true)
     end
   end
 end

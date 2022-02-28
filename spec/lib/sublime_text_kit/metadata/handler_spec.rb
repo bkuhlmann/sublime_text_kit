@@ -70,7 +70,7 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
       handler.create
       handler.delete
 
-      expect(test_path.exist?).to eq(false)
+      expect(test_path.exist?).to be(false)
     end
 
     it "answers path when metadata exists" do
@@ -80,7 +80,7 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
 
     it "does nothing when there is nothing to delete" do
       handler.delete
-      expect(test_path.exist?).to eq(false)
+      expect(test_path.exist?).to be(false)
     end
 
     it "answers path when there is nothing to delete" do
