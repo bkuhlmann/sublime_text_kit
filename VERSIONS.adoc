@@ -1,5 +1,11 @@
 = Versions
 
+== 12.3.2 (2022-03-20)
+
+* Fixed CLI core parser issue with no default snippets format set - Brooke Kuhlmann
+* Fixed Circle CI configuration to check Gemfile and gemspec - Brooke Kuhlmann
+* Updated to Dry Container 0.9.0 - Brooke Kuhlmann
+
 == 12.3.1 (2022-03-03)
 
 * Fixed Hippocratic License to be 2.1.0 version - Brooke Kuhlmann
