@@ -82,22 +82,22 @@ RSpec.describe SublimeTextKit::CLI::Parsers::Core do
 
     it "enables snippets (short)" do
       parser.call %w[-s]
-      expect(configuration.action_snippets).to be(true)
+      expect(configuration).to have_attributes(action_snippets: true, snippets_format: :ascii_doc)
     end
 
     it "enables snippets (long)" do
       parser.call %w[--snippets]
-      expect(configuration.action_snippets).to be(true)
+      expect(configuration).to have_attributes(action_snippets: true, snippets_format: :ascii_doc)
     end
 
     it "answers snippets ASCII Doc format" do
       parser.call %w[--snippets ascii_doc]
-      expect(configuration.snippets_format).to eq(:ascii_doc)
+      expect(configuration).to have_attributes(action_snippets: true, snippets_format: :ascii_doc)
     end
 
     it "answers snippets Markdown format" do
       parser.call %w[--snippets markdown]
-      expect(configuration.snippets_format).to eq(:markdown)
+      expect(configuration).to have_attributes(action_snippets: true, snippets_format: :markdown)
     end
 
     it "fails with invalid snippets action" do
