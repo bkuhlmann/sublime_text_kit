@@ -7,16 +7,20 @@ module SublimeTextKit
     module Parsers
       # Handles parsing of Command Line Interface (CLI) core options.
       class Core
+        include Import[:specification]
+
         using Refinements::Structs
 
         def self.call(...) = new(...).call
 
         def initialize configuration = Container[:configuration],
                        client: Parser::CLIENT,
-                       container: Container
+                       **dependencies
+
+          super(**dependencies)
+
           @configuration = configuration
           @client = client
-          @container = container
         end
 
         def call arguments = []
@@ -29,7 +33,7 @@ module SublimeTextKit
 
         private
 
-        attr_reader :configuration, :client, :container
+        attr_reader :configuration, :client
 
         def collate = private_methods.sort.grep(/add_/).each { |method| __send__ method }
 
@@ -96,8 +100,6 @@ module SublimeTextKit
         end
 
         def snippets_format = configuration.snippets_format
-
-        def specification = container[__method__]
       end
     end
   end

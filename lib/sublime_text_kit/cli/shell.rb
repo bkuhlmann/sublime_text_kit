@@ -4,6 +4,8 @@ module SublimeTextKit
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
+      include Import[:specification, :logger]
+
       ACTIONS = {
         config: Actions::Config.new,
         metadata: Actions::Metadata.new,
@@ -12,10 +14,11 @@ module SublimeTextKit
         update: Actions::Update.new
       }.freeze
 
-      def initialize parser: Parser.new, actions: ACTIONS, container: Container
+      def initialize parser: Parser.new, actions: ACTIONS, **dependencies
+        super(**dependencies)
+
         @parser = parser
         @actions = actions
-        @container = container
       end
 
       def call arguments = []
@@ -26,7 +29,7 @@ module SublimeTextKit
 
       private
 
-      attr_reader :parser, :actions, :container
+      attr_reader :parser, :actions
 
       def perform configuration
         case configuration
@@ -51,10 +54,6 @@ module SublimeTextKit
       def update = actions.fetch(__method__).call
 
       def usage = logger.unknown { parser.to_s }
-
-      def specification = container[__method__]
-
-      def logger = container[__method__]
     end
   end
 end

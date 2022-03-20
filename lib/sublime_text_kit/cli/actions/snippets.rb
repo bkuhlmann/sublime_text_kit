@@ -5,14 +5,17 @@ module SublimeTextKit
     module Actions
       # Handles snippets action.
       class Snippets
+        include SublimeTextKit::Import[:configuration, :logger]
+
         PRINTERS = {
           ascii_doc: SublimeTextKit::Snippets::Printers::ASCIIDoc.new,
           markdown: SublimeTextKit::Snippets::Printers::Markdown.new
         }.freeze
 
-        def initialize printers: PRINTERS, container: Container
+        def initialize printers: PRINTERS, **dependencies
+          super(**dependencies)
+
           @printers = printers
-          @container = container
         end
 
         def call kind
@@ -23,13 +26,9 @@ module SublimeTextKit
 
         private
 
-        attr_reader :printers, :container
+        attr_reader :printers
 
         def formats = printers.keys.join(" or ")
-
-        def configuration = container[__method__]
-
-        def logger = container[__method__]
       end
     end
   end

@@ -7,11 +7,14 @@ module SublimeTextKit
     module Actions
       # Handles metadata action.
       class Metadata
+        include SublimeTextKit::Import[:configuration, :logger]
+
         using Refinements::Pathnames
 
-        def initialize handler: SublimeTextKit::Metadata::Handler, container: Container
+        def initialize handler: SublimeTextKit::Metadata::Handler, **dependencies
+          super(**dependencies)
+
           @handler = handler
-          @container = container
         end
 
         def call kind
@@ -25,7 +28,7 @@ module SublimeTextKit
 
         private
 
-        attr_reader :handler, :container
+        attr_reader :handler
 
         def create
           logger.info "Creating metadata in #{metadata_dir}..."
@@ -53,10 +56,6 @@ module SublimeTextKit
         end
 
         def metadata_dir = Pathname(configuration.metadata_dir).expand_path
-
-        def configuration = container[__method__]
-
-        def logger = container[__method__]
       end
     end
   end

@@ -4,10 +4,15 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Shell do
   using Refinements::Pathnames
+  using Refinements::StringIOs
 
   subject(:shell) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
+
+  before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
+
+  after { SublimeTextKit::CLI::Actions::Import.unstub :configuration, :kernel, :logger }
 
   describe "#call" do
     let :workspaces do
@@ -49,24 +54,18 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "creates metadata" do
-      expectation = proc { shell.call %w[--metadata create] }
-      message = "Creating metadata in #{temp_dir}...\nMetadata created.\n"
-
-      expect(&expectation).to output(message).to_stdout
+      shell.call %w[--metadata create]
+      expect(io.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
     end
 
     it "deletes metadata" do
-      expectation = proc { shell.call %w[--metadata delete] }
-      message = "Deleting metadata in #{temp_dir}...\nMetadata deleted.\n"
-
-      expect(&expectation).to output(message).to_stdout
+      shell.call %w[--metadata delete]
+      expect(io.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
     end
 
     it "recreates metadata" do
-      expectation = proc { shell.call %w[--metadata recreate] }
-      message = "Recreating metadata in #{temp_dir}...\nMetadata recreated.\n"
-
-      expect(&expectation).to output(message).to_stdout
+      shell.call %w[--metadata recreate]
+      expect(io.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
     end
 
     it "rebuilds session" do
@@ -80,13 +79,13 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "prints ASCII Doc snippets" do
-      expectation = proc { shell.call %w[--snippets ascii_doc] }
-      expect(&expectation).to output(ascii_doc).to_stdout
+      shell.call %w[--snippets ascii_doc]
+      expect(io.reread).to eq(ascii_doc)
     end
 
     it "prints Markdown snippets" do
-      expectation = proc { shell.call %w[--snippets markdown] }
-      expect(&expectation).to output(markdown).to_stdout
+      shell.call %w[--snippets markdown]
+      expect(io.reread).to eq(markdown)
     end
 
     it "updates metadata and session" do
@@ -97,23 +96,23 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "prints version" do
-      result = proc { shell.call %w[--version] }
-      expect(&result).to output(/Sublime Text Kit\s\d+\.\d+\.\d+/).to_stdout
+      shell.call %w[--version]
+      expect(io.reread).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
     end
 
     it "prints help" do
-      result = proc { shell.call %w[--help] }
-      expect(&result).to output(/Sublime Text Kit.+USAGE.+/m).to_stdout
+      shell.call %w[--help]
+      expect(io.reread).to match(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints usage when no options are given" do
-      result = proc { shell.call }
-      expect(&result).to output(/Sublime Text Kit.+USAGE.+.+/m).to_stdout
+      shell.call
+      expect(io.reread).to match(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints error with invalid option" do
-      result = proc { shell.call %w[--bogus] }
-      expect(&result).to output(/invalid option.+bogus/).to_stdout
+      shell.call %w[--bogus]
+      expect(io.reread).to match(/invalid option.+bogus/)
     end
   end
 end

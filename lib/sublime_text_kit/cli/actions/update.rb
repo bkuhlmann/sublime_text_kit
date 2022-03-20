@@ -5,12 +5,16 @@ module SublimeTextKit
     module Actions
       # Handles update action.
       class Update
+        include SublimeTextKit::Import[:configuration, :logger]
+
         def initialize metadata: SublimeTextKit::Metadata::Handler,
                        session: Sessions::Rebuilder.new,
-                       container: Container
+                       **dependencies
+
+          super(**dependencies)
+
           @metadata = metadata
           @session = session
-          @container = container
         end
 
         def call
@@ -22,7 +26,7 @@ module SublimeTextKit
 
         private
 
-        attr_reader :metadata, :session, :container
+        attr_reader :metadata, :session
 
         def create_metadata
           configuration.project_dirs.each do |directory|
@@ -32,10 +36,6 @@ module SublimeTextKit
         end
 
         def metadata_dir = Pathname(configuration.metadata_dir).expand_path
-
-        def configuration = container[__method__]
-
-        def logger = container[__method__]
       end
     end
   end

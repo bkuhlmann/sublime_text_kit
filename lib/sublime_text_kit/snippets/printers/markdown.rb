@@ -5,9 +5,11 @@ module SublimeTextKit
     module Printers
       # Prints snippets in Markdown format.
       class Markdown
-        def initialize collector: Collector.new, container: Container
+        include Import[:logger]
+
+        def initialize collector: Collector.new, **dependencies
+          super(**dependencies)
           @collector = collector
-          @container = container
         end
 
         def call
@@ -18,9 +20,7 @@ module SublimeTextKit
 
         private
 
-        attr_reader :collector, :container
-
-        def logger = container[__method__]
+        attr_reader :collector
       end
     end
   end

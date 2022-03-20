@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Snippets do
+  using Refinements::StringIOs
+
   subject(:action) { described_class.new }
 
   include_context "with application container"
@@ -25,21 +27,18 @@ RSpec.describe SublimeTextKit::CLI::Actions::Snippets do
     end
 
     it "prints ASCII Doc" do
-      expectation = proc { action.call :ascii_doc }
-      expect(&expectation).to output(ascii_doc).to_stdout
+      action.call :ascii_doc
+      expect(io.reread).to eq(ascii_doc)
     end
 
     it "prints Markdown" do
-      expectation = proc { action.call :markdown }
-      expect(&expectation).to output(markdown).to_stdout
+      action.call :markdown
+      expect(io.reread).to eq(markdown)
     end
 
     it "fails when unknown format is used" do
-      expectation = proc { action.call "bogus" }
-
-      expect(&expectation).to output(
-        "Invalid snippet format: bogus. Use ascii_doc or markdown.\n"
-      ).to_stdout
+      action.call "bogus"
+      expect(io.reread).to eq("Invalid snippet format: bogus. Use ascii_doc or markdown.\n")
     end
   end
 end

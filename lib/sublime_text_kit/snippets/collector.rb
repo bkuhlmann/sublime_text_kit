@@ -6,11 +6,13 @@ module SublimeTextKit
   module Snippets
     # Collects and loads all snippets into memory for further processing.
     class Collector
+      include Import[:configuration]
+
       using Refinements::Pathnames
 
-      def initialize reader: Reader.new, container: Container
+      def initialize reader: Reader.new, **dependencies
+        super(**dependencies)
         @reader = reader
-        @container = container
       end
 
       def call
@@ -22,9 +24,7 @@ module SublimeTextKit
 
       private
 
-      def configuration = container[__method__]
-
-      attr_reader :reader, :container
+      attr_reader :reader
     end
   end
 end

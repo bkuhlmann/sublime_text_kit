@@ -5,9 +5,12 @@ module SublimeTextKit
     module Actions
       # Handles session action.
       class Session
-        def initialize rebuilder: Sessions::Rebuilder.new, container: Container
+        include SublimeTextKit::Import[:logger]
+
+        def initialize rebuilder: Sessions::Rebuilder.new, **dependencies
+          super(**dependencies)
+
           @rebuilder = rebuilder
-          @container = container
         end
 
         def call
@@ -17,9 +20,7 @@ module SublimeTextKit
 
         private
 
-        attr_reader :rebuilder, :container
-
-        def logger = container[__method__]
+        attr_reader :rebuilder
       end
     end
   end

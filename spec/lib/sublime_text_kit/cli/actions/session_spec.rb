@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Session do
+  using Refinements::StringIOs
+
   subject(:action) { described_class.new rebuilder: }
 
   include_context "with application container"
@@ -16,8 +18,8 @@ RSpec.describe SublimeTextKit::CLI::Actions::Session do
     end
 
     it "logs session was rebuilt" do
-      expectation = proc { action.call }
-      expect(&expectation).to output("Session rebuilt.\n").to_stdout
+      action.call
+      expect(io.reread).to eq("Session rebuilt.\n")
     end
   end
 end
