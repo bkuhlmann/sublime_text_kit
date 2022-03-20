@@ -5,6 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::CLI::Shell do
   using Refinements::Pathnames
   using Refinements::StringIOs
+  using AutoInjector::Stub
 
   subject(:shell) { described_class.new }
 
@@ -13,6 +14,10 @@ RSpec.describe SublimeTextKit::CLI::Shell do
   before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
 
   after { SublimeTextKit::CLI::Actions::Import.unstub :configuration, :kernel, :logger }
+
+  before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
+
+  after { SublimeTextKit::CLI::Actions::Import.unstub configuration:, kernel:, logger: }
 
   describe "#call" do
     let :workspaces do
@@ -89,10 +94,8 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "updates metadata and session" do
-      expectation = proc { shell.call %w[--update] }
-      message = "Updating metadata and session...\nMetadata and session updated.\n"
-
-      expect(&expectation).to output(message).to_stdout
+      shell.call %w[--update]
+      expect(io.reread).to eq("Updating metadata and session...\nMetadata and session updated.\n")
     end
 
     it "prints version" do

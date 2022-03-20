@@ -7,28 +7,22 @@ module SublimeTextKit
       class Snippets
         include SublimeTextKit::Import[:configuration, :logger]
 
-        PRINTERS = {
-          ascii_doc: SublimeTextKit::Snippets::Printers::ASCIIDoc.new,
-          markdown: SublimeTextKit::Snippets::Printers::Markdown.new
-        }.freeze
-
-        def initialize printers: PRINTERS, **dependencies
+        def initialize printer: SublimeTextKit::Snippets::Printer.new, **dependencies
           super(**dependencies)
-
-          @printers = printers
+          @printer = printer
         end
 
         def call kind
-          printers.fetch(kind).call
-        rescue KeyError
-          logger.error { "Invalid snippet format: #{kind}. Use #{formats}." }
+          case kind
+            when :ascii_doc then printer.call "*"
+            when :markdown then printer.call "-"
+            else logger.error { "Invalid snippet format: #{kind}. Use ascii_doc or markdown." }
+          end
         end
 
         private
 
-        attr_reader :printers
-
-        def formats = printers.keys.join(" or ")
+        attr_reader :printer
       end
     end
   end
