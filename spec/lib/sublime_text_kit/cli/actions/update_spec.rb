@@ -4,11 +4,10 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Update do
   using Refinements::Pathnames
-  using Refinements::StringIOs
 
   subject(:action) { described_class.new session: }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:session) { instance_spy SublimeTextKit::Sessions::Rebuilder }
 
@@ -34,7 +33,10 @@ RSpec.describe SublimeTextKit::CLI::Actions::Update do
 
     it "logs status" do
       action.call
-      expect(io.reread).to eq("Updating metadata and session...\nMetadata and session updated.\n")
+
+      expect(logger.reread).to eq(
+        "Updating metadata and session...\nMetadata and session updated.\n"
+      )
     end
   end
 end

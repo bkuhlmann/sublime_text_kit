@@ -7,7 +7,7 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
 
   subject(:session) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:session_fixture) { Bundler.root.join "spec/support/fixtures/Session.sublime_session" }
 

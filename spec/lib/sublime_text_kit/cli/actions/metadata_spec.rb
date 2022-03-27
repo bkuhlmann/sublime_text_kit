@@ -4,11 +4,10 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
   using Refinements::Pathnames
-  using Refinements::StringIOs
 
   subject(:action) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe "#call" do
     it "creates metadata" do
@@ -27,7 +26,7 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being created" do
       action.call :create
-      expect(io.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
+      expect(logger.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
     end
 
     it "deletes metadata" do
@@ -42,7 +41,7 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being deleted" do
       action.call :delete
-      expect(io.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
+      expect(logger.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
     end
 
     it "recreates metadata" do
@@ -61,12 +60,12 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being recreated" do
       action.call :recreate
-      expect(io.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
+      expect(logger.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
     end
 
     it "fails when given invalid action" do
       action.call :bogus
-      expect(io.reread).to eq("Unknown metadata action: bogus.\n")
+      expect(logger.reread).to eq("Unknown metadata action: bogus.\n")
     end
   end
 end

@@ -3,18 +3,16 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Snippets::Printer do
-  using Refinements::StringIOs
-
   subject(:printer) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe "#call" do
     context "with snippets" do
       it "prints ASCII Doc snippets" do
         printer.call "*"
 
-        expect(io.reread).to eq(<<~CONTENT)
+        expect(logger.reread).to eq(<<~CONTENT)
           * Ruby Then (multiple line) - `thenm`
           * Ruby Then (proc) - `thenp`
           * Ruby Then (single line) - `then`
@@ -24,7 +22,7 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
       it "prints Markdown snippets" do
         printer.call "-"
 
-        expect(io.reread).to eq(<<~CONTENT)
+        expect(logger.reread).to eq(<<~CONTENT)
           - Ruby Then (multiple line) - `thenm`
           - Ruby Then (proc) - `thenp`
           - Ruby Then (single line) - `then`
@@ -37,7 +35,7 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
         configuration.user_dir = temp_dir
         printer.call "*"
 
-        expect(io.reread).to eq("")
+        expect(logger.reread).to eq("")
       end
     end
   end

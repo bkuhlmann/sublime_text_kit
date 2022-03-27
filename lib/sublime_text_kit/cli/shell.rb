@@ -41,7 +41,7 @@ module SublimeTextKit
         end
       end
 
-      def usage = logger.unknown { parser.to_s }
+      def usage = logger.any { parser.to_s }
     end
   end
 end

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::Snippets::Collector do
   subject(:collection) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe "#call" do
     let :records do

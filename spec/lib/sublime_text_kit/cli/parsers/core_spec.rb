@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe SublimeTextKit::CLI::Parsers::Core do
   subject(:parser) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   it_behaves_like "a parser"
 

@@ -3,11 +3,9 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Config do
-  using Refinements::StringIOs
-
   subject(:action) { described_class.new }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe "#call" do
     it "edits configuration" do
@@ -22,7 +20,7 @@ RSpec.describe SublimeTextKit::CLI::Actions::Config do
 
     it "logs error with invalid action" do
       action.call :bogus
-      expect(io.reread).to eq("Invalid configuration action: bogus.\n")
+      expect(logger.reread).to eq("Invalid configuration action: bogus.\n")
     end
   end
 end

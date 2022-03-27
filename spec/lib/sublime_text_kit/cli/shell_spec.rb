@@ -4,7 +4,6 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Shell do
   using Refinements::Pathnames
-  using Refinements::StringIOs
   using AutoInjector::Stub
 
   subject(:shell) { described_class.new }
@@ -14,10 +13,6 @@ RSpec.describe SublimeTextKit::CLI::Shell do
   before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
 
   after { SublimeTextKit::CLI::Actions::Import.unstub :configuration, :kernel, :logger }
-
-  before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
-
-  after { SublimeTextKit::CLI::Actions::Import.unstub configuration:, kernel:, logger: }
 
   describe "#call" do
     let :workspaces do
@@ -60,17 +55,17 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "creates metadata" do
       shell.call %w[--metadata create]
-      expect(io.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
+      expect(logger.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
     end
 
     it "deletes metadata" do
       shell.call %w[--metadata delete]
-      expect(io.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
+      expect(logger.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
     end
 
     it "recreates metadata" do
       shell.call %w[--metadata recreate]
-      expect(io.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
+      expect(logger.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
     end
 
     it "rebuilds session" do
@@ -85,37 +80,40 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "prints ASCII Doc snippets" do
       shell.call %w[--snippets ascii_doc]
-      expect(io.reread).to eq(ascii_doc)
+      expect(logger.reread).to eq(ascii_doc)
     end
 
     it "prints Markdown snippets" do
       shell.call %w[--snippets markdown]
-      expect(io.reread).to eq(markdown)
+      expect(logger.reread).to eq(markdown)
     end
 
     it "updates metadata and session" do
       shell.call %w[--update]
-      expect(io.reread).to eq("Updating metadata and session...\nMetadata and session updated.\n")
+
+      expect(logger.reread).to eq(
+        "Updating metadata and session...\nMetadata and session updated.\n"
+      )
     end
 
     it "prints version" do
       shell.call %w[--version]
-      expect(io.reread).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
+      expect(logger.reread).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
     end
 
     it "prints help" do
       shell.call %w[--help]
-      expect(io.reread).to match(/Sublime Text Kit.+USAGE.+/m)
+      expect(logger.reread).to match(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints usage when no options are given" do
       shell.call
-      expect(io.reread).to match(/Sublime Text Kit.+USAGE.+/m)
+      expect(logger.reread).to match(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints error with invalid option" do
       shell.call %w[--bogus]
-      expect(io.reread).to match(/invalid option.+bogus/)
+      expect(logger.reread).to match(/invalid option.+bogus/)
     end
   end
 end
