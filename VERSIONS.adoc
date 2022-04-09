@@ -1,5 +1,21 @@
 = Versions
 
+== 13.0.0 (2022-04-09)
+
+* Added Auto Injector gem - Brooke Kuhlmann
+* Added CLI actions container - Brooke Kuhlmann
+* Added CLI actions import - Brooke Kuhlmann
+* Added Cogger gem - Brooke Kuhlmann
+* Added container import - Brooke Kuhlmann
+* Added snippets printer - Brooke Kuhlmann
+* Updated implementation to use auto-injection - Brooke Kuhlmann
+* Updated snippets action to use consolidated printer - Brooke Kuhlmann
+* Updated to Caliber 0.5.0 - Brooke Kuhlmann
+* Updated to Debug 1.5.0 - Brooke Kuhlmann
+* Removed Pastel gem - Brooke Kuhlmann
+* Removed snippet printers - Brooke Kuhlmann
+* Refactored RSpec application container as dependencies - Brooke Kuhlmann
+
 == 12.3.2 (2022-03-20)
 
 * Fixed CLI core parser issue with no default snippets format set - Brooke Kuhlmann
