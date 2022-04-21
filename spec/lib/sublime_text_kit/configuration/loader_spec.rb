@@ -18,11 +18,13 @@ RSpec.describe SublimeTextKit::Configuration::Loader do
       metadata_dir: nil,
       snippets_format: :ascii_doc,
       session_path: Pathname(
-        %(#{ENV["HOME"]}/Library/Application Support/Sublime Text/Local/Session.sublime_session)
+        %(#{home_dir}/Library/Application Support/Sublime Text/Local/Session.sublime_session)
       ),
-      user_dir: Pathname(%(#{ENV["HOME"]}/Library/Application Support/Sublime Text/Packages/User))
+      user_dir: Pathname(%(#{home_dir}/Library/Application Support/Sublime Text/Packages/User))
     ]
   end
+
+  let(:home_dir) { ENV.fetch "HOME" }
 
   describe ".call" do
     it "answers default configuration" do

@@ -20,10 +20,10 @@ RSpec.describe SublimeTextKit::Configuration::Content do
         project_roots: nil,
         metadata_dir: nil,
         snippets_format: nil,
-        session_path: Pathname(ENV["HOME"]).join(
+        session_path: Pathname(ENV.fetch("HOME")).join(
           "Library/Application Support/Sublime Text/Local/Session.sublime_session"
         ),
-        user_dir: Pathname(ENV["HOME"]).join(
+        user_dir: Pathname(ENV.fetch("HOME")).join(
           "Library/Application Support/Sublime Text/Packages/User"
         )
       }

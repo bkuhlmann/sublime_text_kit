@@ -25,7 +25,7 @@ module SublimeTextKit
       def initialize *arguments
         super
 
-        home = Pathname ENV["HOME"]
+        home = Pathname ENV.fetch("HOME", "")
 
         self[:session_path] ||= home.join(
           "Library/Application Support/Sublime Text/Local/Session.sublime_session"
