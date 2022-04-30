@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/bkuhlmann/sublime_text_kit/issues",
     "changelog_uri" => "https://www.alchemists.io/projects/sublime_text_kit/versions",
     "documentation_uri" => "https://www.alchemists.io/projects/sublime_text_kit",
+    "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "Sublime Text Kit",
     "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/bkuhlmann/sublime_text_kit"
