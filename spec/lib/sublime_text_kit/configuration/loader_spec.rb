@@ -24,7 +24,7 @@ RSpec.describe SublimeTextKit::Configuration::Loader do
     ]
   end
 
-  let(:home_dir) { ENV.fetch "HOME" }
+  let(:home_dir) { Dir.home }
 
   describe ".call" do
     it "answers default configuration" do
