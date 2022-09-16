@@ -122,7 +122,7 @@ To contribute, run:
 
 [source,bash]
 ----
-git clone https://github.com/bkuhlmann/sublime_text_kit.git
+git clone https://github.com/bkuhlmann/sublime_text_kit
 cd sublime_text_kit
 bin/setup
 ----
