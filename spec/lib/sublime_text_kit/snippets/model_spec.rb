@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "spec_helper"
 require "rexml/document"
+require "spec_helper"
 
 RSpec.describe SublimeTextKit::Snippets::Model do
   subject(:model) { described_class.new }

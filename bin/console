@@ -4,7 +4,7 @@
 require "bundler/setup"
 Bundler.require :tools
 
-require "sublime_text_kit"
 require "irb"
+require "sublime_text_kit"
 
 IRB.start __FILE__

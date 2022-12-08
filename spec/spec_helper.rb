@@ -13,8 +13,8 @@ unless ENV["NO_COVERAGE"]
   end
 end
 
-require "sublime_text_kit"
 require "refinements"
+require "sublime_text_kit"
 
 using Refinements::Pathnames
 
