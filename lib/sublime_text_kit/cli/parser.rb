@@ -20,7 +20,7 @@ module SublimeTextKit
       end
 
       def call arguments = []
-        section.call configuration_duplicate, client: client
+        section.call(configuration_duplicate, client:)
         client.parse arguments
         configuration_duplicate.freeze
       end
