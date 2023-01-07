@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "core"
 require "optparse"
 
 module SublimeTextKit
@@ -10,16 +11,14 @@ module SublimeTextKit
 
       CLIENT = OptionParser.new nil, 40, "  "
 
-      def initialize section: Parsers::Core,
-                     client: CLIENT,
-                     **dependencies
+      def initialize section: Parsers::Core, client: CLIENT, **dependencies
         super(**dependencies)
         @section = section
         @client = client
         @configuration_duplicate = configuration.dup
       end
 
-      def call arguments = []
+      def call arguments = Core::EMPTY_ARRAY
         section.call(configuration_duplicate, client:)
         client.parse arguments
         configuration_duplicate.freeze
