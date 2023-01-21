@@ -12,7 +12,7 @@ RSpec.describe SublimeTextKit::Metadata::Handler do
   let :serializer do
     SublimeTextKit::Metadata::Serializers::Project.new(
       SublimeTextKit::Metadata::Pathway[
-        project_dir: Bundler.root.join("spec/support/fixtures/projects/black"),
+        project_dir: SPEC_ROOT.join("support/fixtures/projects/black"),
         metadata_dir: temp_dir
       ]
     )

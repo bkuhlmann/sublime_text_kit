@@ -9,7 +9,7 @@ RSpec.describe SublimeTextKit::Snippets::Reader do
 
   describe "#call" do
     it "answers record read from valid file path" do
-      path = Bundler.root.join "spec/support/fixtures/snippets/ruby-then-proc.sublime-snippet"
+      path = SPEC_ROOT.join "support/fixtures/snippets/ruby-then-proc.sublime-snippet"
 
       expect(reader.call(path)).to eq(
         SublimeTextKit::Snippets::Model[
@@ -22,7 +22,7 @@ RSpec.describe SublimeTextKit::Snippets::Reader do
     end
 
     it "answers empty record read from invalid file path" do
-      path = Bundler.root.join "spec/support/snippets/bogus.sublime-snippet"
+      path = SPEC_ROOT.join "support/snippets/bogus.sublime-snippet"
       expect(reader.call(path)).to eq(SublimeTextKit::Snippets::Model.new)
     end
   end

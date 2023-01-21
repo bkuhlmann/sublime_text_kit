@@ -37,12 +37,12 @@ RSpec.describe SublimeTextKit::Configuration::Content do
   describe "#project_dirs" do
     let :proof do
       [
-        Bundler.root.join("spec/support/fixtures/projects/black"),
-        Bundler.root.join("spec/support/fixtures/projects/red"),
-        Bundler.root.join("spec/support/fixtures/projects/white"),
-        Bundler.root.join("spec/support/fixtures/projects/black"),
-        Bundler.root.join("spec/support/fixtures/projects/red"),
-        Bundler.root.join("spec/support/fixtures/projects/white")
+        SPEC_ROOT.join("support/fixtures/projects/black"),
+        SPEC_ROOT.join("support/fixtures/projects/red"),
+        SPEC_ROOT.join("support/fixtures/projects/white"),
+        SPEC_ROOT.join("support/fixtures/projects/black"),
+        SPEC_ROOT.join("support/fixtures/projects/red"),
+        SPEC_ROOT.join("support/fixtures/projects/white")
       ]
     end
 
@@ -51,21 +51,19 @@ RSpec.describe SublimeTextKit::Configuration::Content do
     end
 
     it "answers project directories when single project root exists" do
-      updated_content = content.merge(
-        project_roots: Bundler.root.join("spec/support/fixtures/projects")
-      )
+      updated_content = content.merge project_roots: SPEC_ROOT.join("support/fixtures/projects")
 
       expect(updated_content.project_dirs).to contain_exactly(
-        Bundler.root.join("spec/support/fixtures/projects/black"),
-        Bundler.root.join("spec/support/fixtures/projects/red"),
-        Bundler.root.join("spec/support/fixtures/projects/white")
+        SPEC_ROOT.join("support/fixtures/projects/black"),
+        SPEC_ROOT.join("support/fixtures/projects/red"),
+        SPEC_ROOT.join("support/fixtures/projects/white")
       )
     end
 
     it "answers project directories when multiple project roots exists" do
       updated_content = content.merge project_roots: [
-        Bundler.root.join("spec/support/fixtures/projects"),
-        Bundler.root.join("spec/support/fixtures/projects").to_s
+        SPEC_ROOT.join("support/fixtures/projects"),
+        SPEC_ROOT.join("support/fixtures/projects").to_s
       ]
 
       expect(updated_content.project_dirs).to contain_exactly(*proof)

@@ -11,10 +11,10 @@ RSpec.shared_context "with application dependencies" do
 
   let :configuration do
     SublimeTextKit::Configuration::Loader.with_defaults.call.merge(
-      project_roots: [Bundler.root.join("spec/support/fixtures/projects")],
+      project_roots: [SPEC_ROOT.join("support/fixtures/projects")],
       metadata_dir: temp_dir,
       session_path: temp_dir.join("Session.sublime_session"),
-      user_dir: Bundler.root.join("spec/support/fixtures/snippets")
+      user_dir: SPEC_ROOT.join("support/fixtures/snippets")
     )
   end
 
