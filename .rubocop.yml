@@ -1,2 +1,9 @@
 inherit_gem:
   caliber: config/all.yml
+
+Metrics/AbcSize:
+  AllowedMethods:
+    - act_on
+Metrics/CyclomaticComplexity:
+  AllowedMethods:
+    - act_on
