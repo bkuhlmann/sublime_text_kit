@@ -7,8 +7,8 @@ module SublimeTextKit
       class Config
         include SublimeTextKit::Import[:kernel, :logger]
 
-        def initialize configuration: Configuration::Loader::CLIENT, **dependencies
-          super(**dependencies)
+        def initialize(configuration: Configuration::Loader::CLIENT, **)
+          super(**)
           @configuration = configuration
         end
 

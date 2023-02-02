@@ -7,9 +7,8 @@ module SublimeTextKit
       class Session
         include SublimeTextKit::Import[:logger]
 
-        def initialize rebuilder: Sessions::Rebuilder.new, **dependencies
-          super(**dependencies)
-
+        def initialize(rebuilder: Sessions::Rebuilder.new, **)
+          super(**)
           @rebuilder = rebuilder
         end
 

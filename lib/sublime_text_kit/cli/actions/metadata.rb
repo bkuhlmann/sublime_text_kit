@@ -11,9 +11,8 @@ module SublimeTextKit
 
         using Refinements::Pathnames
 
-        def initialize handler: SublimeTextKit::Metadata::Handler, **dependencies
-          super(**dependencies)
-
+        def initialize(handler: SublimeTextKit::Metadata::Handler, **)
+          super(**)
           @handler = handler
         end
 

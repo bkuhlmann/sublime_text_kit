@@ -7,8 +7,8 @@ module SublimeTextKit
       class Snippets
         include SublimeTextKit::Import[:configuration, :logger]
 
-        def initialize printer: SublimeTextKit::Snippets::Printer.new, **dependencies
-          super(**dependencies)
+        def initialize(printer: SublimeTextKit::Snippets::Printer.new, **)
+          super(**)
           @printer = printer
         end
 

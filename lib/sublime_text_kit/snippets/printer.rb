@@ -6,8 +6,8 @@ module SublimeTextKit
     class Printer
       include Import[:logger]
 
-      def initialize collector: Collector.new, **dependencies
-        super(**dependencies)
+      def initialize(collector: Collector.new, **)
+        super(**)
         @collector = collector
       end
 

@@ -10,8 +10,8 @@ module SublimeTextKit
 
       using Refinements::Pathnames
 
-      def initialize reader: Reader.new, **dependencies
-        super(**dependencies)
+      def initialize(reader: Reader.new, **)
+        super(**)
         @reader = reader
       end
 

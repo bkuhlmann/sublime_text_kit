@@ -7,12 +7,12 @@ module SublimeTextKit
       class Update
         include SublimeTextKit::Import[:configuration, :logger]
 
-        def initialize metadata: SublimeTextKit::Metadata::Handler,
-                       session: Sessions::Rebuilder.new,
-                       **dependencies
-
-          super(**dependencies)
-
+        def initialize(
+          metadata: SublimeTextKit::Metadata::Handler,
+          session: Sessions::Rebuilder.new,
+          **
+        )
+          super(**)
           @metadata = metadata
           @session = session
         end

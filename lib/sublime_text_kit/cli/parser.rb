@@ -11,8 +11,8 @@ module SublimeTextKit
 
       CLIENT = OptionParser.new nil, 40, "  "
 
-      def initialize section: Parsers::Core, client: CLIENT, **dependencies
-        super(**dependencies)
+      def initialize(section: Parsers::Core, client: CLIENT, **)
+        super(**)
         @section = section
         @client = client
         @configuration_duplicate = configuration.dup
