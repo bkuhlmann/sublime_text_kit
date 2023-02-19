@@ -15,5 +15,5 @@ keywords:
  - command line interface
  - sublime text
  - configuration management
-repository-code: https://www.alchemists.io/projects/sublime_text_kit
+repository-code: https://alchemists.io/projects/sublime_text_kit
 repository-artifact: https://rubygems.org/gems/sublime_text_kit

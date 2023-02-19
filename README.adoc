@@ -53,7 +53,7 @@ USAGE:
 
 This gem can be configured via a global configuration:
 `~/.config/sublime_text_kit/configuration.yml`. It can also be configured via
-link:https://www.alchemists.io/projects/xdg[XDG] environment variables.
+link:https://alchemists.io/projects/xdg[XDG] environment variables.
 
 An example configuration could be:
 
@@ -91,8 +91,8 @@ the example settings shown above and assuming the following directory structure 
 The `snippets_format` key allows you define what format to print your snippets as. You can always
 override your default configuration by specifying the format from the command line:
 `sublime_text_kit -s ascii_doc`. For example, this is how
-link:https://www.alchemists.io/projects/sublime_text_setup/#_snippets[snippets documentation] is
-generated for the link:https://www.alchemists.io/projects/sublime_text_setup[Sublime Text Setup]
+link:https://alchemists.io/projects/sublime_text_setup/#_snippets[snippets documentation] is
+generated for the link:https://alchemists.io/projects/sublime_text_setup[Sublime Text Setup]
 project.
 
 === Workflow
@@ -143,19 +143,19 @@ To test, run:
 bin/rake
 ----
 
-== link:https://www.alchemists.io/policies/license[License]
+== link:https://alchemists.io/policies/license[License]
 
-== link:https://www.alchemists.io/policies/security[Security]
+== link:https://alchemists.io/policies/security[Security]
 
-== link:https://www.alchemists.io/policies/code_of_conduct[Code of Conduct]
+== link:https://alchemists.io/policies/code_of_conduct[Code of Conduct]
 
-== link:https://www.alchemists.io/policies/contributions[Contributions]
+== link:https://alchemists.io/policies/contributions[Contributions]
 
-== link:https://www.alchemists.io/projects/sublime_text_kit/versions[Versions]
+== link:https://alchemists.io/projects/sublime_text_kit/versions[Versions]
 
-== link:https://www.alchemists.io/community[Community]
+== link:https://alchemists.io/community[Community]
 
 == Credits
 
-* Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
-* Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
+* Built with link:https://alchemists.io/projects/gemsmith[Gemsmith].
+* Engineered by link:https://alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
