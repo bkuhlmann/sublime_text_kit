@@ -66,7 +66,7 @@ RSpec.describe SublimeTextKit::Configuration::Content do
         SPEC_ROOT.join("support/fixtures/projects").to_s
       ]
 
-      expect(updated_content.project_dirs).to contain_exactly(*proof)
+      expect(updated_content.project_dirs).to match_array(proof)
     end
   end
 end

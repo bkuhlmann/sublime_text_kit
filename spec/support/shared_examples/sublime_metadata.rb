@@ -101,7 +101,7 @@ RSpec.shared_examples "sublime metadata" do
 
     it "does not save metadata when file exists" do
       FileUtils.touch metadata.metadata_file
-      expect(File.zero?(metadata.metadata_file)).to be(true)
+      expect(File.empty?(metadata.metadata_file)).to be(true)
     end
   end
 end
