@@ -8,35 +8,22 @@ RSpec.describe SublimeTextKit::CLI::Actions::Snippets do
   include_context "with application dependencies"
 
   describe "#call" do
-    let :ascii_doc do
-      <<~CONTENT
-        * Ruby Then (multiple line) - `thenm`
-        * Ruby Then (proc) - `thenp`
-        * Ruby Then (single line) - `then`
-      CONTENT
-    end
-
-    let :markdown do
-      <<~CONTENT
-        - Ruby Then (multiple line) - `thenm`
-        - Ruby Then (proc) - `thenp`
-        - Ruby Then (single line) - `then`
-      CONTENT
-    end
-
     it "prints ASCII Doc" do
       action.call :ascii_doc
-      expect(logger.reread).to eq(ascii_doc)
+      expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
     end
 
     it "prints Markdown" do
       action.call :markdown
-      expect(logger.reread).to eq(markdown)
+      expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
     end
 
     it "fails when unknown format is used" do
       action.call "bogus"
-      expect(logger.reread).to eq("Invalid snippet format: bogus. Use ascii_doc or markdown.\n")
+
+      expect(logger.reread).to match(
+        /🛑.+Invalid snippet format: bogus. Use ascii_doc or markdown\./
+      )
     end
   end
 end

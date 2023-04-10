@@ -12,6 +12,6 @@ module SublimeTextKit
     register(:configuration) { Configuration::Loader.call }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../sublime_text_kit.gemspec" }
     register(:kernel) { Kernel }
-    register(:logger) { Cogger::Client.new }
+    register(:logger) { Cogger.new formatter: :emoji }
   end
 end

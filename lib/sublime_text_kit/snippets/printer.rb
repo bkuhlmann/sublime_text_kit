@@ -4,7 +4,7 @@ module SublimeTextKit
   module Snippets
     # Prints snippets as a list.
     class Printer
-      include Import[:logger]
+      include Import[:kernel]
 
       def initialize(collector: Collector.new, **)
         super(**)
@@ -13,7 +13,7 @@ module SublimeTextKit
 
       def call bullet
         collector.call.each do |snippet|
-          logger.info "#{bullet} #{snippet.description} - `#{snippet.trigger}`"
+          kernel.puts "#{bullet} #{snippet.description} - `#{snippet.trigger}`"
         end
       end
 

@@ -17,7 +17,7 @@ RSpec.describe SublimeTextKit::CLI::Actions::Session do
 
     it "logs session was rebuilt" do
       action.call
-      expect(logger.reread).to eq("Session rebuilt.\n")
+      expect(logger.reread).to match(/🟢.+Session rebuilt./)
     end
   end
 end

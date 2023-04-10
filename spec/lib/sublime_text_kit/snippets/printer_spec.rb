@@ -9,24 +9,20 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
 
   describe "#call" do
     context "with snippets" do
-      it "prints ASCII Doc snippets" do
+      it "prints ASCII Doc snippets", :aggregate_failures do
         printer.call "*"
 
-        expect(logger.reread).to eq(<<~CONTENT)
-          * Ruby Then (multiple line) - `thenm`
-          * Ruby Then (proc) - `thenp`
-          * Ruby Then (single line) - `then`
-        CONTENT
+        expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
+        expect(kernel).to have_received(:puts).with("* Ruby Then (proc) - `thenp`")
+        expect(kernel).to have_received(:puts).with("* Ruby Then (single line) - `then`")
       end
 
-      it "prints Markdown snippets" do
+      it "prints Markdown snippets", :aggregate_failures do
         printer.call "-"
 
-        expect(logger.reread).to eq(<<~CONTENT)
-          - Ruby Then (multiple line) - `thenm`
-          - Ruby Then (proc) - `thenp`
-          - Ruby Then (single line) - `then`
-        CONTENT
+        expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
+        expect(kernel).to have_received(:puts).with("- Ruby Then (proc) - `thenp`")
+        expect(kernel).to have_received(:puts).with("- Ruby Then (single line) - `then`")
       end
     end
 
@@ -35,7 +31,7 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
         configuration.user_dir = temp_dir
         printer.call "*"
 
-        expect(logger.reread).to eq("")
+        expect(kernel).not_to have_received(:puts)
       end
     end
   end

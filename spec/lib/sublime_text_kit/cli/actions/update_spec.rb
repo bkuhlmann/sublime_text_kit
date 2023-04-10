@@ -34,8 +34,8 @@ RSpec.describe SublimeTextKit::CLI::Actions::Update do
     it "logs status" do
       action.call
 
-      expect(logger.reread).to eq(
-        "Updating metadata and session...\nMetadata and session updated.\n"
+      expect(logger.reread).to match(
+        /🟢.+Updating metadata and session....+\n🟢.+Metadata and session updated./
       )
     end
   end

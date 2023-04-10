@@ -26,7 +26,10 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being created" do
       action.call :create
-      expect(logger.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
+
+      expect(logger.reread).to match(
+        /🟢.+Creating metadata in #{temp_dir}....+\n🟢.+Metadata created./
+      )
     end
 
     it "deletes metadata" do
@@ -41,7 +44,10 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being deleted" do
       action.call :delete
-      expect(logger.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
+
+      expect(logger.reread).to match(
+        /🟢.+Deleting metadata in #{temp_dir}....+\n🟢.+Metadata deleted./
+      )
     end
 
     it "recreates metadata" do
@@ -60,12 +66,15 @@ RSpec.describe SublimeTextKit::CLI::Actions::Metadata do
 
     it "logs metadata being recreated" do
       action.call :recreate
-      expect(logger.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
+
+      expect(logger.reread).to match(
+        /🟢.+Recreating metadata in #{temp_dir}....+\n🟢.+Metadata recreated./
+      )
     end
 
     it "fails when given invalid action" do
       action.call :bogus
-      expect(logger.reread).to eq("Unknown metadata action: bogus.\n")
+      expect(logger.reread).to match(/🛑.+Unknown metadata action: bogus./)
     end
   end
 end

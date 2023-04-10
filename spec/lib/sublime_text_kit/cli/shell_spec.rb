@@ -27,22 +27,6 @@ RSpec.describe SublimeTextKit::CLI::Shell do
       }
     end
 
-    let :ascii_doc do
-      <<~CONTENT
-        * Ruby Then (multiple line) - `thenm`
-        * Ruby Then (proc) - `thenp`
-        * Ruby Then (single line) - `then`
-      CONTENT
-    end
-
-    let :markdown do
-      <<~CONTENT
-        - Ruby Then (multiple line) - `thenm`
-        - Ruby Then (proc) - `thenp`
-        - Ruby Then (single line) - `then`
-      CONTENT
-    end
-
     it "edits configuration" do
       shell.call %w[--config edit]
       expect(kernel).to have_received(:system).with(include("EDITOR"))
@@ -55,17 +39,26 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "creates metadata" do
       shell.call %w[--metadata create]
-      expect(logger.reread).to eq("Creating metadata in #{temp_dir}...\nMetadata created.\n")
+
+      expect(logger.reread).to match(
+        "🟢.+Creating metadata in #{temp_dir}....+\n🟢.+Metadata created."
+      )
     end
 
     it "deletes metadata" do
       shell.call %w[--metadata delete]
-      expect(logger.reread).to eq("Deleting metadata in #{temp_dir}...\nMetadata deleted.\n")
+
+      expect(logger.reread).to match(
+        "🟢.+Deleting metadata in #{temp_dir}....+\n🟢.+Metadata deleted."
+      )
     end
 
     it "recreates metadata" do
       shell.call %w[--metadata recreate]
-      expect(logger.reread).to eq("Recreating metadata in #{temp_dir}...\nMetadata recreated.\n")
+
+      expect(logger.reread).to match(
+        "🟢.+Recreating metadata in #{temp_dir}....+\n🟢.+Metadata recreated."
+      )
     end
 
     it "rebuilds session" do
@@ -78,40 +71,40 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "prints ASCII Doc snippets" do
       shell.call %w[--snippets ascii_doc]
-      expect(logger.reread).to eq(ascii_doc)
+      expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
     end
 
     it "prints Markdown snippets" do
       shell.call %w[--snippets markdown]
-      expect(logger.reread).to eq(markdown)
+      expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
     end
 
     it "updates metadata and session" do
       shell.call %w[--update]
 
-      expect(logger.reread).to eq(
-        "Updating metadata and session...\nMetadata and session updated.\n"
+      expect(logger.reread).to match(
+        "🟢.+Updating metadata and session....+\n🟢.+Metadata and session updated."
       )
     end
 
     it "prints version" do
       shell.call %w[--version]
-      expect(logger.reread).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
+      expect(kernel).to have_received(:puts).with(/Sublime Text Kit\s\d+\.\d+\.\d+/)
     end
 
     it "prints help" do
       shell.call %w[--help]
-      expect(logger.reread).to match(/Sublime Text Kit.+USAGE.+/m)
+      expect(kernel).to have_received(:puts).with(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints usage when no options are given" do
       shell.call
-      expect(logger.reread).to match(/Sublime Text Kit.+USAGE.+/m)
+      expect(kernel).to have_received(:puts).with(/Sublime Text Kit.+USAGE.+/m)
     end
 
     it "prints error with invalid option" do
       shell.call %w[--bogus]
-      expect(logger.reread).to match(/invalid option.+bogus/)
+      expect(logger.reread).to match(/🛑.+invalid option.+bogus/)
     end
   end
 end

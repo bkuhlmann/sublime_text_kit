@@ -7,12 +7,13 @@ module SublimeTextKit
     # The main Command Line Interface (CLI) object.
     class Shell
       include Actions::Import[
-        :specification,
-        :logger,
         :config,
+        :kernel,
+        :logger,
         :metadata,
         :session,
         :snippets,
+        :specification,
         :update
       ]
 
@@ -38,12 +39,12 @@ module SublimeTextKit
           in action_session: true then session.call
           in action_snippets: true then snippets.call configuration.snippets_format
           in action_update: true then update.call
-          in action_version: true then logger.info { specification.labeled_version }
+          in action_version: true then kernel.puts specification.labeled_version
           else usage
         end
       end
 
-      def usage = logger.any { parser.to_s }
+      def usage = kernel.puts parser.to_s
     end
   end
 end
