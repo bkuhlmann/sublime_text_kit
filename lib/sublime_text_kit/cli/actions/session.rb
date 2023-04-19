@@ -1,18 +1,24 @@
 # frozen_string_literal: true
 
+require "sod"
+
 module SublimeTextKit
   module CLI
     module Actions
       # Handles session action.
-      class Session
-        include SublimeTextKit::Import[:logger]
+      class Session < Sod::Action
+        include Import[:logger]
+
+        description "Rebuild session metadata."
+
+        on %w[-S --session]
 
         def initialize(rebuilder: Sessions::Rebuilder.new, **)
           super(**)
           @rebuilder = rebuilder
         end
 
-        def call
+        def call(*)
           rebuilder.call
           logger.info "Session rebuilt."
         end

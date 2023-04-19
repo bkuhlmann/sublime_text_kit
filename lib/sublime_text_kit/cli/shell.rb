@@ -1,50 +1,48 @@
 # frozen_string_literal: true
 
-require "core"
+require "sod"
 
 module SublimeTextKit
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      include Actions::Import[
-        :config,
-        :kernel,
-        :logger,
-        :metadata,
-        :session,
-        :snippets,
-        :specification,
-        :update
-      ]
+      include Import[:defaults_path, :xdg_config, :specification]
 
-      def initialize(parser: Parser.new, **)
+      def initialize(context: Sod::Context, dsl: Sod, **)
         super(**)
-        @parser = parser
+        @context = context
+        @dsl = dsl
       end
 
-      def call arguments = Core::EMPTY_ARRAY
-        act_on parser.call(arguments)
-      rescue OptionParser::ParseError, Error => error
-        logger.error { error.message }
-      end
+      def call(...) = cli.call(...)
 
       private
 
-      attr_reader :parser
+      attr_reader :context, :dsl
 
-      def act_on configuration
-        case configuration
-          in action_config: Symbol => action then config.call action
-          in action_metadata: Symbol => kind then metadata.call kind
-          in action_session: true then session.call
-          in action_snippets: true then snippets.call configuration.snippets_format
-          in action_update: true then update.call
-          in action_version: true then kernel.puts specification.labeled_version
-          else usage
+      def cli
+        context = build_context
+
+        dsl.new :sublime_text_kit, banner: specification.banner do
+          on(Sod::Prefabs::Commands::Config, context:)
+
+          on "metadata", "Manage project metadata." do
+            on Actions::Metadata::Create
+            on Actions::Metadata::Delete
+            on Actions::Metadata::Recreate
+          end
+
+          on Actions::Session
+          on Actions::Snippets
+          on Actions::Update
+          on(Sod::Prefabs::Actions::Version, context:)
+          on Sod::Prefabs::Actions::Help, self
         end
       end
 
-      def usage = kernel.puts parser.to_s
+      def build_context
+        context[defaults_path:, xdg_config:, version_label: specification.labeled_version]
+      end
     end
   end
 end

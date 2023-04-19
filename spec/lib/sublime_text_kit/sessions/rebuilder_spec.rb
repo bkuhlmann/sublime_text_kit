@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::Sessions::Rebuilder do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:session) { described_class.new }
 

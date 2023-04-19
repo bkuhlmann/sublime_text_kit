@@ -7,13 +7,6 @@ RSpec.describe SublimeTextKit::Configuration::Loader do
 
   let :content do
     SublimeTextKit::Configuration::Content[
-      action_config: nil,
-      action_help: nil,
-      action_metadata: nil,
-      action_session: nil,
-      action_snippets: nil,
-      action_update: nil,
-      action_version: nil,
       project_roots: nil,
       metadata_dir: nil,
       snippets_format: :ascii_doc,

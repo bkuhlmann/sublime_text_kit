@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
+require "sod"
+
 module SublimeTextKit
   module CLI
     module Actions
       # Handles update action.
-      class Update
-        include SublimeTextKit::Import[:configuration, :logger]
+      class Update < Sod::Action
+        include Import[:configuration, :logger]
+
+        description "Update project and session metadata based on current settings."
+
+        on %w[-u --update]
 
         def initialize(
           metadata: SublimeTextKit::Metadata::Handler,
@@ -17,7 +23,7 @@ module SublimeTextKit
           @session = session
         end
 
-        def call
+        def call(*)
           logger.info "Updating metadata and session..."
           create_metadata
           session.call

@@ -6,13 +6,6 @@ module SublimeTextKit
   module Configuration
     # Defines configuration content as the primary source of truth for use throughout the gem.
     Content = Struct.new(
-      :action_config,
-      :action_help,
-      :action_metadata,
-      :action_session,
-      :action_snippets,
-      :action_update,
-      :action_version,
       :project_roots,
       :metadata_dir,
       :snippets_format,

@@ -10,9 +10,9 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
   include_context "with application dependencies"
 
-  before { SublimeTextKit::CLI::Actions::Import.stub configuration:, kernel:, logger: }
+  before { Sod::Import.stub kernel:, logger: }
 
-  after { SublimeTextKit::CLI::Actions::Import.unstub :configuration, :kernel, :logger }
+  after { Sod::Import.unstub :kernel, :logger }
 
   describe "#call" do
     let :workspaces do
@@ -27,18 +27,13 @@ RSpec.describe SublimeTextKit::CLI::Shell do
       }
     end
 
-    it "edits configuration" do
-      shell.call %w[--config edit]
-      expect(kernel).to have_received(:system).with(include("EDITOR"))
-    end
-
-    it "views configuration" do
-      shell.call %w[--config view]
-      expect(kernel).to have_received(:system).with(include("cat"))
+    it "prints configuration usage" do
+      shell.call %w[config]
+      expect(kernel).to have_received(:puts).with(/Manage configuration.+/m)
     end
 
     it "creates metadata" do
-      shell.call %w[--metadata create]
+      shell.call %w[metadata --create]
 
       expect(logger.reread).to match(
         "🟢.+Creating metadata in #{temp_dir}....+\n🟢.+Metadata created."
@@ -46,7 +41,7 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "deletes metadata" do
-      shell.call %w[--metadata delete]
+      shell.call %w[metadata --delete]
 
       expect(logger.reread).to match(
         "🟢.+Deleting metadata in #{temp_dir}....+\n🟢.+Metadata deleted."
@@ -54,7 +49,7 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "recreates metadata" do
-      shell.call %w[--metadata recreate]
+      shell.call %w[metadata --recreate]
 
       expect(logger.reread).to match(
         "🟢.+Recreating metadata in #{temp_dir}....+\n🟢.+Metadata recreated."
@@ -95,16 +90,6 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     it "prints help" do
       shell.call %w[--help]
       expect(kernel).to have_received(:puts).with(/Sublime Text Kit.+USAGE.+/m)
-    end
-
-    it "prints usage when no options are given" do
-      shell.call
-      expect(kernel).to have_received(:puts).with(/Sublime Text Kit.+USAGE.+/m)
-    end
-
-    it "prints error with invalid option" do
-      shell.call %w[--bogus]
-      expect(logger.reread).to match(/🛑.+invalid option.+bogus/)
     end
   end
 end

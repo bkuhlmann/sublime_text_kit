@@ -10,13 +10,6 @@ RSpec.describe SublimeTextKit::Configuration::Content do
   describe "#initialize" do
     let :proof do
       {
-        action_config: nil,
-        action_help: nil,
-        action_metadata: nil,
-        action_session: nil,
-        action_snippets: nil,
-        action_update: nil,
-        action_version: nil,
         project_roots: nil,
         metadata_dir: nil,
         snippets_format: nil,

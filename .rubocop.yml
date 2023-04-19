@@ -1,9 +1,6 @@
 inherit_gem:
   caliber: config/all.yml
 
-Metrics/AbcSize:
-  AllowedMethods:
-    - act_on
-Metrics/CyclomaticComplexity:
-  AllowedMethods:
-    - act_on
+Metrics/MethodLength:
+  Exclude:
+    - "lib/sublime_text_kit/cli/shell.rb"
