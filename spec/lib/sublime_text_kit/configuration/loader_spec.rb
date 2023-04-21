@@ -9,7 +9,7 @@ RSpec.describe SublimeTextKit::Configuration::Loader do
     SublimeTextKit::Configuration::Content[
       project_roots: nil,
       metadata_dir: nil,
-      snippets_format: :ascii_doc,
+      snippets_format: "ascii_doc",
       session_path: Pathname(
         %(#{home_dir}/Library/Application Support/Sublime Text/Local/Session.sublime_session)
       ),

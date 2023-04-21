@@ -20,10 +20,10 @@ module SublimeTextKit
           @printer = printer
         end
 
-        def call kind
-          case (kind || default)
-            when :ascii_doc then printer.call "*"
-            when :markdown then printer.call "-"
+        def call kind = default
+          case kind
+            when "ascii_doc" then printer.call "*"
+            when "markdown" then printer.call "-"
             else logger.error { "Invalid snippet format: #{kind}. Use ascii_doc or markdown." }
           end
         end
