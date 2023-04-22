@@ -10,7 +10,7 @@ RSpec.shared_context "with application dependencies" do
   include_context "with temporary directory"
 
   let :configuration do
-    SublimeTextKit::Configuration::Loader.with_defaults.call.merge(
+    SublimeTextKit::Container[:configuration].merge(
       project_roots: [SPEC_ROOT.join("support/fixtures/projects")],
       metadata_dir: temp_dir,
       session_path: temp_dir.join("Session.sublime_session"),
