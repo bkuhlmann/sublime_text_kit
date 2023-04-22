@@ -15,17 +15,8 @@ module SublimeTextKit
     ) do
       using Refinements::Pathnames
 
-      def initialize *arguments
+      def initialize(**)
         super
-
-        home = Pathname ENV.fetch("HOME", "")
-
-        self[:session_path] ||= home.join(
-          "Library/Application Support/Sublime Text/Local/Session.sublime_session"
-        )
-
-        self[:user_dir] ||= home.join "Library/Application Support/Sublime Text/Packages/User"
-
         freeze
       end
 
