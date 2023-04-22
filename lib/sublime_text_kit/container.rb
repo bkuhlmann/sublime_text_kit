@@ -21,7 +21,7 @@ module SublimeTextKit
     end
 
     register :defaults do
-      Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Content)
+      Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(Etcher::Loaders::YAML.new(self[:defaults_path]))
     end
 

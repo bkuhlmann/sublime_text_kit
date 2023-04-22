@@ -4,14 +4,13 @@ require "refinements/pathnames"
 
 module SublimeTextKit
   module Configuration
-    # Defines configuration content as the primary source of truth for use throughout the gem.
-    Content = Struct.new(
+    # Models the configuration.
+    Model = Struct.new(
       :project_roots,
       :metadata_dir,
       :snippets_format,
       :session_path,
-      :user_dir,
-      keyword_init: true
+      :user_dir
     ) do
       using Refinements::Pathnames
 
