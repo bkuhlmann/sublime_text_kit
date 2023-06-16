@@ -11,7 +11,6 @@ module SublimeTextKit
   module Container
     extend Dry::Container::Mixin
 
-    # :nocov:
     register :configuration do
       self[:defaults].add_loader(Etcher::Loaders::Environment.new(%w[HOME]))
                      .add_loader(Etcher::Loaders::YAML.new(self[:xdg_config].active))
