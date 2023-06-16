@@ -48,14 +48,23 @@ gem install sublime_text_kit
 From the command line, type: `sublime_text_kit`
 
 ....
-USAGE:
-  -c, --config ACTION                      Manage gem configuration. Actions: edit or view.
-  -h, --help                               Show this message.
-  -m, --metadata ACTION                    Manage project metadata. Actions: create, delete, or recreate.
-  -S, --session                            Rebuild session metadata.
-  -s, --snippets [FORMAT]                  View snippets. Formats: markdown or ascii_doc. Default: ascii_doc.
-  -u, --update                             Update project and session metadata based on current settings.
-  -v, --version                            Show gem version.
+USAGE
+  sublime_text_kit [OPTIONS]
+  sublime_text_kit COMMAND [OPTIONS]
+
+OPTIONS
+  -S, --session               Rebuild session metadata.
+  -s, --snippets [FORMAT]     View snippets.
+                              Use: markdown or ascii_doc.
+                              Default: ascii_doc.
+  -u, --update                Update project and session metadata based on current settings.
+  -v, --version               Show version.
+  -h, --help [COMMAND]        Show this message.
+
+COMMANDS
+  config                      Manage configuration.
+                              Path is dynamic per current directory.
+  metadata                    Manage project metadata.
 ....
 
 === Customization
@@ -68,14 +77,12 @@ An example configuration could be:
 
 [source,yaml]
 ----
-:project_roots:
+project_roots:
   - "~/Engineering/Organizations"
   - "~/Engineering/OSS"
-:metadata_dir: "~/Dropbox/Cache/Sublime"
-:snippets_format: :markdown
+metadata_dir: "~/Dropbox/Cache/Sublime"
+snippets_format: :markdown
 ----
-
-Feel free to take this configuration, modify, and save as your own.
 
 The `project_roots` key defines the root level directories where your project folders are located.
 When project metadata (i.e. `.sublime-project`, `.sublime-workspace`) is generated, the name of the
@@ -112,7 +119,7 @@ The following demonstrates a default Sublime Text setup:
 2. Shutdown Sublime Text (i.e. `COMMAND+q`).
 3. Run `sublime_text_kit --update` which will create project metadata and rebuild session metadata
    so Sublime Text has a complete project history from which to switch between via the
-   `CONTROL+COMMMAND+p` shortcut.
+   `CONTROL+COMMAND+p` shortcut.
 4. Launch Sublime Text and use the `CONTROL+COMMAND+p` keyboard shortcut to toggle between projects.
    Notice that you can (fuzzy type) project names to jump between them.
 5. Navigate through your project workload with ease. 🎉
