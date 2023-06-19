@@ -18,6 +18,11 @@ RSpec.describe SublimeTextKit::CLI::Actions::Snippets do
       expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
     end
 
+    it "prints default without kind" do
+      action.call
+      expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
+    end
+
     it "fails when unknown format is used" do
       action.call "bogus"
 

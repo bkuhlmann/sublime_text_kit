@@ -20,7 +20,9 @@ module SublimeTextKit
           @printer = printer
         end
 
-        def call kind = default
+        def call kind = nil
+          kind ||= default
+
           case kind
             when "ascii_doc" then printer.call "*"
             when "markdown" then printer.call "-"
