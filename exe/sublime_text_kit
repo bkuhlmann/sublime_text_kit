@@ -3,4 +3,4 @@
 
 require "sublime_text_kit"
 
-SublimeTextKit::CLI::Shell.new.call ARGV
+SublimeTextKit::CLI::Shell.new.call
