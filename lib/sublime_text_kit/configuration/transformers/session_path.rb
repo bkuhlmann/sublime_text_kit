@@ -9,22 +9,23 @@ module SublimeTextKit
       class SessionPath
         include Dry::Monads[:result]
 
-        def initialize
-          path = "Library/Application Support/Sublime Text/Local/Session.sublime_session"
+        DEFAULT = "Library/Application Support/Sublime Text/Local/Session.sublime_session"
 
-          @path = path
+        def initialize key = :session_path, default: DEFAULT
+          @key = key
+          @default = default
         end
 
         def call content
           return Success content unless content.key? :home
 
-          Pathname(content[:home]).join(path)
-                                  .then { |session_path| Success content.merge!(session_path:) }
+          Pathname(content[:home]).join(default)
+                                  .then { |value| Success content.merge!(key => value) }
         end
 
         private
 
-        attr_reader :path
+        attr_reader :key, :default
       end
     end
   end

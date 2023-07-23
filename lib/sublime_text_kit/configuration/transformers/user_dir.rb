@@ -9,20 +9,23 @@ module SublimeTextKit
       class UserDir
         include Dry::Monads[:result]
 
-        def initialize path = "Library/Application Support/Sublime Text/Packages/User"
-          @path = path
+        DEFAULT = "Library/Application Support/Sublime Text/Packages/User"
+
+        def initialize key = :user_dir, default: DEFAULT
+          @key = key
+          @default = default
         end
 
         def call content
           return Success content unless content.key? :home
 
-          Pathname(content[:home]).join(path)
-                                  .then { |user_dir| Success content.merge!(user_dir:) }
+          Pathname(content[:home]).join(default)
+                                  .then { |value| Success content.merge!(key => value) }
         end
 
         private
 
-        attr_reader :path
+        attr_reader :key, :default
       end
     end
   end
