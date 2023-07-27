@@ -47,25 +47,7 @@ gem install sublime_text_kit
 
 From the command line, type: `sublime_text_kit`
 
-....
-USAGE
-  sublime_text_kit [OPTIONS]
-  sublime_text_kit COMMAND [OPTIONS]
-
-OPTIONS
-  -S, --session               Rebuild session metadata.
-  -s, --snippets [FORMAT]     View snippets.
-                              Use: markdown or ascii_doc.
-                              Default: ascii_doc.
-  -u, --update                Update project and session metadata based on current settings.
-  -v, --version               Show version.
-  -h, --help [COMMAND]        Show this message.
-
-COMMANDS
-  config                      Manage configuration.
-                              Path is dynamic per current directory.
-  metadata                    Manage project metadata.
-....
+image:https://alchemists.io/images/projects/sublime_text_kit/screenshots/usage.png[Usage,width=773,height=413,role=focal_point]
 
 === Customization
 
