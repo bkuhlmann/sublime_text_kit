@@ -11,4 +11,5 @@ end
 
 # Main namespace.
 module SublimeTextKit
+  def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
 end
