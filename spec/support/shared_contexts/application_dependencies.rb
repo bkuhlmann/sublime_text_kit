@@ -20,7 +20,7 @@ RSpec.shared_context "with application dependencies" do
   end
 
   let(:kernel) { class_spy Kernel }
-  let(:logger) { Cogger.new io: StringIO.new, formatter: :emoji }
+  let(:logger) { Cogger.new id: :sublime_text_kit, io: StringIO.new }
 
   before { SublimeTextKit::Import.stub configuration:, kernel:, logger: }
 
