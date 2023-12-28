@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Metadata::Handler do
-  using Refinements::Pathnames
+  using Refinements::Pathname
 
   subject(:handler) { described_class.new "sublime-project", serializer: }
 

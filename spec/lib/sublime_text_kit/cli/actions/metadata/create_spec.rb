@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Actions::Metadata::Create do
-  using Refinements::Pathnames
+  using Refinements::Pathname
 
   subject(:action) { described_class.new }
 

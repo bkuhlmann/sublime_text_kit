@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module SublimeTextKit
   module Snippets
@@ -8,7 +8,7 @@ module SublimeTextKit
     class Collector
       include Import[:configuration]
 
-      using Refinements::Pathnames
+      using Refinements::Pathname
 
       def initialize(reader: Reader.new, **)
         super(**)

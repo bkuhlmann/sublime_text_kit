@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module SublimeTextKit
   module Metadata
     # Handles the creation, deletion, and recreation of metadata.
     class Handler
-      using Refinements::Pathnames
+      using Refinements::Pathname
 
       def self.with_project project_dir, metadata_dir
         new "sublime-project",

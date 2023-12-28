@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module SublimeTextKit
   module Sessions
@@ -9,7 +9,7 @@ module SublimeTextKit
     class Rebuilder
       include Import[:configuration]
 
-      using Refinements::Pathnames
+      using Refinements::Pathname
 
       def call
         session = read

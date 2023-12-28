@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 require "sod"
 
 module SublimeTextKit
@@ -11,7 +11,7 @@ module SublimeTextKit
         class Create < Sod::Action
           include Import[:configuration, :logger]
 
-          using Refinements::Pathnames
+          using Refinements::Pathname
 
           description "Create metadata."
 

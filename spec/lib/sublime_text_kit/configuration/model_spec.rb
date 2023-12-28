@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Configuration::Model do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:content) { described_class.new }
 

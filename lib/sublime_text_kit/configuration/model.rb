@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module SublimeTextKit
   module Configuration
     # Models the configuration.
     Model = Struct.new :project_roots, :metadata_dir, :snippets_format, :session_path, :user_dir do
-      using Refinements::Pathnames
+      using Refinements::Pathname
 
       def project_dirs
         Array(project_roots).map { |path| Pathname(path).expand_path }
