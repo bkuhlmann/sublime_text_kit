@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-require "dry/container/stub"
-require "infusible/stub"
-
 RSpec.shared_context "with application dependencies" do
-  using Infusible::Stub
-
   include_context "with temporary directory"
 
   let :configuration do
@@ -22,7 +17,7 @@ RSpec.shared_context "with application dependencies" do
   let(:kernel) { class_spy Kernel }
   let(:logger) { Cogger.new id: :sublime_text_kit, io: StringIO.new }
 
-  before { SublimeTextKit::Import.stub configuration:, kernel:, logger: }
+  before { SublimeTextKit::Container.stub! configuration:, kernel:, logger: }
 
-  after { SublimeTextKit::Import.unstub :configuration, :kernel, :logger }
+  after { SublimeTextKit::Container.restore }
 end
