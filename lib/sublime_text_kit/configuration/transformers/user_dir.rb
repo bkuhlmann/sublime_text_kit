@@ -16,11 +16,11 @@ module SublimeTextKit
           @default = default
         end
 
-        def call content
-          return Success content unless content.key? :home
+        def call attributes
+          return Success attributes unless attributes.key? :home
 
-          Pathname(content[:home]).join(default)
-                                  .then { |value| Success content.merge!(key => value) }
+          Pathname(attributes[:home]).join(default)
+                                     .then { |value| Success attributes.merge!(key => value) }
         end
 
         private

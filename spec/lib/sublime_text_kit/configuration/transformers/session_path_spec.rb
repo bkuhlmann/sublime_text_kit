@@ -8,7 +8,7 @@ RSpec.describe SublimeTextKit::Configuration::Transformers::SessionPath do
   subject(:transformer) { described_class.new }
 
   describe "#call" do
-    it "answers transformed content when home path exists" do
+    it "answers transformed attributes when home path exists" do
       expect(transformer.call({home: "/home"})).to eq(
         Success(
           home: "/home",
@@ -19,7 +19,7 @@ RSpec.describe SublimeTextKit::Configuration::Transformers::SessionPath do
       )
     end
 
-    it "answers original content when home path doesn't exist" do
+    it "answers original attributes when home path doesn't exist" do
       expect(transformer.call({})).to eq(Success({}))
     end
   end
