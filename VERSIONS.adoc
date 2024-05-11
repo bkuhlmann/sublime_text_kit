@@ -1,5 +1,12 @@
 = Versions
 
+== 16.4.0 (2024-05-11)
+
+* 🔼 Updated to Git Lint 7.3.0 - Brooke Kuhlmann
+* 🔼 Updated to Rake 13.2.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.1 - Brooke Kuhlmann
+* 🔁 Refactored configuration transformers to use attribute terminology - Brooke Kuhlmann
+
 == 16.3.0 (2024-04-03)
 
 * 🟢 Added Containable gem - Brooke Kuhlmann
