@@ -12,8 +12,8 @@ module SublimeTextKit
     extend Containable
 
     register :configuration do
-      self[:defaults].add_loader(Etcher::Loaders::Environment.new(%w[HOME]))
-                     .add_loader(Etcher::Loaders::YAML.new(self[:xdg_config].active))
+      self[:defaults].add_loader(:environment, %w[HOME])
+                     .add_loader(:yaml, self[:xdg_config].active)
                      .add_transformer(Configuration::Transformers::SessionPath.new)
                      .add_transformer(Configuration::Transformers::UserDir.new)
                      .then { |registry| Etcher.call registry }
@@ -21,7 +21,7 @@ module SublimeTextKit
 
     register :defaults do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
-                      .add_loader(Etcher::Loaders::YAML.new(self[:defaults_path]))
+                      .add_loader(:yaml, self[:defaults_path])
     end
 
     register(:specification) { Spek::Loader.call "#{__dir__}/../../sublime_text_kit.gemspec" }
