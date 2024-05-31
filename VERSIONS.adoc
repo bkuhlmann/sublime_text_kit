@@ -1,5 +1,14 @@
 = Versions
 
+== 16.5.0 (2024-05-31)
+
+* 🟢 Added IRB Kit gem - Brooke Kuhlmann
+* 🔼 Updated RSpec configuration to ignore backtraces in pending specs - Brooke Kuhlmann
+* 🔼 Updated citation URLs - Brooke Kuhlmann
+* 🔼 Updated to Etcher 1.5.0 - Brooke Kuhlmann
+* 🔼 Updated to Etcher 1.6.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.2 - Brooke Kuhlmann
+
 == 16.4.0 (2024-05-11)
 
 * 🔼 Updated to Git Lint 7.3.0 - Brooke Kuhlmann
