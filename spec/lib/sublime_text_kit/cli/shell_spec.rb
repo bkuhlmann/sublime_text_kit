@@ -18,9 +18,9 @@ RSpec.describe SublimeTextKit::CLI::Shell do
       {
         "workspaces" => {
           "recent_workspaces" => [
-            "#{configuration.metadata_dir}/black.sublime-workspace",
-            "#{configuration.metadata_dir}/red.sublime-workspace",
-            "#{configuration.metadata_dir}/white.sublime-workspace"
+            "#{settings.metadata_dir}/black.sublime-workspace",
+            "#{settings.metadata_dir}/red.sublime-workspace",
+            "#{settings.metadata_dir}/white.sublime-workspace"
           ]
         }
       }
@@ -56,11 +56,11 @@ RSpec.describe SublimeTextKit::CLI::Shell do
     end
 
     it "rebuilds session" do
-      configuration.metadata_dir = SPEC_ROOT.join "support/fixtures/metadata"
-      SPEC_ROOT.join("support/fixtures/Session.sublime_session").copy configuration.session_path
+      settings.metadata_dir = SPEC_ROOT.join "support/fixtures/metadata"
+      SPEC_ROOT.join("support/fixtures/Session.sublime_session").copy settings.session_path
       shell.call %w[--session]
 
-      expect(JSON(configuration.session_path.read)).to eq(workspaces)
+      expect(JSON(settings.session_path.read)).to eq(workspaces)
     end
 
     it "prints ASCII Doc snippets" do

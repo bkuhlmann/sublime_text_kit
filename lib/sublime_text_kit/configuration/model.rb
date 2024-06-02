@@ -4,7 +4,7 @@ require "refinements/pathname"
 
 module SublimeTextKit
   module Configuration
-    # Models the configuration.
+    # Models the settings.
     Model = Struct.new :project_roots, :metadata_dir, :snippets_format, :session_path, :user_dir do
       using Refinements::Pathname
 

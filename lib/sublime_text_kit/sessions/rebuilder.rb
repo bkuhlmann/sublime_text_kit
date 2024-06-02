@@ -7,7 +7,7 @@ module SublimeTextKit
   module Sessions
     # Manages the rebuilding of session information.
     class Rebuilder
-      include Import[:configuration]
+      include Import[:settings]
 
       using Refinements::Pathname
 
@@ -30,9 +30,9 @@ module SublimeTextKit
 
       def write(json) = JSON.dump(json).then { |content| source_path.write content }
 
-      def metadata_dir = configuration.metadata_dir
+      def metadata_dir = settings.metadata_dir
 
-      def source_path = configuration.session_path
+      def source_path = settings.session_path
     end
   end
 end

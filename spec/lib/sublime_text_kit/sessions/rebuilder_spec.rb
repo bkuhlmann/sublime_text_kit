@@ -13,8 +13,8 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
   let(:session_fixture) { SPEC_ROOT.join "support/fixtures/Session.sublime_session" }
 
   before do
-    configuration.metadata_dir = SPEC_ROOT.join "support/fixtures/metadata"
-    session_fixture.copy configuration.session_path
+    settings.metadata_dir = SPEC_ROOT.join "support/fixtures/metadata"
+    session_fixture.copy settings.session_path
   end
 
   describe "#call" do
@@ -22,9 +22,9 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
       {
         "workspaces" => {
           "recent_workspaces" => [
-            "#{configuration.metadata_dir}/black.sublime-workspace",
-            "#{configuration.metadata_dir}/red.sublime-workspace",
-            "#{configuration.metadata_dir}/white.sublime-workspace"
+            "#{settings.metadata_dir}/black.sublime-workspace",
+            "#{settings.metadata_dir}/red.sublime-workspace",
+            "#{settings.metadata_dir}/white.sublime-workspace"
           ]
         }
       }
@@ -32,23 +32,21 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
 
     it "updates session when session and metadata exists" do
       session.call
-      expect(JSON(configuration.session_path.read)).to eq(workspaces)
+      expect(JSON(settings.session_path.read)).to eq(workspaces)
     end
 
     it "updates session with empty workspaces with no metadata" do
-      configuration.metadata_dir = temp_dir
+      settings.metadata_dir = temp_dir
       session.call
 
-      expect(JSON(configuration.session_path.read)).to eq(
-        "workspaces" => {"recent_workspaces" => []}
-      )
+      expect(JSON(settings.session_path.read)).to eq("workspaces" => {"recent_workspaces" => []})
     end
 
     it "doesn't create session when session file is missing" do
-      configuration.session_path.delete
+      settings.session_path.delete
       session.call
 
-      expect(configuration.session_path.exist?).to be(false)
+      expect(settings.session_path.exist?).to be(false)
     end
 
     context "with missing session keys" do
@@ -56,7 +54,7 @@ RSpec.describe SublimeTextKit::Sessions::Rebuilder do
 
       it "updates session with empty hash" do
         session.call
-        expect(JSON(configuration.session_path.read)).to eq({})
+        expect(JSON(settings.session_path.read)).to eq({})
       end
     end
   end

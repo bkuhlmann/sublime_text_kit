@@ -7,7 +7,7 @@ module SublimeTextKit
     module Actions
       # Handles update action.
       class Update < Sod::Action
-        include Import[:configuration, :logger]
+        include Import[:settings, :logger]
 
         description "Update project and session metadata based on current settings."
 
@@ -35,13 +35,13 @@ module SublimeTextKit
         attr_reader :metadata, :session
 
         def create_metadata
-          configuration.project_dirs.each do |directory|
+          settings.project_dirs.each do |directory|
             metadata.with_project(directory, metadata_dir).create
             metadata.with_workspace(directory, metadata_dir).create
           end
         end
 
-        def metadata_dir = Pathname(configuration.metadata_dir).expand_path
+        def metadata_dir = Pathname(settings.metadata_dir).expand_path
       end
     end
   end

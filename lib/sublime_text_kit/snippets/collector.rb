@@ -6,7 +6,7 @@ module SublimeTextKit
   module Snippets
     # Collects and loads all snippets into memory for further processing.
     class Collector
-      include Import[:configuration]
+      include Import[:settings]
 
       using Refinements::Pathname
 
@@ -16,10 +16,10 @@ module SublimeTextKit
       end
 
       def call
-        configuration.user_dir
-                     .files("*.sublime-snippet")
-                     .map { |path| reader.call path }
-                     .sort_by(&:description)
+        settings.user_dir
+                .files("*.sublime-snippet")
+                .map { |path| reader.call path }
+                .sort_by(&:description)
       end
 
       private

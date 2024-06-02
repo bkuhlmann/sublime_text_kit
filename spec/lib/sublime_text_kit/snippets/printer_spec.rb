@@ -28,7 +28,7 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
 
     context "without snippets" do
       it "prints nothing" do
-        configuration.user_dir = temp_dir
+        settings.user_dir = temp_dir
         printer.call "*"
 
         expect(kernel).not_to have_received(:puts)

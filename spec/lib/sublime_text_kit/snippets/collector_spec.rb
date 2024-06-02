@@ -46,7 +46,7 @@ RSpec.describe SublimeTextKit::Snippets::Collector do
     end
 
     it "answers empty array when snippets don't exist" do
-      configuration.user_dir = temp_dir
+      settings.user_dir = temp_dir
       expect(collection.call).to eq([])
     end
   end

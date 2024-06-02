@@ -11,22 +11,28 @@ module SublimeTextKit
   module Container
     extend Containable
 
-    register :configuration do
-      self[:defaults].add_loader(:environment, %w[HOME])
-                     .add_loader(:yaml, self[:xdg_config].active)
-                     .add_transformer(Configuration::Transformers::SessionPath.new)
-                     .add_transformer(Configuration::Transformers::UserDir.new)
-                     .then { |registry| Etcher.call registry }
-    end
-
-    register :defaults do
+    register :registry do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(:yaml, self[:defaults_path])
+                      .add_loader(:environment, only: %w[HOME])
+                      .add_loader(:yaml, self[:xdg_config].active)
+                      .add_transformer(
+                        :root,
+                        :session_path,
+                        fallback: "~/Library/Application Support/Sublime Text/Local" \
+                                  "/Session.sublime_session"
+                      )
+                      .add_transformer(
+                        :root,
+                        :user_dir,
+                        fallback: "~/Library/Application Support/Sublime Text/Packages/User"
+                      )
     end
 
+    register(:settings) { Etcher.call(self[:registry]).dup }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../sublime_text_kit.gemspec" }
     register(:defaults_path) { Pathname(__dir__).join("configuration/defaults.yml") }
-    register(:xdg_config) { Runcom::Config.new "sublime_text_kit/configuration.yml" }
+    register(:xdg_config) { Runcom::Config.new "sublime_text_kit/settings.yml" }
     register(:logger) { Cogger.new id: :sublime_text_kit }
     register :kernel, Kernel
   end

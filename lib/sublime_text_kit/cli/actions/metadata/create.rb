@@ -9,7 +9,7 @@ module SublimeTextKit
       module Metadata
         # Creates project metadata.
         class Create < Sod::Action
-          include Import[:configuration, :logger]
+          include Import[:settings, :logger]
 
           using Refinements::Pathname
 
@@ -33,13 +33,13 @@ module SublimeTextKit
           attr_reader :handler
 
           def process_projects
-            configuration.project_dirs.each do |directory|
+            settings.project_dirs.each do |directory|
               handler.with_project(directory, metadata_dir).create
               handler.with_workspace(directory, metadata_dir).create
             end
           end
 
-          def metadata_dir = Pathname(configuration.metadata_dir).expand_path
+          def metadata_dir = Pathname(settings.metadata_dir).expand_path
         end
       end
     end

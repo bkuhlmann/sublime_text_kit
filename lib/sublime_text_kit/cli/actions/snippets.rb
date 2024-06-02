@@ -7,13 +7,13 @@ module SublimeTextKit
     module Actions
       # Handles snippets action.
       class Snippets < Sod::Action
-        include Import[:configuration, :logger]
+        include Import[:settings, :logger]
 
         description "View snippets."
 
         on %w[-s --snippets], argument: "[FORMAT]", allow: %w[markdown ascii_doc]
 
-        default { Container[:configuration].snippets_format }
+        default { Container[:settings].snippets_format }
 
         def initialize(printer: SublimeTextKit::Snippets::Printer.new, **)
           super(**)
