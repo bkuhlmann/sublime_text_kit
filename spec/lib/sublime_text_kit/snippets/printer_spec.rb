@@ -3,26 +3,32 @@
 require "spec_helper"
 
 RSpec.describe SublimeTextKit::Snippets::Printer do
+  using Refinements::StringIO
+
   subject(:printer) { described_class.new }
 
   include_context "with application dependencies"
 
   describe "#call" do
     context "with snippets" do
-      it "prints ASCII Doc snippets", :aggregate_failures do
+      it "prints ASCII Doc snippets" do
         printer.call "*"
 
-        expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
-        expect(kernel).to have_received(:puts).with("* Ruby Then (proc) - `thenp`")
-        expect(kernel).to have_received(:puts).with("* Ruby Then (single line) - `then`")
+        expect(io.reread).to eq(<<~CONTENT)
+          * Ruby Then (multiple line) - `thenm`
+          * Ruby Then (proc) - `thenp`
+          * Ruby Then (single line) - `then`
+        CONTENT
       end
 
       it "prints Markdown snippets", :aggregate_failures do
         printer.call "-"
 
-        expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
-        expect(kernel).to have_received(:puts).with("- Ruby Then (proc) - `thenp`")
-        expect(kernel).to have_received(:puts).with("- Ruby Then (single line) - `then`")
+        expect(io.reread).to eq(<<~CONTENT)
+          - Ruby Then (multiple line) - `thenm`
+          - Ruby Then (proc) - `thenp`
+          - Ruby Then (single line) - `then`
+        CONTENT
       end
     end
 
@@ -31,7 +37,7 @@ RSpec.describe SublimeTextKit::Snippets::Printer do
         settings.user_dir = temp_dir
         printer.call "*"
 
-        expect(kernel).not_to have_received(:puts)
+        expect(io.reread).to eq("")
       end
     end
   end

@@ -34,6 +34,6 @@ module SublimeTextKit
     register(:defaults_path) { Pathname(__dir__).join("configuration/defaults.yml") }
     register(:xdg_config) { Runcom::Config.new "sublime_text_kit/settings.yml" }
     register(:logger) { Cogger.new id: :sublime_text_kit }
-    register :kernel, Kernel
+    register :io, STDOUT
   end
 end

@@ -4,12 +4,13 @@ require "spec_helper"
 
 RSpec.describe SublimeTextKit::CLI::Shell do
   using Refinements::Pathname
+  using Refinements::StringIO
 
   subject(:shell) { described_class.new }
 
   include_context "with application dependencies"
 
-  before { Sod::Container.stub! kernel:, logger: }
+  before { Sod::Container.stub! logger:, io: }
 
   after { Sod::Container.restore }
 
@@ -28,7 +29,7 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "prints configuration usage" do
       shell.call %w[config]
-      expect(kernel).to have_received(:puts).with(/Manage configuration.+/m)
+      expect(io.reread).to match(/Manage configuration.+/m)
     end
 
     it "creates metadata" do
@@ -65,12 +66,22 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "prints ASCII Doc snippets" do
       shell.call %w[--snippets ascii_doc]
-      expect(kernel).to have_received(:puts).with("* Ruby Then (multiple line) - `thenm`")
+
+      expect(io.reread).to eq(<<~CONTENT)
+        * Ruby Then (multiple line) - `thenm`
+        * Ruby Then (proc) - `thenp`
+        * Ruby Then (single line) - `then`
+      CONTENT
     end
 
     it "prints Markdown snippets" do
       shell.call %w[--snippets markdown]
-      expect(kernel).to have_received(:puts).with("- Ruby Then (multiple line) - `thenm`")
+
+      expect(io.reread).to eq(<<~CONTENT)
+        - Ruby Then (multiple line) - `thenm`
+        - Ruby Then (proc) - `thenp`
+        - Ruby Then (single line) - `then`
+      CONTENT
     end
 
     it "updates metadata and session" do
@@ -83,12 +94,12 @@ RSpec.describe SublimeTextKit::CLI::Shell do
 
     it "prints version" do
       shell.call %w[--version]
-      expect(kernel).to have_received(:puts).with(/Sublime Text Kit\s\d+\.\d+\.\d+/)
+      expect(io.reread).to match(/Sublime Text Kit\s\d+\.\d+\.\d+/)
     end
 
     it "prints help" do
       shell.call %w[--help]
-      expect(kernel).to have_received(:puts).with(/Sublime Text Kit.+USAGE.+/m)
+      expect(io.reread).to match(/Sublime Text Kit.+USAGE.+/m)
     end
   end
 end
