@@ -32,7 +32,7 @@ module SublimeTextKit
     register(:settings) { Etcher.call(self[:registry]).dup }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../sublime_text_kit.gemspec" }
     register(:defaults_path) { Pathname(__dir__).join("configuration/defaults.yml") }
-    register(:xdg_config) { Runcom::Config.new "sublime_text_kit/settings.yml" }
+    register(:xdg_config) { Runcom::Config.new "sublime_text_kit/configuration.yml" }
     register(:logger) { Cogger.new id: :sublime_text_kit }
     register :io, STDOUT
   end
