@@ -38,7 +38,8 @@ RSpec.describe SublimeTextKit::Snippets::Model do
     end
 
     it "answers empty record for invalid XML document" do
-      expect(described_class.for(REXML::Document.new("bogus"))).to eq(described_class.new)
+      expectation = proc { described_class.for REXML::Document.new("bogus") }
+      expect(&expectation).to raise_error(REXML::ParseException, /Malformed XML/)
     end
 
     it "answers empty record for new XML document" do
