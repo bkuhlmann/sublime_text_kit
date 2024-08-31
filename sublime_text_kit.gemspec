@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/sublime_text_kit/issues",
     "changelog_uri" => "https://alchemists.io/projects/sublime_text_kit/versions",
-    "documentation_uri" => "https://alchemists.io/projects/sublime_text_kit",
+    "homepage_uri" => "https://alchemists.io/projects/sublime_text_kit",
     "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "Sublime Text Kit",
     "rubygems_mfa_required" => "true",
