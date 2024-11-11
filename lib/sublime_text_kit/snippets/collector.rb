@@ -6,7 +6,7 @@ module SublimeTextKit
   module Snippets
     # Collects and loads all snippets into memory for further processing.
     class Collector
-      include Import[:settings]
+      include Dependencies[:settings]
 
       using Refinements::Pathname
 

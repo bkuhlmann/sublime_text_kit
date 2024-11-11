@@ -7,7 +7,7 @@ module SublimeTextKit
     module Actions
       # Handles update action.
       class Update < Sod::Action
-        include Import[:settings, :logger]
+        include Dependencies[:settings, :logger]
 
         description "Update project and session metadata based on current settings."
 

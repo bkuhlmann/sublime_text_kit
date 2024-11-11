@@ -7,7 +7,7 @@ module SublimeTextKit
   module Sessions
     # Manages the rebuilding of session information.
     class Rebuilder
-      include Import[:settings]
+      include Dependencies[:settings]
 
       using Refinements::Pathname
 

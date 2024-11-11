@@ -9,7 +9,7 @@ module SublimeTextKit
       module Metadata
         # Deletes project metadata.
         class Delete < Sod::Action
-          include Import[:settings, :logger]
+          include Dependencies[:settings, :logger]
 
           using Refinements::Pathname
 

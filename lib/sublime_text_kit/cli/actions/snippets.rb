@@ -7,7 +7,7 @@ module SublimeTextKit
     module Actions
       # Handles snippets action.
       class Snippets < Sod::Action
-        include Import[:settings, :logger]
+        include Dependencies[:settings, :logger]
 
         description "View snippets."
 

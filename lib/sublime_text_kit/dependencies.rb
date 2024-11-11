@@ -3,5 +3,5 @@
 require "infusible"
 
 module SublimeTextKit
-  Import = Infusible[Container]
+  Dependencies = Infusible[Container]
 end

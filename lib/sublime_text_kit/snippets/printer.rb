@@ -4,7 +4,7 @@ module SublimeTextKit
   module Snippets
     # Prints snippets as a list.
     class Printer
-      include Import[:io]
+      include Dependencies[:io]
 
       def initialize(collector: Collector.new, **)
         super(**)

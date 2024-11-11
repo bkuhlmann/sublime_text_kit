@@ -7,7 +7,7 @@ module SublimeTextKit
     module Actions
       # Handles session action.
       class Session < Sod::Action
-        include Import[:logger]
+        include Dependencies[:logger]
 
         description "Rebuild session metadata."
 
