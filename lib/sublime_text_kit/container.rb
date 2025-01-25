@@ -11,7 +11,7 @@ module SublimeTextKit
   module Container
     extend Containable
 
-    register :registry do
+    register :registry, as: :fresh do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(:yaml, self[:defaults_path])
                       .add_loader(:environment, only: %w[HOME])
