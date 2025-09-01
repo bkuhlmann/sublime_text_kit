@@ -10,7 +10,7 @@ RSpec.shared_context "with application dependencies" do
   let(:io) { StringIO.new }
 
   before do
-    settings.merge! Etcher.call(
+    settings.with! Etcher.call(
       SublimeTextKit::Container[:registry].remove_loader(2),
       project_roots: [SPEC_ROOT.join("support/fixtures/projects")],
       metadata_dir: temp_dir,

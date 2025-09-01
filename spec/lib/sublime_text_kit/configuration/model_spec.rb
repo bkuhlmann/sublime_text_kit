@@ -24,7 +24,7 @@ RSpec.describe SublimeTextKit::Configuration::Model do
     end
 
     it "answers project directories when single project root exists" do
-      updated_content = content.merge project_roots: SPEC_ROOT.join("support/fixtures/projects")
+      updated_content = content.with project_roots: SPEC_ROOT.join("support/fixtures/projects")
 
       expect(updated_content.project_dirs).to contain_exactly(
         SPEC_ROOT.join("support/fixtures/projects/black"),
@@ -34,7 +34,7 @@ RSpec.describe SublimeTextKit::Configuration::Model do
     end
 
     it "answers project directories when multiple project roots exists" do
-      updated_content = content.merge project_roots: [
+      updated_content = content.with project_roots: [
         SPEC_ROOT.join("support/fixtures/projects"),
         SPEC_ROOT.join("support/fixtures/projects").to_s
       ]
