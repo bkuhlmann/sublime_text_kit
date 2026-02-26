@@ -10,7 +10,7 @@ module SublimeTextKit
     }.freeze
 
     # Defines a snippet record.
-    Model = Struct.new(*KEY_MAP.values, keyword_init: true) do
+    Model = Struct.new(*KEY_MAP.values) do
       def self.for document, key_map: KEY_MAP
         root = document.root
 
@@ -22,7 +22,7 @@ module SublimeTextKit
             .then { |attributes| new(**attributes) }
       end
 
-      def initialize *arguments
+      def initialize(**)
         super
         freeze
       end

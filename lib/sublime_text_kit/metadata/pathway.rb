@@ -3,10 +3,10 @@
 module SublimeTextKit
   module Metadata
     # Defines metadata pathways.
-    Pathway = Struct.new :project_dir, :metadata_dir, keyword_init: true do
+    Pathway = Struct.new :project_dir, :metadata_dir do
       using Refinements::Pathname
 
-      def initialize *arguments
+      def initialize(**)
         super
         each_pair { |key, value| self[key] = Pathname(value).expand_path }
       end
