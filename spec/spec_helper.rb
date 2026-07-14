@@ -4,10 +4,11 @@ require "simplecov"
 
 unless ENV["COVERAGE"] == "no"
   SimpleCov.start do
-    add_filter %r((.+/container\.rb|^/spec/))
+    skip %r((.+/container\.rb|^/spec/))
     enable_coverage :branch
-    enable_coverage_for_eval
-    minimum_coverage_by_file line: 95, branch: 95
+    enable_coverage :eval
+    coverage(:line) { minimum_per_file 95 }
+    coverage(:branch) { minimum_per_file 95 }
   end
 end
 
