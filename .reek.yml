@@ -8,3 +8,5 @@ detectors:
   TooManyStatements:
     exclude:
       - "SublimeTextKit::CLI::Shell#cli"
+  UnusedParameters:
+    enabled: false
